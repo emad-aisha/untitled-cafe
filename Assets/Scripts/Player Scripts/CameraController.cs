@@ -6,10 +6,13 @@ public class CameraController : MonoBehaviour {
     [SerializeField] int sensitivity;
     [SerializeField] bool invertY;
 
-    // DEBUGGING
+    [Header("Debugging")]
     [SerializeField] bool showRaycast;
 
     float CameraYPos;
+
+    float mouseX;
+    float mouseY;
 
     void Start() {
         Cursor.visible = false;
@@ -17,20 +20,26 @@ public class CameraController : MonoBehaviour {
     }
 
     void Update() {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        SetMousePositions();
 
-        // invert logic
+        InvertLogicCheck();
+        RangeCheck();
+
+    }
+
+    void SetMousePositions() {
+        mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+        mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+    }
+
+    void InvertLogicCheck() {
         if (invertY) CameraYPos += mouseY;
         else CameraYPos -= mouseY;
+    }
 
-        // range check
+    void RangeCheck() {
         CameraYPos = Mathf.Clamp(CameraYPos, lockMin, lockMax);
         transform.localRotation = Quaternion.Euler(CameraYPos, 0, 0);
         transform.parent.Rotate(Vector3.up * mouseX);
-
-        if (showRaycast) Debug.DrawRay(transform.position, transform.forward * 15, Color.blue);
     }
-
-
 }

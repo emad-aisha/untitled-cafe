@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dd47aaf0846624890de0af6204250c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockMin: 0
-  lockMax: 90
+  lockMin: -60
+  lockMax: 60
   sensitivity: 500
   invertY: 0
   showRaycast: 1
@@ -289,6 +289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e83e2f84336cd4488b44ef84931e354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactCooldown: 1
+  interactDistance: 9
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  showRaycast: 1
 --- !u!114 &7771239264177987020
 MonoBehaviour:
   m_ObjectHideFlags: 0
