@@ -13,7 +13,7 @@ public class Liquid : CupType {
     public LiquidType GetLiquidType() { return type; }
 
     // overides
-    public new void Interact() {
-        Debug.Log("Liquid Class Called");
+    override public void Interact() {
+        Debug.Log("Liquid Class: " + type.ToString());
     }
 }

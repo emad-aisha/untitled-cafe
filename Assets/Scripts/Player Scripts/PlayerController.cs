@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour, IInteractable {
 
     void Start() {
         movement = GetComponent<Movement>();
-        interactCooldownTimer = 0;
+        interactCooldownTimer = interactCooldown;
     }
 
     void Update() {

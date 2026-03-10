@@ -6,9 +6,6 @@ public class CameraController : MonoBehaviour {
     [SerializeField] int sensitivity;
     [SerializeField] bool invertY;
 
-    [Header("Debugging")]
-    [SerializeField] bool showRaycast;
-
     float CameraYPos;
 
     float mouseX;

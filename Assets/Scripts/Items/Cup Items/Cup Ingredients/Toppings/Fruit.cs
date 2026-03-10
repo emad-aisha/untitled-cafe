@@ -13,7 +13,7 @@ public class Fruit : CupType {
     public FruitType GetFruitType() { return type; }
 
     // overides
-    public new void Interact() {
-        Debug.Log("Fruit Class Called");
+    override public void Interact() {
+        Debug.Log("Fruit Class: " + type.ToString());
     }
 }

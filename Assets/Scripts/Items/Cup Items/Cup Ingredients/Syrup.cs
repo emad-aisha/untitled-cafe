@@ -3,17 +3,17 @@ using UnityEngine;
 public class Syrup : CupType {
     public enum SyrupType {
         Null,
-        Chocolate, Vanilla, BlueRasberry
+        Chocolate, Vanilla, BlueRaspberry
     }
 
     [Header("Syrup Class Variables")]
-    [SerializeField] private SyrupType shot;
+    [SerializeField] private SyrupType type;
 
     // getters
-    public SyrupType GetSyrupType() { return shot; }
+    public SyrupType GetSyrupType() { return type; }
 
     // overides
-    public new void Interact() {
-        Debug.Log("Syrup Class Called");
+    override public void Interact() {
+        Debug.Log("Syrup Class: " + type.ToString());
     }
 }

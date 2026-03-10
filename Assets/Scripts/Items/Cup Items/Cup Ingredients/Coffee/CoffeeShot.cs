@@ -13,7 +13,7 @@ public class CoffeeShot : CupType {
     public CoffeeShotType GetCoffeeShotType() { return type; }
 
     // overides
-    public new void Interact() {
-        Debug.Log("Coffee Shot Class Called");
+    override public void Interact() {
+        Debug.Log("Coffee Shot Class: " + type.ToString());
     }
 }

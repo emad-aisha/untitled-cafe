@@ -3,8 +3,7 @@ using UnityEngine;
 public class Dessert : CupType {
     public enum DessertType {
         Null,
-        WhippedCream, Chocolate,
-        ChocolateShavings, Sprinkles
+        WhippedCream, Chocolate
     }
 
     [Header("Dessert Class Variables")]
@@ -14,7 +13,7 @@ public class Dessert : CupType {
     public DessertType GetDessertType() { return type; }
 
     // overides
-    public new void Interact() {
-        Debug.Log("Dessert Class Called");
+    override public void Interact() {
+        Debug.Log("Dessert Class: " + type.ToString());
     }
 }

@@ -18,7 +18,7 @@ public class CupType : MonoBehaviour, IInteractable {
     [SerializeField] CupMachineType MachineType;
 
 
-    public void Interact() {
-        Debug.Log("Base Cup Class Called");
+    virtual public void Interact() {
+        Debug.Log("Base Class...");
     }
 }

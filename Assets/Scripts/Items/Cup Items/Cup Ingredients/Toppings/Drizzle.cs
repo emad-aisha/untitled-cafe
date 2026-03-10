@@ -13,7 +13,7 @@ public class Drizzle : CupType {
     public DrizzleType GetDrizzleType() { return type; }
 
     // overides
-    public new void Interact() {
-        Debug.Log("Drizzle Class Called");
+    override public void Interact() {
+        Debug.Log("Drizzle Class: " + type.ToString());
     }
 }
