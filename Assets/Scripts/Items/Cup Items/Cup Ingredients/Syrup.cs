@@ -1,19 +1,14 @@
 using UnityEngine;
 
-public class Syrup : CupType {
-    public enum SyrupType {
-        Null,
-        Chocolate, Vanilla, BlueRaspberry
-    }
-
+public class Syrup : CupType { 
     [Header("Syrup Class Variables")]
-    [SerializeField] private SyrupType type;
+    [SerializeField] public SyrupType type;
 
-    // getters
-    public SyrupType GetSyrupType() { return type; }
+    void Start() {
+        cupObject = new();
+        cupObject.syrup = type;
+    }
 
     // overides
-    override public void Interact() {
-        Debug.Log("Syrup Class: " + type.ToString());
-    }
+    
 }

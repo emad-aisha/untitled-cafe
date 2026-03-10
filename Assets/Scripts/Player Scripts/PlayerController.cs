@@ -1,7 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IInteractable {
+public class PlayerController : MonoBehaviour {
     [Header("Interaction")]
     [SerializeField] [Range(0, 1)]  float interactCooldown;
     [SerializeField] [Range(8, 12)] float interactDistance;

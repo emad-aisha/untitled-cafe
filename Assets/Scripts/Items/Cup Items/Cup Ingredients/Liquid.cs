@@ -1,19 +1,14 @@
 using UnityEngine;
 
 public class Liquid : CupType {
-    public enum LiquidType {
-        Null,
-        Water, Soda, Milk
-    }
-
     [Header("Liquid Class Variables")]
-    [SerializeField] private LiquidType type;
+    [SerializeField] public LiquidType type;
 
-    // getters
-    public LiquidType GetLiquidType() { return type; }
+    void Start() {
+        cupObject = new();
+        cupObject.liquid = type;
+    }
 
     // overides
-    override public void Interact() {
-        Debug.Log("Liquid Class: " + type.ToString());
-    }
+
 }

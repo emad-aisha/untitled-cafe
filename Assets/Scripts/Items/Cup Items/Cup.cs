@@ -1,39 +1,28 @@
 using UnityEngine;
 
-public class Cup : MonoBehaviour {
-    private Liquid liquid;
-    private Syrup syrup;
+public class Cup {
+    public Liquid.LiquidType liquid;
+    public Syrup.SyrupType syrup;
 
     // coffee
-    private CoffeeShot coffeeShot;
-    private CoffeeExtra coffeeExtra;
+    public CoffeeShot.CoffeeShotType coffeeShot;
+    public CoffeeExtra.CoffeeExtraType coffeeExtra;
 
     // toppings
-    private Fruit fruit;
-    private Dessert dessert;
-    private Drizzle drizzle;
+    public Fruit.FruitType fruit;
+    public Dessert.DessertType dessert;
+    public Drizzle.DrizzleType drizzle;
 
+    public Cup() {
+        liquid = Liquid.LiquidType.Null;
+        syrup = Syrup.SyrupType.Null;
 
+        coffeeShot = CoffeeShot.CoffeeShotType.Null;
+        coffeeExtra = CoffeeExtra.CoffeeExtraType.Null;
 
-    // getters
-    Liquid GetLiquid() { return liquid; }
-    Syrup GetSyrup()   { return syrup; }
+        fruit = Fruit.FruitType.Null;
+        dessert = Dessert.DessertType.Null;
+        drizzle = Drizzle.DrizzleType.Null;
+    }
 
-    CoffeeShot GetCoffeeShot()   { return coffeeShot; }
-    CoffeeExtra GetCoffeeExtra() { return coffeeExtra; }
-
-    Fruit GetFruit()     { return fruit; }
-    Dessert GetDessert() { return dessert; }
-    Drizzle GetDrizzle() { return drizzle; }
-
-    // setters
-    void SetLiquid(Liquid newLiquid) { liquid = newLiquid; }
-    void SetSyrup(Syrup newSyrup)    { syrup = newSyrup; }
-
-    void SetCoffeeShot(CoffeeShot newCoffeeShot)    { coffeeShot = newCoffeeShot; }
-    void SetCoffeeExtra(CoffeeExtra newCoffeeExtra) { coffeeExtra = newCoffeeExtra; }
-
-    void SetFruit(Fruit newFruit)       { fruit = newFruit; }
-    void SetDessert(Dessert newDessert) { dessert = newDessert; }
-    void SetDrizzle(Drizzle newDrizzle) { drizzle = newDrizzle; }
 }

@@ -1,19 +1,14 @@
 using UnityEngine;
 
 public class Drizzle : CupType {
-    public enum DrizzleType {
-        Null,
-        Caramel, Chocolate
-    }
-
     [Header("Drizzle Class Variables")]
-    [SerializeField] private DrizzleType type;
+    [SerializeField] public DrizzleType type;
 
-    // getters
-    public DrizzleType GetDrizzleType() { return type; }
+    void Start() {
+        cupObject = new();
+        cupObject.drizzle = type;
+    }
 
     // overides
-    override public void Interact() {
-        Debug.Log("Drizzle Class: " + type.ToString());
-    }
+    
 }
