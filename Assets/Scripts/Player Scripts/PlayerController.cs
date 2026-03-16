@@ -1,16 +1,19 @@
-using System.Threading;
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [Header("Interaction")]
-    [SerializeField] [Range(0, 1)]  float interactCooldown;
-    [SerializeField] [Range(8, 12)] float interactDistance;
+    [SerializeField][Range(0, 1)] float interactCooldown;
+    [SerializeField][Range(8, 12)] float interactDistance;
 
     [Header("Misc")]
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("Debugging")]
     [SerializeField] bool showRaycast;
+
+    // inventory
+    BaseCup cup;
 
     Movement movement;
     Vector3 cameraPosition;
@@ -62,17 +65,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     // interface overrides
-    public void Interact() { 
+    public void Interact() {
         RaycastHit raycast;
 
         if (Physics.Raycast(cameraPosition, cameraForward, out raycast, interactDistance, ~ignoreLayer)) {
             IInteractable interactableObject = raycast.collider.GetComponent<IInteractable>();
 
             if (interactableObject != null) {
-                interactableObject.Interact();
-                return;
+                Debug.Log("interact!");
+                Debug.Log("interactableObject: " + interactableObject);
+                interactableObject.Interact(raycast.collider); // no way.....
             }
         }
-        Debug.Log("Player Class Called");
     }
+
 }
