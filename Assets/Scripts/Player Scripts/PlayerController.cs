@@ -77,9 +77,7 @@ public class PlayerController : MonoBehaviour {
         RaycastHit raycast;
 
         if (Physics.Raycast(cameraPosition, cameraForward, out raycast, interactDistance, ~ignoreLayer)) {
-            IInteractable interactableObject = raycast.collider.GetComponent<IInteractable>();
-
-            cup.Interact(raycast.collider); // TODO: maybe change this
+            cup.Interact(raycast.collider);
         }
     }
 

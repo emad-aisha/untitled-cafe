@@ -13,6 +13,7 @@ public class Syrup : FizzyDrinkIngredients {
     void Start() {
         SetSyrup(gameObject.GetComponent<Syrup>());
         priority = Priorities.second;
+        canHaveMultiple = false;
         SetOne();
     }
 
@@ -41,7 +42,7 @@ public class Syrup : FizzyDrinkIngredients {
     }
 
     public void SetOne(Type type) {
-        SetAllOff(isMachine);
+        if (!canHaveMultiple) SetAllOff(isMachine);
 
         switch (type) {
             case Type.Lemon: hasLemon = true; break;

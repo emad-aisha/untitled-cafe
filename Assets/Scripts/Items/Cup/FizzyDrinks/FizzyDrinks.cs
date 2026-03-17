@@ -16,25 +16,28 @@ public class FizzyDrinks : MonoBehaviour {
     }
 
     public void DrinkInteract(ref FizzyDrinks input, ref int priority) {
+        // TODO: make this into a function with casts
         if (soda && IsMatching(soda.priority, priority)) {
-            if (!input.soda || !input.soda.AllIsOff()) return;
+            if (!input.soda) return;
+            if (!input.soda.CanHaveManyIngredient()) return;
 
             input.soda.SetOne(soda.GetTrue());
             priority++;
             return;
         }
         else if (syrup && IsMatching(syrup.priority, priority)) {
-            if (!input.syrup || !input.syrup.AllIsOff()) return;
+            if (!input.syrup) return;
+            if (!input.syrup.CanHaveManyIngredient()) return;
 
             input.syrup.SetOne(syrup.GetTrue());
             priority++;
             return;
         }
         else if (fruit && IsMatching(fruit.priority, priority)) {
-            if (!input.fruit || !input.fruit.AllIsOff()) return;
+            if (!input.fruit) return;
+            if (!input.fruit.CanHaveManyIngredient()) return;
 
             input.fruit.SetOne(fruit.GetTrue());
-            priority++;
             return;
         }
 

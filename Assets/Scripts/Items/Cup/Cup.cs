@@ -14,7 +14,6 @@ public class Cup {
 
         if (fizzyDrink != null) {
             fizzyDrink.DrinkInteract(ref fizzy, ref currPriority);
-            Debug.Log(currPriority);
             return;
         }
     }

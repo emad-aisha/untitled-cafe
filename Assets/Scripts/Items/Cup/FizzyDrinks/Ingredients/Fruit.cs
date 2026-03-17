@@ -12,6 +12,7 @@ public class Fruit : FizzyDrinkIngredients {
     void Start() {
         SetFruit(gameObject.GetComponent<Fruit>());
         priority = Priorities.third;
+        canHaveMultiple = true;
         SetOne();
     }
 
@@ -39,7 +40,7 @@ public class Fruit : FizzyDrinkIngredients {
     }
 
     public void SetOne(Type type) {
-        SetAllOff(isMachine);
+        if (!canHaveMultiple) SetAllOff(isMachine);
 
         switch (type) {
             case Type.Lemon: hasLemon = true; break;
