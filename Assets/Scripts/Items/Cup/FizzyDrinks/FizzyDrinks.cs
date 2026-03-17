@@ -1,43 +1,48 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class FizzyDrinks : BaseCup {
-    [HideInInspector] protected enum Priorities { first, second, third };
-    private Soda soda;
-    private Syrup syrup;
-    private Fruit fruit;
+public class FizzyDrinks : MonoBehaviour {
+    [HideInInspector] public enum Priorities { first, second, third };
+    [SerializeField] private Soda soda;
+    [SerializeField] private Syrup syrup;
+    [SerializeField] private Fruit fruit;
 
     void Start() {
+        soda = gameObject.GetComponent<Soda>();
+        syrup = gameObject.GetComponent<Syrup>();
+        fruit = gameObject.GetComponent<Fruit>();
+
         SetAllOff();
     }
 
     public void DrinkInteract(ref FizzyDrinks input, ref int priority) {
-        SetFizzyDrink(this);
+        if (soda && IsMatching(soda.priority, priority)) {
+            if (!input.soda || !input.soda.AllIsOff()) return;
 
-        Debug.Log("priority: " + priority);
-        switch ((Priorities)priority) {
-            case Priorities.first:
-                Debug.Log("soda changed");
-                if (input.soda.AllIsOff()) input.soda = soda;
-                priority++;
-                break;
+            input.soda.SetOne(soda.GetTrue());
+            priority++;
+            return;
+        }
+        else if (syrup && IsMatching(syrup.priority, priority)) {
+            if (!input.syrup || !input.syrup.AllIsOff()) return;
 
-            case Priorities.second:
-                Debug.Log("syrup changed");
-                if (input.syrup.AllIsOff()) input.syrup = syrup;
-                priority++;
-                break;
+            input.syrup.SetOne(syrup.GetTrue());
+            priority++;
+            return;
+        }
+        else if (fruit && IsMatching(fruit.priority, priority)) {
+            if (!input.fruit || !input.fruit.AllIsOff()) return;
 
-            case Priorities.third:
-                Debug.Log("fruit changed");
-                if (input.fruit.AllIsOff()) input.fruit = fruit;
-                priority++;
-                break;
-
-            default:
-                Debug.Log("nothing changed");
-                break;
+            input.fruit.SetOne(fruit.GetTrue());
+            priority++;
+            return;
         }
 
+    }
+
+
+    bool IsMatching(Priorities priority, int checkedPriority) {
+        return priority == (Priorities)checkedPriority;
     }
 
     public void SetAllOff() {

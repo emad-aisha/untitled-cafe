@@ -306,6 +306,37 @@ Transform:
   - {fileID: 1526456566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &777839796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777839797}
+  m_Layer: 0
+  m_Name: Syrups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777839797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777839796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1526456566}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &805701374
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +448,7 @@ GameObject:
   - component: {fileID: 906635701}
   - component: {fileID: 906635700}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: Soda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -524,10 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddfa64ac09624445b543edfec5fd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 1
-  soda: {fileID: 0}
-  syrup: {fileID: 0}
-  fruit: {fileID: 0}
 --- !u!114 &906635704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,9 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9df74eeeb52944aa2e38bd13f27289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
-  isMachine: 0
-  hasSoda: 0
+  isMachine: 1
+  hasSoda: 1
 --- !u!1 &1073463144
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +708,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 906635699}
+  - {fileID: 2114686590}
+  - {fileID: 777839797}
   m_Father: {fileID: 592953748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660888197
@@ -940,6 +968,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992912001}
   m_CullTransparentMesh: 1
+--- !u!1 &2114686589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2114686590}
+  m_Layer: 0
+  m_Name: Sodas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2114686590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114686589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1526456566}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2098912687895883363
 PrefabInstance:
   m_ObjectHideFlags: 0

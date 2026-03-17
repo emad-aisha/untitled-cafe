@@ -1,14 +1,17 @@
 using System;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 [Serializable]
 public class Soda : FizzyDrinkIngredients {
+    public enum Type { Null, Soda };
     [Header("Derived Class Variables")]
     public bool hasSoda;
 
     void Start() {
+        SetSoda(gameObject.GetComponent<Soda>());
         priority = Priorities.first;
-        SetSoda(this);
+        SetOne();
     }
 
     override public void SetAllOff(bool isMachine) { hasSoda = false; }
@@ -17,4 +20,27 @@ public class Soda : FizzyDrinkIngredients {
         return false;
     }
 
+    override public void SetOne() {
+        Type type = GetTrue();
+
+        SetAllOff(isMachine);
+
+        switch (type) {
+            case Type.Soda: hasSoda = true; break;
+        }
+    }
+
+    public void SetOne(Type type) {
+        SetAllOff(isMachine);
+
+        switch (type) {
+            case Type.Soda: hasSoda = true; break;
+        }
+    }
+
+
+    public Type GetTrue() {
+        if (hasSoda) return Type.Soda;
+        return Type.Null;
+    }
 }

@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public class BaseCup : MonoBehaviour, IInteractable {
-    // BaseCup cup;
-
+public class Cup {
     private FizzyDrinks fizzy;
     private int currPriority;
 
-    virtual public void Interact(Collider interactable) {
-        Debug.Log("basecup");
+    public Cup(FizzyDrinks newFizzyDrink, int newPriority) {
+        SetFizzyDrink(newFizzyDrink);
+        SetCurrPriority(newPriority);
+    }
+
+    public void Interact(Collider interactable) {
         FizzyDrinks fizzyDrink = interactable.GetComponent<FizzyDrinks>();
 
-
         if (fizzyDrink != null) {
-            Debug.Log("call drinkInteract");
             fizzyDrink.DrinkInteract(ref fizzy, ref currPriority);
-
-            Debug.Log(fizzy.GetSoda().hasSoda);
             Debug.Log(currPriority);
             return;
         }

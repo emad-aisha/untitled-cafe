@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] bool showRaycast;
 
     // inventory
-    BaseCup cup;
+    // TODO: this could be its own class
+    Cup cup;
+    [SerializeField] FizzyDrinks myFizzyDrink;
 
     Movement movement;
     Vector3 cameraPosition;
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         movement = GetComponent<Movement>();
         interactCooldownTimer = interactCooldown;
+
+        SetBaseCup();
     }
 
     void Update() {
@@ -64,6 +68,10 @@ public class PlayerController : MonoBehaviour {
         if (showRaycast) Debug.DrawRay(cameraPosition, cameraForward * interactDistance, Color.blue);
     }
 
+    void SetBaseCup() {
+        cup = new Cup(myFizzyDrink, 0);
+    }
+
     // interface overrides
     public void Interact() {
         RaycastHit raycast;
@@ -71,11 +79,7 @@ public class PlayerController : MonoBehaviour {
         if (Physics.Raycast(cameraPosition, cameraForward, out raycast, interactDistance, ~ignoreLayer)) {
             IInteractable interactableObject = raycast.collider.GetComponent<IInteractable>();
 
-            if (interactableObject != null) {
-                Debug.Log("interact!");
-                Debug.Log("interactableObject: " + interactableObject);
-                interactableObject.Interact(raycast.collider); // no way.....
-            }
+            cup.Interact(raycast.collider); // TODO: maybe change this
         }
     }
 

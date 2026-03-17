@@ -3,27 +3,16 @@ using System;
 
 [Serializable]
 public class Fruit : FizzyDrinkIngredients {
+    public enum Type { Null, Lime, Lemon, Strawberry };
     [Header("Derived Class Variables")]
+    public bool hasLime;
     public bool hasLemon;
     public bool hasStrawberry;
-    public bool hasLime;
 
     void Start() {
+        SetFruit(gameObject.GetComponent<Fruit>());
         priority = Priorities.third;
-        SetAllOff(isMachine);
-    }
-
-    public void SetLemon(bool set) {
-        SetAllOff(isMachine);
-        hasLemon = set;
-    }
-    public void SetStrawberry(bool set) {
-        SetAllOff(isMachine);
-        hasStrawberry = set;
-    }
-    public void SetLime(bool set) {
-        SetAllOff(isMachine);
-        hasLime = set;
+        SetOne();
     }
 
     override public void SetAllOff(bool isMachine) {
@@ -36,5 +25,33 @@ public class Fruit : FizzyDrinkIngredients {
     override public bool AllIsOff() {
         if (hasLemon | hasStrawberry || hasLime) return false;
         return true;
+    }
+
+    override public void SetOne() {
+        Type type = GetTrue();
+        SetAllOff(isMachine);
+
+        switch (type) {
+            case Type.Lemon: hasLemon = true; break;
+            case Type.Lime: hasLime = true; break;
+            case Type.Strawberry: hasStrawberry = true; break;
+        }
+    }
+
+    public void SetOne(Type type) {
+        SetAllOff(isMachine);
+
+        switch (type) {
+            case Type.Lemon: hasLemon = true; break;
+            case Type.Lime: hasLime = true; break;
+            case Type.Strawberry: hasStrawberry = true; break;
+        }
+    }
+
+    public Type GetTrue() {
+        if (hasLemon) return Type.Lemon;
+        else if (hasLime) return Type.Lime;
+        else if (hasStrawberry) return Type.Strawberry;
+        return Type.Null;
     }
 }
