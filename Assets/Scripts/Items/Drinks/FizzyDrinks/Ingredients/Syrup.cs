@@ -15,8 +15,8 @@ public class Syrup : FizzyDrinkIngredients {
         if (input == null) return false;
         if (!input.CanGetItem()) return false;
 
+        if (!input.SetOne(GetTrue())) return false;
         MenuManager.instance.SetInteractionType(GetTrue().ToString() + " Syrup");
-        input.SetOne(GetTrue());
         if (!canHaveMultiple) priority++;
         return true;
     }
@@ -24,13 +24,14 @@ public class Syrup : FizzyDrinkIngredients {
     override public void SetAllOff() { hasLemon = hasOrange = hasStrawberry = false; }
     override public bool IsAllOff() { return (hasLemon && hasStrawberry && hasOrange) == false; }
 
-    public void SetOne(Type type) {
+    public bool SetOne(Type type) {
         switch (type) {
             case Type.Lemon: hasLemon = true; break;
             case Type.Orange: hasOrange = true; break;
             case Type.Strawberry: hasStrawberry = true; break;
-            case Type.Null: Debug.Log("Tried to set nothing"); break;
+            case Type.Null: Debug.Log("Tried to set nothing"); return false;
         }
+        return true;
     }
     public Type GetTrue() {
         if (hasLemon) return Type.Lemon;

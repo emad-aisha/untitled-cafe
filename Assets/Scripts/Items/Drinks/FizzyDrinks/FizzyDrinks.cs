@@ -15,11 +15,11 @@ public class FizzyDrinks : MonoBehaviour {
 
     public void DrinkInteract(ref FizzyDrinks input, ref int priority) {
         // TODO: this is lowkey hideous
-        MenuManager.instance.SetBaseInteraction("FizzyDrinks");
         if (soda && IsMatching(soda.priority, priority)) { soda.Set(ref input.soda, ref priority); }
         else if (syrup && IsMatching(syrup.priority, priority)) { syrup.Set(ref input.syrup, ref priority); }
         else if (fruit && IsMatching(fruit.priority, priority)) { fruit.Set(ref input.fruit, ref priority); }
-        else { Debug.Log("Set Nothing"); }
+
+        DrinkManager.instance.SetFinalFizzyDrink(input);
     }
 
     bool IsMatching(Priorities priority, int checkedPriority) {

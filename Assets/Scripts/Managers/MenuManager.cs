@@ -7,16 +7,12 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] TMP_Text baseInteraction;
     [SerializeField] TMP_Text baseType;
 
-    void Start() {
-        if (instance == null) instance = this;
-    }
+    [SerializeField] TMP_Text finalDrink;
 
-    public void SetBaseInteraction(string interactionName) {
-        baseInteraction.text = interactionName;
-    }
+    void Start() { if (instance == null) instance = this; }
 
-    public void SetInteractionType(string typeName) {
-        baseType.text = typeName;
-    }
+    public void SetBaseInteraction(string interactionName) { baseInteraction.text = interactionName; }
+    public void SetInteractionType(string typeName) { baseType.text = typeName; }
+    public void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
 
 }

@@ -13,7 +13,7 @@ public class Soda : FizzyDrinkIngredients {
         if (input == null) return false;
         if (!input.CanGetItem()) return false;
 
-        input.SetOne(GetTrue());
+        if (!input.SetOne(GetTrue())) return false;
         MenuManager.instance.SetInteractionType("Soda");
         if (!canHaveMultiple) priority++;
         return true;
@@ -22,11 +22,12 @@ public class Soda : FizzyDrinkIngredients {
     override public void SetAllOff() { hasSoda = false; }
     override public bool IsAllOff() { return hasSoda == false; }
 
-    public void SetOne(Type type) {
+    public bool SetOne(Type type) {
         switch (type) {
             case Type.Soda: hasSoda = true; break;
-            case Type.Null: Debug.Log("Tried to set nothing"); break;
+            case Type.Null: Debug.Log("Tried to set nothing"); return false;
         }
+        return true;
     }
     public Type GetTrue() {
         if (hasSoda) return Type.Soda;

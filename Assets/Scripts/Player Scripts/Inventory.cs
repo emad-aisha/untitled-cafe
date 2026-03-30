@@ -8,12 +8,6 @@ public class Inventory : MonoBehaviour {
 
     void Start() { SetBaseCup(); }
 
-    public void Interact() {
-
-    }
-
-
-
     // setters
     void SetBaseCup() { cup = new Cup(myFizzyDrink, 0); }
 
