@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class FizzyDrinks : MonoBehaviour {
     [HideInInspector] public enum Priorities { first, second, third };
-    enum Type { Null, Soda, Syrup, Fruit };
     [SerializeField] Soda soda;
     [SerializeField] Syrup syrup;
     [SerializeField] Fruit fruit;
+
 
     void Start() {
         soda = gameObject.GetComponent<Soda>();
@@ -13,8 +13,7 @@ public class FizzyDrinks : MonoBehaviour {
         fruit = gameObject.GetComponent<Fruit>();
     }
 
-    public void DrinkInteract(ref FizzyDrinks input, ref int priority) {
-        // TODO: this is lowkey hideous
+    public void Interact(ref FizzyDrinks input, ref int priority) {
         if (soda && IsMatching(soda.priority, priority)) { soda.Set(ref input.soda, ref priority); }
         else if (syrup && IsMatching(syrup.priority, priority)) { syrup.Set(ref input.syrup, ref priority); }
         else if (fruit && IsMatching(fruit.priority, priority)) { fruit.Set(ref input.fruit, ref priority); }

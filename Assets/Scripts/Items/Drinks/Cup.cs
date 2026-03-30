@@ -3,18 +3,24 @@ using UnityEngine;
 public class Cup {
     // drinks
     private FizzyDrinks fizzy;
+    private Coffee coffee;
 
     private int currPriority;
 
     // constructor
-    public Cup(FizzyDrinks fizzyDrink, int priority) { SetAllMembers(fizzyDrink, priority); }
+    public Cup(FizzyDrinks fizzyDrink, Coffee coffeeDrink, int priority) { SetAllMembers(fizzyDrink, coffeeDrink, priority); }
 
     // interface override
     public void Interact(Collider interactable) {
-        FizzyDrinks fizzyDrink = interactable.GetComponent<FizzyDrinks>();
+        FizzyDrinks inputFizzyDrink = interactable.GetComponent<FizzyDrinks>();
+        Coffee inputCoffee = interactable.GetComponent<Coffee>();
 
-        if (fizzyDrink != null) {
-            fizzyDrink.DrinkInteract(ref fizzy, ref currPriority);
+        if (inputFizzyDrink != null) {
+            inputFizzyDrink.Interact(ref fizzy, ref currPriority);
+            return;
+        }
+        if (inputCoffee != null) {
+            inputCoffee.Interact(ref coffee, ref currPriority);
             return;
         }
     }
@@ -24,10 +30,12 @@ public class Cup {
     public int GetCurrPriority() { return currPriority; }
 
     // setters
-    public void SetAllMembers(FizzyDrinks newFizzyDrink, int newPriority) {
+    public void SetAllMembers(FizzyDrinks newFizzyDrink, Coffee newCoffee, int newPriority) {
         SetFizzyDrink(newFizzyDrink);
+        SetCoffee(newCoffee);
         SetCurrPriority(newPriority);
     }
-    public void SetFizzyDrink(FizzyDrinks newFizzyDrink) { fizzy = newFizzyDrink; }
-    public void SetCurrPriority(int newPriority) { currPriority = newPriority; }
+    void SetFizzyDrink(FizzyDrinks newFizzyDrink) { fizzy = newFizzyDrink; }
+    void SetCoffee(Coffee newCoffee) { coffee = newCoffee; }
+    void SetCurrPriority(int newPriority) { currPriority = newPriority; }
 }

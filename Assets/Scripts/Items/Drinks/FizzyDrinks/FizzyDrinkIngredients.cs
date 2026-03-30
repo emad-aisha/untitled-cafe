@@ -18,9 +18,9 @@ public class FizzyDrinkIngredients : Ingredients {
         Syrup syrup = gameObject.GetComponent<Syrup>();
         Fruit fruit = gameObject.GetComponent<Fruit>();
 
-        if (soda != null) fizzyDrink.SetSoda(gameObject.GetComponent<Soda>());
-        if (syrup != null) fizzyDrink.SetSyrup(gameObject.GetComponent<Syrup>());
-        if (fruit != null) fizzyDrink.SetFruit(gameObject.GetComponent<Fruit>());
+        if (soda != null) fizzyDrink.SetSoda(soda);
+        if (syrup != null) fizzyDrink.SetSyrup(syrup);
+        if (fruit != null) fizzyDrink.SetFruit(fruit);
     }
 
 
