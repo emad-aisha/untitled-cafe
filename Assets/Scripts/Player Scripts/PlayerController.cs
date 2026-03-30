@@ -12,41 +12,28 @@ public class PlayerController : MonoBehaviour {
     [Header("Debugging")]
     [SerializeField] bool showRaycast;
 
-    // inventory
-    // TODO: this could be its own class
-    Cup cup;
-    [SerializeField] FizzyDrinks myFizzyDrink;
-
+    // Other Classes
     Movement movement;
-    Vector3 cameraPosition;
-    Vector3 cameraForward;
+    Inventory inventory;
+    CameraController cameraController;
 
     float interactCooldownTimer;
 
     void Start() {
         movement = GetComponent<Movement>();
+        inventory = GetComponent<Inventory>();
         interactCooldownTimer = interactCooldown;
-
-        SetBaseCup();
+        cameraController = GameManager.instance.mainCameraController;
     }
 
     void Update() {
-        SetCamera();
-        ShowRaycastCheck();
+        cameraController.ShowRaycastCheck(showRaycast, interactDistance);
 
-        MovementCheck();
-
+        movement.MovementCheck();
         InteractCheck();
     }
 
-
-    // helper function
-    void MovementCheck() {
-        movement.JumpLogic();
-
-        movement.Move();
-        movement.Jump();
-    }
+    // interaction
     void InteractCheck() {
         if (Input.GetButton("Interact1")) {
             if (interactCooldownTimer >= interactCooldown) {
@@ -59,26 +46,10 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void SetCamera() {
-        cameraPosition = GameManager.instance.mainCamera.transform.position;
-        cameraForward = GameManager.instance.mainCamera.transform.forward;
-    }
-
-    void ShowRaycastCheck() {
-        if (showRaycast) Debug.DrawRay(cameraPosition, cameraForward * interactDistance, Color.blue);
-    }
-
-    void SetBaseCup() {
-        cup = new Cup(myFizzyDrink, 0);
-    }
-
-    // interface overrides
     public void Interact() {
         RaycastHit raycast;
-
-        if (Physics.Raycast(cameraPosition, cameraForward, out raycast, interactDistance, ~ignoreLayer)) {
-            cup.Interact(raycast.collider);
-        }
+        bool hitInteractableObject = Physics.Raycast(cameraController.cameraPosition, cameraController.cameraForward, out raycast, interactDistance, ~ignoreLayer);
+        if (hitInteractableObject) { inventory.cup.Interact(raycast.collider); }
     }
 
 }

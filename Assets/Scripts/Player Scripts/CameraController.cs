@@ -11,22 +11,25 @@ public class CameraController : MonoBehaviour {
     float mouseX;
     float mouseY;
 
+    [HideInInspector] public Vector3 cameraPosition;
+    [HideInInspector] public Vector3 cameraForward;
+
     void Start() {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update() {
+        SetCamera();
         SetMousePositions();
 
         InvertLogicCheck();
         RangeCheck();
-
     }
 
-    void SetMousePositions() {
-        mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+
+    public void ShowRaycastCheck(bool showRaycast, float interactDistance) {
+        if (showRaycast) Debug.DrawRay(cameraPosition, cameraForward * interactDistance, Color.blue);
     }
 
     void InvertLogicCheck() {
@@ -39,4 +42,16 @@ public class CameraController : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(CameraYPos, 0, 0);
         transform.parent.Rotate(Vector3.up * mouseX);
     }
+
+    // setters
+    void SetMousePositions() {
+        mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+        mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+    }
+
+    void SetCamera() {
+        cameraPosition = GameManager.instance.mainCamera.transform.position;
+        cameraForward = GameManager.instance.mainCamera.transform.forward;
+    }
+
 }

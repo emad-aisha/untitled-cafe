@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public CharacterController playerController;
 
     public Camera mainCamera;
+    public CameraController mainCameraController;
 
 
 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
         playerController = player.GetComponent<CharacterController>();
 
         mainCamera = Camera.main;
+        mainCameraController = mainCamera.GetComponent<CameraController>();
     }
 
 
