@@ -9,7 +9,12 @@ public class Syrup : FizzyDrinkIngredients {
     public bool hasStrawberry;
 
 
-    void Start() { SetAll(second, false); }
+    void Start() {
+        SetAll(second);
+        bools.Add(hasLemon);
+        bools.Add(hasOrange);
+        bools.Add(hasStrawberry);
+    }
 
     public bool Set(ref Syrup input, ref int priority) {
         if (input == null) return false;
@@ -20,9 +25,6 @@ public class Syrup : FizzyDrinkIngredients {
         if (!canHaveMultiple) priority++;
         return true;
     }
-
-    override public void SetAllOff() { hasLemon = hasOrange = hasStrawberry = false; }
-    override public bool IsAllOff() { return (hasLemon && hasStrawberry && hasOrange) == false; }
 
     public bool SetOne(Type type) {
         switch (type) {

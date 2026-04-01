@@ -20,7 +20,7 @@ public class Liquid : CoffeeIngredients {
     }
 
     override public void SetAllOff() { hasWater = hasMilk = false; }
-    override public bool IsAllOff() { return (hasWater && hasMilk) == false; }
+    override public bool IsAllOff() { return hasWater == false && hasMilk == false; }
 
     public bool SetOne(Type type) {
         switch (type) {

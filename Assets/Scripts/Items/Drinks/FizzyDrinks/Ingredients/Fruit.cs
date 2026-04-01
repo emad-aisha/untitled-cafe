@@ -8,7 +8,11 @@ public class Fruit : FizzyDrinkIngredients {
     public bool hasLemon;
 
 
-    void Start() { SetAll(third, false); }
+    void Start() {
+        SetAll(third);
+        bools.Add(hasLime);
+        bools.Add(hasLemon);
+    }
 
     public bool Set(ref Fruit input, ref int priority) {
         if (input == null) return false;
@@ -19,9 +23,6 @@ public class Fruit : FizzyDrinkIngredients {
         if (!canHaveMultiple) priority++;
         return true;
     }
-
-    override public void SetAllOff() { hasLemon = hasLime = false; }
-    override public bool IsAllOff() { return (hasLemon && hasLime) == false; }
 
     public bool SetOne(Type type) {
         switch (type) {

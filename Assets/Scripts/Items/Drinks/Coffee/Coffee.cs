@@ -1,15 +1,18 @@
 using UnityEngine;
 
 public class Coffee : MonoBehaviour {
-    [HideInInspector] public enum Priorities { first, second, third };
+    [HideInInspector] public enum Priorities { first, second, third }; // this
     [SerializeField] Espresso espresso;
     [SerializeField] Liquid liquid;
     [SerializeField] Extras extras;
+    public int price; // and this
+    // TODO: can go into a base class for drinks
 
     void Start() {
         espresso = gameObject.GetComponent<Espresso>();
         liquid = gameObject.GetComponent<Liquid>();
         extras = gameObject.GetComponent<Extras>();
+        price = 0;
     }
 
     public void Interact(ref Coffee input, ref int priority) {
@@ -18,14 +21,19 @@ public class Coffee : MonoBehaviour {
         else if (extras && input.liquid.hasWater == false && IsMatching(extras.priority, priority)) { extras.Set(ref input.extras, ref priority); }
         // can only add the extras if there's no water
 
-        DrinkManager.instance.SetFinalCoffeeDrink(input);
+        price = DrinkManager.instance.SetFinalDrink(input);
     }
 
     bool IsMatching(Priorities priority, int checkedPriority) {
         return priority == (Priorities)checkedPriority;
     }
 
-
+    // baseclass
+    public bool IsActive() {
+        bool result = true;
+        if (espresso.IsAllOff() && liquid.IsAllOff() && extras.IsAllOff()) result = false;
+        return result;
+    }
 
     // getters
     public Espresso GetEspresso() { return espresso; }

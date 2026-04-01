@@ -4,10 +4,7 @@ public class FizzyDrinkIngredients : Ingredients {
     [HideInInspector] public FizzyDrinks.Priorities priority;
     protected FizzyDrinks parent;
 
-    override public void SetAllOff() { Debug.Log("Called FizzyDrink's SetAllOff"); }
-    override public bool IsAllOff() { Debug.Log("Called FizzyDrink's IsAllOff"); return false; }
-
-    protected void SetAll(FizzyDrinks.Priorities _priority, bool _canHaveMultiple) {
+    protected void SetAll(FizzyDrinks.Priorities _priority, bool _canHaveMultiple = false) {
         parent = gameObject.GetComponent<FizzyDrinks>();
         SetDrink(ref parent);
         priority = _priority;

@@ -20,7 +20,7 @@ public class Extras : CoffeeIngredients {
     }
 
     override public void SetAllOff() { hasMilkFoam = hasChocolate = false; }
-    override public bool IsAllOff() { return (hasMilkFoam && hasChocolate) == false; }
+    override public bool IsAllOff() { return hasMilkFoam == false && hasChocolate == false; }
 
     public bool SetOne(Type type) {
         switch (type) {

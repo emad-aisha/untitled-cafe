@@ -5,7 +5,7 @@ public class FizzyDrinks : MonoBehaviour {
     [SerializeField] Soda soda;
     [SerializeField] Syrup syrup;
     [SerializeField] Fruit fruit;
-
+    public int price;
 
     void Start() {
         soda = gameObject.GetComponent<Soda>();
@@ -17,12 +17,16 @@ public class FizzyDrinks : MonoBehaviour {
         if (soda && IsMatching(soda.priority, priority)) { soda.Set(ref input.soda, ref priority); }
         else if (syrup && IsMatching(syrup.priority, priority)) { syrup.Set(ref input.syrup, ref priority); }
         else if (fruit && IsMatching(fruit.priority, priority)) { fruit.Set(ref input.fruit, ref priority); }
-
-        DrinkManager.instance.SetFinalFizzyDrink(input);
     }
 
     bool IsMatching(Priorities priority, int checkedPriority) {
         return priority == (Priorities)checkedPriority;
+    }
+
+    public bool IsActive() {
+        bool result = true;
+        if (soda.IsAllOff() && syrup.IsAllOff() && fruit.IsAllOff()) result = false;
+        return result;
     }
 
     // getters

@@ -7,7 +7,10 @@ public class Soda : FizzyDrinkIngredients {
     public bool hasSoda;
 
 
-    void Start() { SetAll(first, false); }
+    void Start() {
+        SetAll(first);
+        bools.Add(hasSoda);
+    }
 
     public bool Set(ref Soda input, ref int priority) {
         if (input == null) return false;
@@ -18,9 +21,6 @@ public class Soda : FizzyDrinkIngredients {
         if (!canHaveMultiple) priority++;
         return true;
     }
-
-    override public void SetAllOff() { hasSoda = false; }
-    override public bool IsAllOff() { return hasSoda == false; }
 
     public bool SetOne(Type type) {
         switch (type) {

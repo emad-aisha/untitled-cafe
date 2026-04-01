@@ -20,7 +20,7 @@ public class Espresso : CoffeeIngredients {
     }
 
     override public void SetAllOff() { hasDecaf = hasEspresso = false; }
-    override public bool IsAllOff() { return (hasDecaf && hasEspresso) == false; }
+    override public bool IsAllOff() { return hasDecaf == false && hasEspresso == false; }
 
     public bool SetOne(Type type) {
         switch (type) {
