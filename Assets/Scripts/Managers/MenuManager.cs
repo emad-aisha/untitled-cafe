@@ -14,8 +14,15 @@ public class MenuManager : MonoBehaviour {
 
     void Start() { if (instance == null) instance = this; }
 
-    public void SetBaseInteraction(string interactionName) { baseInteraction.text = interactionName; }
+
     public void SetInteractionType(string typeName) { baseType.text = typeName; }
-    public void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
-    public void SetCost(string finalCost) { cost.text = finalCost; }
+
+    public void SetDrinkInformation(string BaseType, string finalDrinkName, int cost) {
+        SetBaseInteraction(BaseType);
+        SetFinalDrink(finalDrinkName);
+        SetCost(cost.ToString());
+    }
+    void SetBaseInteraction(string interactionName) { baseInteraction.text = interactionName; }
+    void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
+    void SetCost(string finalCost) { cost.text = finalCost; }
 }

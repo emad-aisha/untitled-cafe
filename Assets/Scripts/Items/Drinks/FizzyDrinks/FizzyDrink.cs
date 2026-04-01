@@ -1,33 +1,31 @@
 using UnityEngine;
 
-public class FizzyDrinks : MonoBehaviour {
-    [HideInInspector] public enum Priorities { first, second, third };
+public class FizzyDrink : Drinks {
     [SerializeField] Soda soda;
     [SerializeField] Syrup syrup;
     [SerializeField] Fruit fruit;
-    public int price;
 
     void Start() {
         soda = gameObject.GetComponent<Soda>();
         syrup = gameObject.GetComponent<Syrup>();
         fruit = gameObject.GetComponent<Fruit>();
+        price = 0;
     }
 
-    public void Interact(ref FizzyDrinks input, ref int priority) {
-        if (soda && IsMatching(soda.priority, priority)) { soda.Set(ref input.soda, ref priority); }
-        else if (syrup && IsMatching(syrup.priority, priority)) { syrup.Set(ref input.syrup, ref priority); }
-        else if (fruit && IsMatching(fruit.priority, priority)) { fruit.Set(ref input.fruit, ref priority); }
+    public void Interact(ref FizzyDrink input, ref int priority) {
+        if (soda && IsMatching(soda.priority, priority)) { soda.SetIngredient(ref input, ref priority); }
+        else if (syrup && IsMatching(syrup.priority, priority)) { syrup.SetIngredient(ref input, ref priority); }
+        else if (fruit && IsMatching(fruit.priority, priority)) { fruit.SetIngredient(ref input, ref priority); }
     }
 
-    bool IsMatching(Priorities priority, int checkedPriority) {
-        return priority == (Priorities)checkedPriority;
-    }
+    bool IsMatching(Priorities priority, int checkedPriority) { return priority == (Priorities)checkedPriority; }
 
     public bool IsActive() {
         bool result = true;
         if (soda.IsAllOff() && syrup.IsAllOff() && fruit.IsAllOff()) result = false;
         return result;
     }
+
 
     // getters
     public Soda GetSoda() { return soda; }

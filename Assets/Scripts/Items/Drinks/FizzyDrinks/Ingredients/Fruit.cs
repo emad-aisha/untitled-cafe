@@ -1,30 +1,32 @@
-using static FizzyDrinks.Priorities;
 using UnityEngine;
 
 public class Fruit : FizzyDrinkIngredients {
-    public enum Type { Null, Lime, Lemon };
+    public enum Type { Null = -1, Lime, Lemon };
     [Header("Ingredient Types")]
     public bool hasLime;
     public bool hasLemon;
 
 
-    void Start() {
-        SetAll(third);
+    void Start() { SetMemberVariables(Drinks.Priorities.third); }
+
+    override public bool SetIngredient(ref FizzyDrink input, ref int priority) {
+        if (!CanChangeVariables(input, IngredientType.Fruit)) return false;
+        Fruit inputFruit = input.GetFruit();
+
+        if (!inputFruit.SetState(this.GetState())) return false;
+        priority++;
+
+        MenuManager.instance.SetInteractionType(GetState().ToString());
+        return true;
+    }
+
+    // getters / setters
+    override public void PushBackBools() {
         bools.Add(hasLime);
         bools.Add(hasLemon);
     }
 
-    public bool Set(ref Fruit input, ref int priority) {
-        if (input == null) return false;
-        if (!input.CanGetItem()) return false;
-
-        if (!input.SetOne(GetTrue())) return false;
-        MenuManager.instance.SetInteractionType(GetTrue().ToString());
-        if (!canHaveMultiple) priority++;
-        return true;
-    }
-
-    public bool SetOne(Type type) {
+    public bool SetState(Type type) {
         switch (type) {
             case Type.Lime: hasLime = true; break;
             case Type.Lemon: hasLemon = true; break;
@@ -32,9 +34,14 @@ public class Fruit : FizzyDrinkIngredients {
         }
         return true;
     }
-    public Type GetTrue() {
+    public Type GetState() {
         if (hasLemon) return Type.Lemon;
         else if (hasLime) return Type.Lime;
         return Type.Null;
     }
+
+    public bool HasState() {
+        return GetState() != Type.Null;
+    }
+
 }

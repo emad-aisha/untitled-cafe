@@ -1,36 +1,43 @@
-using static FizzyDrinks.Priorities;
 using UnityEngine;
 
 public class Soda : FizzyDrinkIngredients {
-    public enum Type { Null, Soda };
+    public enum Type { Null = -1, Soda };
     [Header("Ingredient Types")]
     public bool hasSoda;
 
 
-    void Start() {
-        SetAll(first);
-        bools.Add(hasSoda);
-    }
+    void Start() { SetMemberVariables(Drinks.Priorities.first); }
 
-    public bool Set(ref Soda input, ref int priority) {
-        if (input == null) return false;
-        if (!input.CanGetItem()) return false;
+    override public bool SetIngredient(ref FizzyDrink input, ref int priority) {
+        if (!CanChangeVariables(input, IngredientType.Soda)) return false;
+        Soda inputSoda = input.GetSoda();
 
-        if (!input.SetOne(GetTrue())) return false;
+        if (!inputSoda.SetState(this.GetState())) return false;
+        priority++;
+
         MenuManager.instance.SetInteractionType("Soda");
-        if (!canHaveMultiple) priority++;
         return true;
     }
 
-    public bool SetOne(Type type) {
+    // getters / setters
+    override public void PushBackBools() {
+        bools.Add(hasSoda);
+    }
+
+    public bool SetState(Type type) {
         switch (type) {
             case Type.Soda: hasSoda = true; break;
             case Type.Null: Debug.Log("Tried to set nothing"); return false;
         }
         return true;
     }
-    public Type GetTrue() {
+    public Type GetState() {
         if (hasSoda) return Type.Soda;
         return Type.Null;
     }
+
+    public bool HasState() {
+        return GetState() != Type.Null;
+    }
+
 }
