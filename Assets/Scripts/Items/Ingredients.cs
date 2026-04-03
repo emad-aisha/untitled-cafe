@@ -1,20 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public abstract class Ingredients : MonoBehaviour {
     [HideInInspector] public List<bool> bools;
 
     public enum FizzyDrinkIngredient { Null, Soda, Syrup, Fruit };
     public enum CoffeeIngredient { Null, Espresso, Liquid, Extras };
 
-    virtual public void SetAllOff() { for (int i = 0; i < bools.Count; i++) bools[i] = false; }
-    virtual public bool IsAllOff() { return !IsAnyOn(); }
+    // generic ingredient functions
+    public void SetAllOff() { for (int i = 0; i < bools.Count; i++) bools[i] = false; }
+    public bool IsAllOff() { return !IsAnyOn(); }
+    public bool CanGetItem() { return IsAllOff(); }
 
-    virtual public bool CanGetItem() { return IsAllOff(); }
-    // SetState
-    // GetSetState
+    // different per ingredient
     abstract public void PushBackBools();
-    virtual public bool CanChangeVariables(FizzyDrink input, FizzyDrinkIngredient type) { Debug.Log("Ingredients.CanChangeVariables(FizzyDrink) called"); return false; }
+    virtual public bool CanChangeVariables(FizzyDrink input, FizzyDrinkIngredient type) {
+        Debug.Log("Ingredients.CanChangeVariables(FizzyDrink) called");
+        return false;
+    }
+    abstract public void SetMemberVariables(Drinks.Priorities _priority);
 
 
     // personal functions
@@ -27,3 +31,4 @@ public abstract class Ingredients : MonoBehaviour {
     }
 
 }
+*/

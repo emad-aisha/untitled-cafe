@@ -1,11 +1,10 @@
 using UnityEngine;
-
+/*
 public class Drinks : MonoBehaviour {
-    [HideInInspector] public enum Priorities { first, second, third };
+    public enum Priorities { First, Second, Third };
     public int price;
 
 
-    public bool ArePrioritiesMatching(Priorities priority, int checkedPriority) {
-        return priority == (Priorities)checkedPriority;
-    }
+    public bool ArePrioritiesMatching(Priorities priority, int checkedPriority) { return priority == (Priorities)checkedPriority; }
 }
+*/

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+/*
 public class FizzyDrink : Drinks {
     [SerializeField] Soda soda;
     [SerializeField] Syrup syrup;
@@ -13,17 +13,15 @@ public class FizzyDrink : Drinks {
     }
 
     public void Interact(ref FizzyDrink input, ref int priority) {
-        if (soda && IsMatching(soda.priority, priority)) { soda.SetIngredient(ref input, ref priority); }
-        else if (syrup && IsMatching(syrup.priority, priority)) { syrup.SetIngredient(ref input, ref priority); }
-        else if (fruit && IsMatching(fruit.priority, priority)) { fruit.SetIngredient(ref input, ref priority); }
+        if      (soda  && ArePrioritiesMatching(soda.priority, priority))  { soda.SetIngredient(ref input, ref priority); }
+        else if (syrup && ArePrioritiesMatching(syrup.priority, priority)) { syrup.SetIngredient(ref input, ref priority); }
+        else if (fruit && ArePrioritiesMatching(fruit.priority, priority)) { fruit.SetIngredient(ref input, ref priority); }
     }
 
-    bool IsMatching(Priorities priority, int checkedPriority) { return priority == (Priorities)checkedPriority; }
 
     public bool IsActive() {
-        bool result = true;
-        if (soda.IsAllOff() && syrup.IsAllOff() && fruit.IsAllOff()) result = false;
-        return result;
+        if (soda.IsAllOff() && syrup.IsAllOff() && fruit.IsAllOff()) return false;
+        return true;
     }
 
 
@@ -37,3 +35,4 @@ public class FizzyDrink : Drinks {
     public void SetSyrup(Syrup newSyrup) { syrup = newSyrup; }
     public void SetFruit(Fruit newFruit) { fruit = newFruit; }
 }
+*/

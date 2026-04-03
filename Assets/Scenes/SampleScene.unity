@@ -727,9 +727,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0fb9e6ed098dc459cb33cac38d9cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasMilkFoam: 0
   hasChocolate: 1
 --- !u!114 &394827909
@@ -1128,8 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5316bc287ec8348ad63b31a3468e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 1
-  canHaveMultiple: 0
+  bools: 
   priority: 0
   hasLemon: 1
   hasOrange: 0
@@ -1146,10 +1145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddfa64ac09624445b543edfec5fd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
   soda: {fileID: 0}
   syrup: {fileID: 0}
   fruit: {fileID: 0}
-  price: 0
 --- !u!1 &455625035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &455625036
 Transform:
   m_ObjectHideFlags: 0
@@ -1403,9 +1402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf147eb29f2fb544bab8667560c299d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasDecaf: 1
   hasEspresso: 0
 --- !u!1 &592953747
@@ -1596,9 +1595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5768ac1d649a9645b7c5417a8efc4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasWater: 1
   hasMilk: 0
 --- !u!114 &624376822
@@ -1876,8 +1875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5316bc287ec8348ad63b31a3468e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 1
-  canHaveMultiple: 0
+  bools: 
   priority: 0
   hasLemon: 0
   hasOrange: 0
@@ -1894,10 +1892,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddfa64ac09624445b543edfec5fd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
   soda: {fileID: 0}
   syrup: {fileID: 0}
   fruit: {fileID: 0}
-  price: 0
 --- !u!1 &777839796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,9 +2149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0fb9e6ed098dc459cb33cac38d9cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasMilkFoam: 1
   hasChocolate: 0
 --- !u!114 &848620534
@@ -2294,10 +2292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddfa64ac09624445b543edfec5fd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
   soda: {fileID: 0}
   syrup: {fileID: 0}
   fruit: {fileID: 0}
-  price: 0
 --- !u!114 &906635706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,8 +2308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f9df74eeeb52944aa2e38bd13f27289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: 
   priority: 0
   hasSoda: 1
 --- !u!1 &911929522
@@ -2438,9 +2435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0fb9e6ed098dc459cb33cac38d9cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasMilkFoam: 0
   hasChocolate: 0
 --- !u!114 &1063662397
@@ -2455,9 +2452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5768ac1d649a9645b7c5417a8efc4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasWater: 0
   hasMilk: 0
 --- !u!114 &1063662398
@@ -2472,9 +2469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf147eb29f2fb544bab8667560c299d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasDecaf: 0
   hasEspresso: 0
 --- !u!114 &1063662399
@@ -2729,8 +2726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5316bc287ec8348ad63b31a3468e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 1
-  canHaveMultiple: 0
+  bools: 
   priority: 0
   hasLemon: 0
   hasOrange: 1
@@ -2747,10 +2743,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddfa64ac09624445b543edfec5fd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
   soda: {fileID: 0}
   syrup: {fileID: 0}
   fruit: {fileID: 0}
-  price: 0
 --- !u!1 &1254838162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,8 +2869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ca4f956f33ede43b73d46f70c6f3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 1
-  canHaveMultiple: 1
+  bools: 
   priority: 0
   hasLime: 0
   hasLemon: 1
@@ -2890,10 +2885,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddfa64ac09624445b543edfec5fd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
   soda: {fileID: 0}
   syrup: {fileID: 0}
   fruit: {fileID: 0}
-  price: 0
 --- !u!1 &1271237881
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,9 +3318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5768ac1d649a9645b7c5417a8efc4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasWater: 0
   hasMilk: 1
 --- !u!114 &1568935809
@@ -3561,9 +3556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf147eb29f2fb544bab8667560c299d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 0
-  canHaveMultiple: 0
+  bools: []
   priority: 0
+  parent: {fileID: 0}
   hasDecaf: 0
   hasEspresso: 1
 --- !u!1 &1773433729
@@ -3863,8 +3858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ca4f956f33ede43b73d46f70c6f3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMachine: 1
-  canHaveMultiple: 1
+  bools: 
   priority: 0
   hasLime: 1
   hasLemon: 0
@@ -3880,10 +3874,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddfa64ac09624445b543edfec5fd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
   soda: {fileID: 0}
   syrup: {fileID: 0}
   fruit: {fileID: 0}
-  price: 0
 --- !u!1 &1992912001
 GameObject:
   m_ObjectHideFlags: 0

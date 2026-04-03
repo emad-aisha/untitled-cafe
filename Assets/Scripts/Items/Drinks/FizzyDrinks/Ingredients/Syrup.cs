@@ -1,14 +1,13 @@
 using UnityEngine;
-
+/*
 public class Syrup : FizzyDrinkIngredients {
-    public enum Type { Null = -1, Lemon, Orange, Strawberry };
     [Header("Ingredient Types")]
     public bool hasLemon;
     public bool hasOrange;
     public bool hasStrawberry;
 
 
-    void Start() { SetMemberVariables(Drinks.Priorities.second); }
+    void Start() { SetMemberVariables(Drinks.Priorities.Second); }
 
     override public bool SetIngredient(ref FizzyDrink input, ref int priority) {
         if (!CanChangeVariables(input, IngredientType.Syrup)) return false;
@@ -28,24 +27,23 @@ public class Syrup : FizzyDrinkIngredients {
         bools.Add(hasStrawberry);
     }
 
-    public bool SetState(Type type) {
+    public bool SetState(SyrupType type) {
         switch (type) {
-            case Type.Lemon: hasLemon = true; break;
-            case Type.Orange: hasOrange = true; break;
-            case Type.Strawberry: hasStrawberry = true; break;
-            case Type.Null: Debug.Log("Tried to set nothing"); return false;
+            case SyrupType.Lemon: hasLemon = true; break;
+            case SyrupType.Orange: hasOrange = true; break;
+            case SyrupType.Strawberry: hasStrawberry = true; break;
+            case SyrupType.Null: Debug.Log("Tried to set nothing"); return false;
         }
         return true;
     }
-    public Type GetState() {
-        if (hasLemon) return Type.Lemon;
-        else if (hasOrange) return Type.Orange;
-        else if (hasStrawberry) return Type.Strawberry;
-        return Type.Null;
+    public SyrupType GetState() {
+        if (hasLemon) return SyrupType.Lemon;
+        else if (hasOrange) return SyrupType.Orange;
+        else if (hasStrawberry) return SyrupType.Strawberry;
+        return SyrupType.Null;
     }
 
-    public bool HasState() {
-        return GetState() != Type.Null;
-    }
+    public bool HasState() { return GetState() != SyrupType.Null; }
 
 }
+*/

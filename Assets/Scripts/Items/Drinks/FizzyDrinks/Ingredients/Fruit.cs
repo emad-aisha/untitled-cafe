@@ -1,13 +1,12 @@
 using UnityEngine;
-
+/*
 public class Fruit : FizzyDrinkIngredients {
-    public enum Type { Null = -1, Lime, Lemon };
     [Header("Ingredient Types")]
     public bool hasLime;
     public bool hasLemon;
 
 
-    void Start() { SetMemberVariables(Drinks.Priorities.third); }
+    void Start() { SetMemberVariables(Drinks.Priorities.Third); }
 
     override public bool SetIngredient(ref FizzyDrink input, ref int priority) {
         if (!CanChangeVariables(input, IngredientType.Fruit)) return false;
@@ -26,22 +25,21 @@ public class Fruit : FizzyDrinkIngredients {
         bools.Add(hasLemon);
     }
 
-    public bool SetState(Type type) {
+    public bool SetState(FruitType type) {
         switch (type) {
-            case Type.Lime: hasLime = true; break;
-            case Type.Lemon: hasLemon = true; break;
-            case Type.Null: Debug.Log("Tried to set nothing"); return false;
+            case FruitType.Lime: hasLime = true; break;
+            case FruitType.Lemon: hasLemon = true; break;
+            case FruitType.Null: Debug.Log("Tried to set nothing"); return false;
         }
         return true;
     }
-    public Type GetState() {
-        if (hasLemon) return Type.Lemon;
-        else if (hasLime) return Type.Lime;
-        return Type.Null;
+    public FruitType GetState() {
+        if (hasLemon) return FruitType.Lemon;
+        else if (hasLime) return FruitType.Lime;
+        return FruitType.Null;
     }
 
-    public bool HasState() {
-        return GetState() != Type.Null;
-    }
+    public bool HasState() { return GetState() != FruitType.Null; }
 
 }
+*/

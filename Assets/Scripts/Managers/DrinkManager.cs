@@ -1,4 +1,5 @@
 using UnityEngine;
+/*
 
 public class DrinkManager : MonoBehaviour {
     public static DrinkManager instance;
@@ -59,3 +60,4 @@ public class DrinkManager : MonoBehaviour {
         return finalCost;
     }
 }
+*/

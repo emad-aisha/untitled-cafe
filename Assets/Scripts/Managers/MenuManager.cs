@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour {
         SetFinalDrink(finalDrinkName);
         SetCost(cost.ToString());
     }
-    void SetBaseInteraction(string interactionName) { baseInteraction.text = interactionName; }
-    void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
-    void SetCost(string finalCost) { cost.text = finalCost; }
+    public void SetBaseInteraction(string interactionName) { baseInteraction.text = interactionName; }
+    public void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
+    public void SetCost(string finalCost) { cost.text = finalCost; }
 }

@@ -7,12 +7,13 @@ public class Inventory : MonoBehaviour {
     private int currPriority;
     public int currPrice;
 
+
     public void Interact(Collider interactable) {
         FizzyDrink inputFizzyDrink = interactable.GetComponent<FizzyDrink>();
 
         if (inputFizzyDrink != null) {
             inputFizzyDrink.Interact(ref myFizzyDrink, ref currPriority);
-            currPrice = DrinkManager.instance.SetFinalDrink(myFizzyDrink);
+            currPrice = FizzyDrinkManager.instance.SetFinalDrinkCost(myFizzyDrink);
         }
     }
 

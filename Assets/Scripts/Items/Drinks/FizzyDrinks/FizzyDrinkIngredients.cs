@@ -1,13 +1,21 @@
 using UnityEngine;
+/*
 
 public abstract class FizzyDrinkIngredients : Ingredients {
     public enum IngredientType { Null, Soda, Syrup, Fruit };
 
+    public enum SodaType { Null = -1, Soda };
+    public enum SyrupType { Null = -1, Lemon, Orange, Strawberry };
+    public enum FruitType { Null = -1, Lemon, Lime };
+
+public enum Priorities { First, Second, Third };
+    public int price;
+    
     [HideInInspector] public Drinks.Priorities priority;
     protected FizzyDrink parent;
 
 
-    protected void SetMemberVariables(Drinks.Priorities _priority) {
+    override public void SetMemberVariables(Drinks.Priorities _priority) {
         parent = gameObject.GetComponent<FizzyDrink>();
         SetParent(ref parent);
         PushBackBools();
@@ -39,4 +47,8 @@ public abstract class FizzyDrinkIngredients : Ingredients {
     }
 
     abstract public bool SetIngredient(ref FizzyDrink input, ref int priority);
+
+    // getters and setters
+
 }
+*/
