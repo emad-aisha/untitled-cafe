@@ -52,4 +52,10 @@ public class Coffee : Drinks {
 
     // viewers
     public override bool IsEveryStateOff() { return GetEspresso().IsAllOff() && GetLiquid().IsAllOff() && GetExtras().IsAllOff(); }
+    public override void SetAllOff() {
+        GetEspresso().SetAllStates();
+        GetLiquid().SetAllStates();
+        GetExtras().SetAllStates();
+
+    }
 }

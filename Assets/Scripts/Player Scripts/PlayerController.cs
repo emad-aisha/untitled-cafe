@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     public void Interact() {
         RaycastHit raycast;
         bool hitInteractableObject = Physics.Raycast(cameraController.cameraPosition, cameraController.cameraForward, out raycast, interactDistance, ~ignoreLayer);
+
         if (hitInteractableObject) { inventory.Interact(raycast.collider); }
     }
 

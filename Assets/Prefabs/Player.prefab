@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockMin: -60
   lockMax: 60
-  sensitivity: 500
+  sensitivity: 600
   invertY: 0
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraForward: {x: 0, y: 0, z: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e83e2f84336cd4488b44ef84931e354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactCooldown: 0.2
+  interactCooldown: 0.011
   interactDistance: 9
   ignoreLayer:
     serializedVersion: 2
@@ -328,6 +328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myFizzyDrink: {fileID: 2875243724316941797}
   myCoffee: {fileID: 3840939229801779399}
+  currPriority: 0
+  currMoney: 0
   currPrice: 0
 --- !u!143 &1549749218890152255
 CharacterController:

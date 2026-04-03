@@ -47,4 +47,9 @@ public class FizzyDrink : Drinks {
 
     // viewers
     override public bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
+    override public void SetAllOff() {
+        GetSoda().SetAllStates();
+        GetSyrup().SetAllStates();
+        GetFruit().SetAllStates();
+    }
 }

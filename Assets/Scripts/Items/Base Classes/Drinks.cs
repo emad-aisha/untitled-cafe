@@ -8,4 +8,5 @@ public abstract class Drinks : MonoBehaviour {
     public bool CheckPriorities(int check, int input) { return check == input; }
 
     abstract public bool IsEveryStateOff();
+    abstract public void SetAllOff();
 }

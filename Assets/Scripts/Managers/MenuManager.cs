@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour {
     [Header("Finals")]
     [SerializeField] TMP_Text finalDrink;
     [SerializeField] TMP_Text cost;
+    [SerializeField] TMP_Text totalMoney;
 
     void Start() { if (instance == null) instance = this; }
 
@@ -25,4 +26,6 @@ public class MenuManager : MonoBehaviour {
     public void SetBaseInteraction(string interactionName) { baseInteraction.text = interactionName; }
     public void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
     public void SetCost(string finalCost) { cost.text = finalCost; }
+
+    public void SetPlayerMoney(string money) { totalMoney.text = money; }
 }

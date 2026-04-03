@@ -19,8 +19,14 @@ public class CoffeeManager : MonoBehaviour {
 
         string finalDrinkName = "";
         if (espresso != "") finalDrinkName = espresso;
-        if (liquid != "") finalDrinkName = espresso + " " + liquid;
-        if (extra != "") finalDrinkName = espresso + " " + extra;
+        if (espresso == "Decaf") {
+            if (liquid != "") finalDrinkName = espresso + " " + liquid;
+            if (extra != "") finalDrinkName = espresso + " " + extra;
+        }
+        else {
+            if (liquid != "") finalDrinkName = liquid;
+            if (extra != "") finalDrinkName = extra;
+        }
 
         MenuManager.instance.SetDrinkInformation("Coffee", finalDrinkName, 0);
     }
