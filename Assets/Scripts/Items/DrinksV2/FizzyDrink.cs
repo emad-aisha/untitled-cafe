@@ -16,19 +16,19 @@ public class FizzyDrink : Drinks {
     }
 
     public void Interact(ref FizzyDrink input, ref int priority) {
+        switch ((Priorities)priority) {
+            case Priorities.First:
+                if (GetSoda().SetIngredient(ref input.soda.ing, ref priority)) MenuManager.instance.SetInteractionType("Soda");
+                break;
+            case Priorities.Second:
+                if (GetSyrup().SetIngredient(ref input.syrup.ing, ref priority)) MenuManager.instance.SetInteractionType("Syrup");
+                break;
+            case Priorities.Third:
+                if (GetFruit().SetIngredient(ref input.fruit.ing, ref priority)) MenuManager.instance.SetInteractionType("Fruit");
+                break;
+            default: Debug.Log("Priority too high or low"); break;
+        }
 
-        if (CheckPriorities(sodaPriority, priority)) {
-            GetSoda().SetIngredient(ref input.soda.ing, ref priority);
-            MenuManager.instance.SetInteractionType("Soda");
-        }
-        else if (CheckPriorities(syrupPriority, priority)) {
-            GetSyrup().SetIngredient(ref input.syrup.ing, ref priority);
-            MenuManager.instance.SetInteractionType("Syrup");
-        }
-        else if (CheckPriorities(fruitPriority, priority)) {
-            GetFruit().SetIngredient(ref input.fruit.ing, ref priority);
-            MenuManager.instance.SetInteractionType("Fruit");
-        }
         FizzyDrinkManager.instance.SetFinalDrinkName(input);
     }
 
