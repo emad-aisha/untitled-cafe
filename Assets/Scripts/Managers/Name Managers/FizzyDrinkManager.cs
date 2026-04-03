@@ -2,12 +2,6 @@ using UnityEngine;
 
 public class FizzyDrinkManager : MonoBehaviour {
     public static FizzyDrinkManager instance;
-    enum Names {
-        Null,
-        Soda,
-        Flavoured,
-        Fruit
-    };
     enum Costs {
         Nothing = 0,
         RegularSoda = 3,

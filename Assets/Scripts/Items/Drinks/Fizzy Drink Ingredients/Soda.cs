@@ -15,4 +15,8 @@ public class Soda {
 
         ing.SetState((int)SodaType.Soda, hasSoda);
     }
+
+    public void SetDebugVariables() {
+        hasSoda = ing.GetState((int)SodaType.Soda);
+    }
 }

@@ -5,13 +5,8 @@ public class FizzyDrink : Drinks {
     public Syrup syrup;
     public Fruit fruit;
 
-    int sodaPriority;
-    int syrupPriority;
-    int fruitPriority;
-
     void Start() {
         SetIngredients();
-        SetPriorities();
         price = 0;
     }
 
@@ -29,19 +24,20 @@ public class FizzyDrink : Drinks {
             default: Debug.Log("Priority too high or low"); break;
         }
 
+        UpdateIngredients(ref input);
         FizzyDrinkManager.instance.SetFinalDrinkName(input);
     }
 
     // setters
-    void SetPriorities() {
-        sodaPriority = (int)GetSoda().GetPriority();
-        syrupPriority = (int)GetSyrup().GetPriority();
-        fruitPriority = (int)GetFruit().GetPriority();
-    }
     void SetIngredients() {
         soda.Set();
         syrup.Set();
         fruit.Set();
+    }
+    void UpdateIngredients(ref FizzyDrink input) {
+        input.soda.SetDebugVariables();
+        input.syrup.SetDebugVariables();
+        input.fruit.SetDebugVariables();
     }
 
     // getters
@@ -50,5 +46,5 @@ public class FizzyDrink : Drinks {
     public Ingredient GetFruit() { return fruit.ing; }
 
     // viewers
-    public bool IsEveryStateOff() { return soda.ing.IsAllOff() && syrup.ing.IsAllOff() && fruit.ing.IsAllOff(); }
+    override public bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
 }
