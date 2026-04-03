@@ -3,12 +3,13 @@ using UnityEngine;
 
 public enum CustomerState { Idle, Ordering, Waitng, Eating, Leaving, Null };
 public class Customer : MonoBehaviour {
-    int partyNumber = 1; // party of 1,2,3 (for num of chairs)
+    //parties of 1,2,3 (for num of chairs)
 
     // states
     CustomerState currentState = CustomerState.Idle;
     Idle idleState = new();
 
+    Seating seat;
 
     // TODO: put in it's own class
     // possible orders
@@ -31,7 +32,7 @@ public class Customer : MonoBehaviour {
     void Update() {
         // TODO: turn into switch
         currentState = currentState switch {
-            CustomerState.Idle => idleState.Update(ref fizzyDrinkOrder),
+            CustomerState.Idle => idleState.Update(ref seat, ref fizzyDrinkOrder, ref coffeeOrder),
             CustomerState.Ordering => CustomerState.Null,
             CustomerState.Waitng => CustomerState.Null,
             CustomerState.Eating => CustomerState.Null,

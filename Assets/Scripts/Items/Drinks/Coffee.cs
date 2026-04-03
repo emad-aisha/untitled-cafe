@@ -45,6 +45,12 @@ public class Coffee : Drinks {
         input.extras.SetDebugVariables();
     }
 
+    public void Set(Espresso _espresso, Liquid _liquid, Extras _extras) {
+        espresso = _espresso;
+        liquid = _liquid;
+        extras = _extras;
+    }
+
     // getters
     public Ingredient GetEspresso() { return espresso.ing; }
     public Ingredient GetLiquid() { return liquid.ing; }

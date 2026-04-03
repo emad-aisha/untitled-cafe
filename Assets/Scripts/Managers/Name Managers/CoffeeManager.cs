@@ -12,7 +12,7 @@ public class CoffeeManager : MonoBehaviour {
 
     void Awake() { if (instance == null) instance = this; }
 
-    public void SetFinalDrinkName(Coffee coffee) {
+    public string SetFinalDrinkName(Coffee coffee, bool player = true) {
         string espresso = GetEspresso(coffee);
         string liquid = GetLiquid(coffee);
         string extra = GetExtra(coffee);
@@ -28,7 +28,8 @@ public class CoffeeManager : MonoBehaviour {
             if (extra != "") finalDrinkName = extra;
         }
 
-        MenuManager.instance.SetDrinkInformation("Coffee", finalDrinkName, 0);
+        if (player) MenuManager.instance.SetDrinkInformation("Coffee", finalDrinkName, 0);
+        return finalDrinkName;
     }
 
     public int SetFinalDrinkCost(Coffee coffee) {
