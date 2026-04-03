@@ -1185,60 +1185,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5152917383122297880, guid: d9885e6957b1bfd4785d6caa6d3ebb19, type: 3}
   m_PrefabInstance: {fileID: 6295646181608202040}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1026086633
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1026086635}
-  - component: {fileID: 1026086634}
-  m_Layer: 0
-  m_Name: Coffee
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1026086634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026086633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  price: 0
-  espresso:
-    hasDecaf: 0
-    hasEspresso: 0
-  liquid:
-    hasWater: 0
-    hasMilk: 0
-  extras:
-    hasMilkFoam: 0
-    hasChocolate: 0
---- !u!4 &1026086635
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026086633}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2112375702}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061947665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,11 +1925,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992912001}
   m_CullTransparentMesh: 1
---- !u!4 &2112375702 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1493931422058053139, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-  m_PrefabInstance: {fileID: 8357220102850691516}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6295646181608202040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2106,10 +2047,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4484072085104642626, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-      propertyPath: myCoffee
-      value: 
-      objectReference: {fileID: 1026086634}
     - target: {fileID: 5031423937345424416, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2156,10 +2093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1493931422058053139, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1026086635}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
 --- !u!1660057539 &9223372036854775807
