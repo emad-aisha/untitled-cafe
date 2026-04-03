@@ -11,8 +11,8 @@ public class FizzyDrinkManager : MonoBehaviour {
 
     void Awake() { if (instance == null) instance = this; }
 
-
-    public void SetFinalDrinkName(FizzyDrink fizzyDrink) {
+    // TODO: change implementation
+    public string SetFinalDrinkName(FizzyDrink fizzyDrink, bool setPlayer = true) {
         string finalName = GetSoda(fizzyDrink);
         string flavor = GetFlavor(fizzyDrink);
         string fruit = GetFruit(fizzyDrink);
@@ -21,7 +21,8 @@ public class FizzyDrinkManager : MonoBehaviour {
         if (IsFruit(fizzyDrink)) finalDrinkName += " with " + fruit;
         if (finalDrinkName.StartsWith(" ")) finalDrinkName = finalDrinkName.Substring(1);
 
-        MenuManager.instance.SetDrinkInformation("Fizzy Drink", finalDrinkName, 0);
+        if (setPlayer) MenuManager.instance.SetDrinkInformation("Fizzy Drink", finalDrinkName, 0);
+        return finalDrinkName;
     }
     // helper
     string GetSoda(FizzyDrink fizzyDrink) {

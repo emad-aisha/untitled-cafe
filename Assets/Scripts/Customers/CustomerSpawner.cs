@@ -15,7 +15,7 @@ public class CustomerSpawner : MonoBehaviour {
     }
 
     void Update() {
-        if (internalTimer >= cooldown && customersSpawned <= customersToSpawn) {
+        if (internalTimer >= cooldown && customersSpawned < customersToSpawn) {
             internalTimer = 0;
 
             // TODO: make this randomized haha

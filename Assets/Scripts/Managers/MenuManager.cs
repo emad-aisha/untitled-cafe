@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour {
@@ -12,6 +13,10 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] TMP_Text finalDrink;
     [SerializeField] TMP_Text cost;
     [SerializeField] TMP_Text totalMoney;
+
+    [Header("Customer")]
+    [SerializeField] TMP_Text customerOrder;
+
 
     void Start() { if (instance == null) instance = this; }
 
@@ -28,4 +33,7 @@ public class MenuManager : MonoBehaviour {
     public void SetCost(string finalCost) { cost.text = finalCost; }
 
     public void SetPlayerMoney(string money) { totalMoney.text = money; }
+
+
+    public void SetCustomerOrder(string order) { customerOrder.text = order; }
 }

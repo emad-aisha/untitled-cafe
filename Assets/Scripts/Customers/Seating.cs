@@ -5,6 +5,9 @@ public class Seating : MonoBehaviour {
     public int numberOfChairs;
     public bool IsFree;
 
-    void Start() { numberOfChairs = seats.Length; }
+    void Start() {
+        numberOfChairs = seats.Length;
+        IsFree = true;
+    }
 
 }
