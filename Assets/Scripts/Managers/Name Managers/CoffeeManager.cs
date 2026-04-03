@@ -5,8 +5,8 @@ public class CoffeeManager : MonoBehaviour {
     enum Drinks {
         Nothing = 0,
         Espresso = 3,
-        Liquid = 4,
-        Extra = 5
+        Liquid = 5,
+        Extra = 6
     };
 
 
