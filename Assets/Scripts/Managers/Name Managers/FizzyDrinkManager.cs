@@ -9,7 +9,7 @@ public class FizzyDrinkManager : MonoBehaviour {
         Mohito = 6
     };
 
-    void Start() { if (instance == null) instance = this; }
+    void Awake() { if (instance == null) instance = this; }
 
 
     public void SetFinalDrinkName(FizzyDrink fizzyDrink) {

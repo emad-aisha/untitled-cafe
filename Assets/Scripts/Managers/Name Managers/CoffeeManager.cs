@@ -10,7 +10,7 @@ public class CoffeeManager : MonoBehaviour {
     };
 
 
-    void Start() { if (instance == null) instance = this; }
+    void Awake() { if (instance == null) instance = this; }
 
     public void SetFinalDrinkName(Coffee coffee) {
         string espresso = GetEspresso(coffee);
