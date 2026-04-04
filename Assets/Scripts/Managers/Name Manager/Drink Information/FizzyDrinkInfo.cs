@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class FizzyDrinkInfo {
     // TODO: can refactor to have the drinkName/cost thing change witch type instead of copy pasting over and over

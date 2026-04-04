@@ -2,7 +2,7 @@ using UnityEngine;
 using static CoffeeInfo;
 using static FizzyDrinkInfo;
 
-public enum NameType { Null, FizzyDrink, Coffee };
+public enum NameType { Null = -1, FizzyDrink, Coffee, Count };
 public class DrinkNameManager : MonoBehaviour {
     static public DrinkNameManager instance;
     public delegate int NameFunction(Drink drink); // function pointer type

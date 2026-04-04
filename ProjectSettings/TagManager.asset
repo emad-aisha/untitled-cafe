@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Money
+  - Seat
   layers:
   - Default
   - TransparentFX

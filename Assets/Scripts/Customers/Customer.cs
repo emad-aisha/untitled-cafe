@@ -11,10 +11,11 @@ public class Customer : MonoBehaviour {
 
     Seating seat;
 
-    // TODO: put in it's own class
+    // TODO: put in it's own class...
     // possible orders
-    [SerializeField] FizzyDrink fizzyDrinkOrder;
-    [SerializeField] Coffee coffeeOrder;
+    public enum DrinkOrder { FizzyDrink, Coffee };
+    [SerializeField] DrinkOrder orderChecker;
+    [SerializeField] Drink[] drinks;
 
     Seating personalSeat;
 
@@ -32,7 +33,7 @@ public class Customer : MonoBehaviour {
     void Update() {
         // TODO: turn into switch
         currentState = currentState switch {
-            CustomerState.Idle => idleState.Update(ref seat, ref fizzyDrinkOrder, ref coffeeOrder),
+            CustomerState.Idle => idleState.Update(ref seat, ref drinks),
             CustomerState.Ordering => CustomerState.Null,
             CustomerState.Waitng => CustomerState.Null,
             CustomerState.Eating => CustomerState.Null,

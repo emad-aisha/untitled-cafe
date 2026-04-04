@@ -18,6 +18,7 @@ public class FizzyDrink : Drink {
         DrinkNameManager.instance.SetDrinkName(input, NameType.FizzyDrink);
     }
 
+
     // setters
     override protected void SetIngredients() {
         ingredients = new Ingredient[3];
@@ -31,13 +32,10 @@ public class FizzyDrink : Drink {
     }
 
     public void Set(Soda _soda, Syrup _syrup, Fruit _fruit) {
-        SetSoda(_soda);
-        SetSyrup(_syrup);
-        SetFruit(_fruit);
+        soda = _soda;
+        syrup = _syrup;
+        fruit = _fruit;
     }
-    public void SetSoda(Soda _soda) { soda = _soda; }
-    public void SetSyrup(Syrup _syrup) { syrup = _syrup; }
-    public void SetFruit(Fruit _fruit) { fruit = _fruit; }
 
     // getters
     public Ingredient GetSoda() { return ingredients[(int)FizzyDrinkIngredients.Soda]; }

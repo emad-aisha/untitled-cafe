@@ -21,6 +21,13 @@ public abstract class Drink : MonoBehaviour {
     abstract public bool IsEveryStateOff();
     abstract public void SetAllOff();
 
+    //abstract public Drink RandomizeDrink(Drink blank);
+
+    public void RandomizeDrinkV2(int[] ingredientMaxes) {
+        int[] ingredientType = new int[ingredients.Length];
+        RandomizeAndSet(ingredientType, ingredientMaxes);
+    }
+
     // generally helpful functions
     protected void SetIngredient(ref Drink input, CoffeeIngredients ingredientType, ref int priority) {
         if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
@@ -30,6 +37,19 @@ public abstract class Drink : MonoBehaviour {
     protected void SetIngredient(ref Drink input, FizzyDrinkIngredients ingredientType, ref int priority) {
         if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
             MenuManager.instance.SetLastInteracted(ingredientType.ToString());
+        }
+    }
+
+    // personal functions
+    void RandomizeAndSet(int[] ingredientType, int[] ingredientMaxes) {
+        for (int i = 0; i < ingredientType.Length; i++) {
+            // randomly set each type
+            if (i == 0) ingredientType[0] = Random.Range(0, ingredientMaxes[0]);
+            else ingredientType[i] = Random.Range(-1, ingredientMaxes[i]);
+
+            if (ingredientType[i] == -1) break;
+            // set type if available
+            ingredients[i].SetState(ingredientType[i], true);
         }
     }
 }
