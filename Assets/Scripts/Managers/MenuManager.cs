@@ -6,8 +6,8 @@ public class MenuManager : MonoBehaviour {
     public static MenuManager instance;
 
     [Header("Basic Drink")]
-    [SerializeField] TMP_Text lastInteracted;
     [SerializeField] TMP_Text baseType;
+    [SerializeField] TMP_Text lastInteracted;
 
     [Header("Finals")]
     [SerializeField] TMP_Text finalDrink;

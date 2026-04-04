@@ -14,6 +14,13 @@ public class FizzyDrinkInfo {
         return cost;
     }
 
+    static public void SetCustomerFizzyDrinkInformation(Drink drink) {
+        FizzyDrinkIngredients ignore = FizzyDrinkIngredients.Null;
+        string drinkName = GetFizzyDrinkName(drink, ref ignore);
+
+        MenuManager.instance.SetCustomerOrder(drinkName);
+    }
+
     static string GetFizzyDrinkName(Drink drink, ref FizzyDrinkIngredients costType) {
         Ingredient soda = drink.ingredients[(int)FizzyDrinkIngredients.Soda];
         Ingredient syrup = drink.ingredients[(int)FizzyDrinkIngredients.Syrup];
@@ -27,17 +34,24 @@ public class FizzyDrinkInfo {
         string syrupName = "";
         string fruitName = "";
 
-        if (sodaType == (int)SodaType.Soda) sodaName = "Soda";
-        if (syrupType >= 0 && syrupType < (int)SyrupType.Count) syrupName = ((SyrupType)syrupType).ToString();
-        if (fruitType >= 0 && fruitType < (int)FruitType.Count) fruitName = "with " + ((FruitType)fruitType).ToString();
+        if (sodaType == (int)SodaType.Soda) {
+            sodaName = "Soda";
+            costType = FizzyDrinkIngredients.Soda;
+        }
+        if (syrupType >= 0 && syrupType < (int)SyrupType.Count) {
+            syrupName = ((SyrupType)syrupType).ToString();
+            costType = FizzyDrinkIngredients.Syrup;
+        }
+        if (fruitType >= 0 && fruitType < (int)FruitType.Count) {
+            fruitName = "with " + ((FruitType)fruitType).ToString();
+            costType = FizzyDrinkIngredients.Fruit;
+        }
 
         string finalName = syrupName + " " + sodaName + " " + fruitName;
         if (finalName.StartsWith(" ")) finalName = finalName.Substring(1);
 
         return finalName;
     }
-
-
 
     static int GetFizzyDrinkCost(FizzyDrinkIngredients costType) {
         int cost = costType switch {

@@ -33,7 +33,7 @@ public class Idle {
         SetFizzyDrinkIngredients(ref soda, ref syrup, ref fruit);
         fizzyDrinkOrder.Set(soda, syrup, fruit);
 
-        MenuManager.instance.SetCustomerOrder(FizzyDrinkManager.instance.SetFinalDrinkName(fizzyDrinkOrder, false));
+        DrinkNameManager.instance.SetCustomerDrinkName(fizzyDrinkOrder, NameType.FizzyDrink);
         return true;
     }
     void SetFizzyDrinkIngredients(ref Soda soda, ref Syrup syrup, ref Fruit fruit) {
@@ -50,7 +50,7 @@ public class Idle {
         if (fruitType != -1) fruit.ing.SetState(fruitType, true);
     }
 
-    bool RandomizeCoffee(ref Coffee coffee) {
+    bool RandomizeCoffee(ref Coffee coffeeOrder) {
         //if (RandomCheck() == false) return false;
 
         Espresso espresso = new();
@@ -58,8 +58,9 @@ public class Idle {
         Extras extra = new();
 
         SetCoffeeIngredients(ref espresso, ref liquid, ref extra);
-        coffee.Set(espresso, liquid, extra);
-        MenuManager.instance.SetCustomerOrder(CoffeeManager.instance.SetFinalDrinkName(coffee, false));
+        coffeeOrder.Set(espresso, liquid, extra);
+
+        DrinkNameManager.instance.SetCustomerDrinkName(coffeeOrder, NameType.Coffee);
         return true;
     }
     void SetCoffeeIngredients(ref Espresso espresso, ref Liquid liquid, ref Extras extras) {

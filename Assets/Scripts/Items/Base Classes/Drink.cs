@@ -19,6 +19,7 @@ public abstract class Drink : MonoBehaviour {
     abstract public void Interact(ref Drink drink, ref int priority);
     abstract protected void SetIngredients();
     abstract public bool IsEveryStateOff();
+    abstract public void SetAllOff();
 
     // generally helpful functions
     protected void SetIngredient(ref Drink input, CoffeeIngredients ingredientType, ref int priority) {

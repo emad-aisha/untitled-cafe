@@ -17,6 +17,12 @@ public class CoffeeInfo {
 
         return cost;
     }
+    static public void SetCustomerCoffeeInformation(Drink drink) {
+        CoffeeIngredients ignore = CoffeeIngredients.Null;
+        string drinkName = GetCoffeeName(drink, ref ignore);
+
+        MenuManager.instance.SetCustomerOrder(drinkName);
+    }
 
 
     static string GetCoffeeName(Drink drink, ref CoffeeIngredients costType) {
