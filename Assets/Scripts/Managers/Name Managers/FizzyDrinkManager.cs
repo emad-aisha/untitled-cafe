@@ -1,5 +1,5 @@
+/*
 using UnityEngine;
-
 public class FizzyDrinkManager : MonoBehaviour {
     public static FizzyDrinkManager instance;
     enum Costs {
@@ -73,3 +73,5 @@ public class FizzyDrinkManager : MonoBehaviour {
     }
 
 }
+
+*/

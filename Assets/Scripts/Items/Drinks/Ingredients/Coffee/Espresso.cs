@@ -15,9 +15,4 @@ public class Espresso {
         ing.SetState((int)EspressoType.Decaf, hasDecaf);
         ing.SetState((int)EspressoType.Regular, hasEspresso);
     }
-
-    public void SetDebugVariables() {
-        hasDecaf = ing.GetState((int)EspressoType.Decaf);
-        hasEspresso = ing.GetState((int)EspressoType.Regular);
-    }
 }

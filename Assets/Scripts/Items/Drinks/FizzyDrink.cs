@@ -1,50 +1,40 @@
 using UnityEngine;
 
-public class FizzyDrink : Drinks {
-    public Soda soda;
-    public Syrup syrup;
-    public Fruit fruit;
+public class FizzyDrink : Drink {
+    [Header("Personal")]
+    [SerializeField] Soda soda;
+    [SerializeField] Syrup syrup;
+    [SerializeField] Fruit fruit;
 
-    void Start() {
-        SetIngredients();
-        price = 0;
-    }
+    override public void Interact(ref Drink input, ref int priority) {
 
-    public void Interact(ref FizzyDrink input, ref int priority) {
         switch ((Priorities)priority) {
-            case Priorities.First:
-                if (GetSoda().SetIngredient(ref input.soda.ing, ref priority)) MenuManager.instance.SetInteractionType("Soda");
-                break;
-            case Priorities.Second:
-                if (GetSyrup().SetIngredient(ref input.syrup.ing, ref priority)) MenuManager.instance.SetInteractionType("Syrup");
-                break;
-            case Priorities.Third:
-                if (GetFruit().SetIngredient(ref input.fruit.ing, ref priority)) MenuManager.instance.SetInteractionType("Fruit");
-                break;
+            case Priorities.First: SetIngredient(ref input, FizzyDrinkType.Soda, ref priority); break;
+            case Priorities.Second: SetIngredient(ref input, FizzyDrinkType.Syrup, ref priority); break;
+            case Priorities.Third: SetIngredient(ref input, FizzyDrinkType.Fruit, ref priority); break;
             default: Debug.Log("Priority too high or low"); break;
         }
 
-        UpdateIngredients(ref input);
-        FizzyDrinkManager.instance.SetFinalDrinkName(input);
+        DrinkNameManager.instance.SetDrinkName(input, NameType.FizzyDrink);
     }
 
     // setters
-    void SetIngredients() {
+    override protected void SetIngredients() {
+        ingredients = new Ingredient[3];
         soda.Set();
         syrup.Set();
         fruit.Set();
-    }
-    void UpdateIngredients(ref FizzyDrink input) {
-        input.soda.SetDebugVariables();
-        input.syrup.SetDebugVariables();
-        input.fruit.SetDebugVariables();
+
+        ingredients[(int)FizzyDrinkType.Soda] = soda.ing;
+        ingredients[(int)FizzyDrinkType.Syrup] = syrup.ing;
+        ingredients[(int)FizzyDrinkType.Fruit] = fruit.ing;
     }
 
     // getters
-    public Ingredient GetSoda() { return soda.ing; }
-    public Ingredient GetSyrup() { return syrup.ing; }
-    public Ingredient GetFruit() { return fruit.ing; }
+    public Ingredient GetSoda() { return ingredients[(int)FizzyDrinkType.Soda]; }
+    public Ingredient GetSyrup() { return ingredients[(int)FizzyDrinkType.Syrup]; }
+    public Ingredient GetFruit() { return ingredients[(int)FizzyDrinkType.Fruit]; }
 
-    // viewers
+
     override public bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
 }

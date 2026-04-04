@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [Header("Interaction")]
-    [SerializeField][Range(0, 1)] float interactCooldown;
+    [SerializeField][Range(0, 0.5f)] float interactCooldown;
     [SerializeField][Range(8, 12)] float interactDistance;
 
     [Header("Misc")]

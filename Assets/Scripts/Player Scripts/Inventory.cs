@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
-    [SerializeField] FizzyDrink myFizzyDrink;
-    [SerializeField] Coffee myCoffee;
+    [SerializeField] Drink myFizzyDrink;
+    [SerializeField] Drink myCoffee;
 
     private int currPriority;
     public int currPrice;
@@ -14,11 +14,13 @@ public class Inventory : MonoBehaviour {
 
         if (inputFizzyDrink != null && myCoffee.IsEveryStateOff()) {
             inputFizzyDrink.Interact(ref myFizzyDrink, ref currPriority);
-            currPrice = FizzyDrinkManager.instance.SetFinalDrinkCost(myFizzyDrink);
+            // TODO: fix this
+            //currPrice = FizzyDrinkManager.instance.SetFinalDrinkCost(myFizzyDrink);
         }
-        if (inputCoffee != null && myFizzyDrink.IsEveryStateOff()) {
+
+        if (inputCoffee != null) {
             inputCoffee.Interact(ref myCoffee, ref currPriority);
-            currPrice = CoffeeManager.instance.SetFinalDrinkCost(myCoffee);
+            //currPrice = CoffeeManager.instance.SetFinalDrinkCost(myCoffee);
         }
     }
 

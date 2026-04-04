@@ -1,5 +1,5 @@
+/*
 using UnityEngine;
-
 public class CoffeeManager : MonoBehaviour {
     static public CoffeeManager instance;
     enum Drinks {
@@ -57,3 +57,5 @@ public class CoffeeManager : MonoBehaviour {
     }
 
 }
+
+*/

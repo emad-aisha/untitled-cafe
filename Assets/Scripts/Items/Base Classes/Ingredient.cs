@@ -62,10 +62,9 @@ public class Ingredient {
     }
 
     // setters
-    // TODO: add catch statements (basically, if error, print in debug.log)
     void InitializeStates(int numOfStates) { for (int i = 0; i < numOfStates; i++) states[i] = false; }
     public bool SetState(int index, bool inputBool) {
-        if (index < 0 || index >= states.Length) return false;
+        if (index < 0 || index >= states.Length) { Debug.Log("index too high or low"); return false; }
         states[index] = inputBool;
         return true;
     }

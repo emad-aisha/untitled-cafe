@@ -15,9 +15,4 @@ public class Liquid {
         ing.SetState((int)LiquidType.Water, hasWater);
         ing.SetState((int)LiquidType.Milk, hasMilk);
     }
-
-    public void SetDebugVariables() {
-        hasWater = ing.GetState((int)LiquidType.Water);
-        hasMilk = ing.GetState((int)LiquidType.Milk);
-    }
 }
