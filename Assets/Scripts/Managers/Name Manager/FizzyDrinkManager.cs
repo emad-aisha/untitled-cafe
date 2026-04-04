@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class FizzyDrinkManager : MonoBehaviour {
+public class FizzyDrinkManager : MonoBehaviour
+{
     public static FizzyDrinkManager instance;
-    enum Costs {
+    enum Costs
+    {
         Nothing = 0,
         RegularSoda = 3,
         FlavoredSoda = 4,
         Mohito = 6
     };
 
-    void Awake() { if (instance == null) instance = this; }
+    void Start() { if (instance == null) instance = this; }
 
-    // TODO: change implementation
-    public string SetFinalDrinkName(FizzyDrink fizzyDrink, bool setPlayer = true) {
+
+    public void SetFinalDrinkName(FizzyDrink fizzyDrink)
+    {
         string finalName = GetSoda(fizzyDrink);
         string flavor = GetFlavor(fizzyDrink);
         string fruit = GetFruit(fizzyDrink);
@@ -21,20 +24,22 @@ public class FizzyDrinkManager : MonoBehaviour {
         if (IsFruit(fizzyDrink)) finalDrinkName += " with " + fruit;
         if (finalDrinkName.StartsWith(" ")) finalDrinkName = finalDrinkName.Substring(1);
 
-        if (setPlayer) MenuManager.instance.SetDrinkInformation("Fizzy Drink", finalDrinkName, 0);
-        return finalDrinkName;
+        //MenuManager.instance.SetDrinkInformation("Fizzy Drink", finalDrinkName, 0);
     }
     // helper
-    string GetSoda(FizzyDrink fizzyDrink) {
+    string GetSoda(FizzyDrink fizzyDrink)
+    {
         if (fizzyDrink.GetSoda().GetState((int)SodaType.Soda)) return "Soda";
         return "";
     }
-    string GetFlavor(FizzyDrink fizzyDrink) {
+    string GetFlavor(FizzyDrink fizzyDrink)
+    {
         int index = fizzyDrink.GetSyrup().GetAnyStateIndex();
         if (index == -1) return "";
         return ((SyrupType)index).ToString();
     }
-    string GetFruit(FizzyDrink fizzyDrink) {
+    string GetFruit(FizzyDrink fizzyDrink)
+    {
         int index = fizzyDrink.GetFruit().GetAnyStateIndex();
         if (index == -1) return "";
         return ((FruitType)index).ToString();
@@ -42,7 +47,8 @@ public class FizzyDrinkManager : MonoBehaviour {
 
 
 
-    public int SetFinalDrinkCost(FizzyDrink fizzyDrink) {
+    public int SetFinalDrinkCost(FizzyDrink fizzyDrink)
+    {
         bool soda = IsSoda(fizzyDrink);
         bool flavor = IsFlavor(fizzyDrink);
         bool fruit = IsFruit(fizzyDrink);
@@ -58,19 +64,23 @@ public class FizzyDrinkManager : MonoBehaviour {
         return (int)cost;
     }
     // helper
-    bool IsSoda(FizzyDrink fizzyDrink) {
+    bool IsSoda(FizzyDrink fizzyDrink)
+    {
         if (fizzyDrink.GetSoda().GetState((int)SodaType.Soda)) return true;
         return false;
     }
-    bool IsFlavor(FizzyDrink fizzyDrink) {
+    bool IsFlavor(FizzyDrink fizzyDrink)
+    {
         int index = fizzyDrink.GetSyrup().GetAnyStateIndex();
         if (index == -1) return false;
         return true;
     }
-    bool IsFruit(FizzyDrink fizzyDrink) {
+    bool IsFruit(FizzyDrink fizzyDrink)
+    {
         int index = fizzyDrink.GetFruit().GetAnyStateIndex();
         if (index == -1) return false;
         return true;
     }
 
 }
+

@@ -1,48 +1,35 @@
 using UnityEngine;
 
-public class Coffee : Drinks {
-    public Espresso espresso;
-    public Liquid liquid;
-    public Extras extras;
+public class Coffee : Drink {
+    [Header("Personal")]
+    [SerializeField] Espresso espresso;
+    [SerializeField] Liquid liquid;
+    [SerializeField] Extras extras;
 
-
-    void Start() {
-        SetIngredients();
-        price = 0;
-    }
-
-    public void Interact(ref Coffee input, ref int priority) {
-        bool hasMilk = input.GetLiquid().GetState((int)LiquidType.Milk);
+    override public void Interact(ref Drink input, ref int priority) {
+        bool hasMilk = input.ingredients[(int)CoffeeIngredients.Liquid].GetState((int)LiquidType.Milk);
 
         switch ((Priorities)priority) {
-            case Priorities.First:
-                if (GetEspresso().SetIngredient(ref input.espresso.ing, ref priority)) MenuManager.instance.SetInteractionType("Espresso");
-                break;
-            case Priorities.Second:
-                if (GetLiquid().SetIngredient(ref input.liquid.ing, ref priority)) MenuManager.instance.SetInteractionType("Liquid");
-                break;
-            case Priorities.Third:
-                if (hasMilk && GetExtras().SetIngredient(ref input.extras.ing, ref priority)) MenuManager.instance.SetInteractionType("Extras");
-                break;
+            case Priorities.First: SetIngredient(ref input, CoffeeIngredients.Espresso, ref priority); break;
+            case Priorities.Second: SetIngredient(ref input, CoffeeIngredients.Liquid, ref priority); break;
+            case Priorities.Third: if (hasMilk) SetIngredient(ref input, CoffeeIngredients.Extras, ref priority); break;
             default: Debug.Log("Priority too high or low"); break;
         }
 
-        UpdateIngredients(ref input);
-        CoffeeManager.instance.SetFinalDrinkName(input);
+        DrinkNameManager.instance.SetDrinkName(input, NameType.Coffee);
     }
-
 
 
     // setters
-    void SetIngredients() {
+    override protected void SetIngredients() {
+        ingredients = new Ingredient[3];
         espresso.Set();
         liquid.Set();
         extras.Set();
-    }
-    void UpdateIngredients(ref Coffee input) {
-        input.espresso.SetDebugVariables();
-        input.liquid.SetDebugVariables();
-        input.extras.SetDebugVariables();
+
+        ingredients[(int)CoffeeIngredients.Espresso] = espresso.ing;
+        ingredients[(int)CoffeeIngredients.Liquid] = liquid.ing;
+        ingredients[(int)CoffeeIngredients.Extras] = extras.ing;
     }
 
     public void Set(Espresso _espresso, Liquid _liquid, Extras _extras) {
@@ -52,11 +39,11 @@ public class Coffee : Drinks {
     }
 
     // getters
-    public Ingredient GetEspresso() { return espresso.ing; }
-    public Ingredient GetLiquid() { return liquid.ing; }
-    public Ingredient GetExtras() { return extras.ing; }
+    public Ingredient GetEspresso() { return ingredients[(int)CoffeeIngredients.Espresso]; }
+    public Ingredient GetLiquid() { return ingredients[(int)CoffeeIngredients.Liquid]; }
+    public Ingredient GetExtras() { return ingredients[(int)CoffeeIngredients.Extras]; }
 
-    // viewers
+
     public override bool IsEveryStateOff() { return GetEspresso().IsAllOff() && GetLiquid().IsAllOff() && GetExtras().IsAllOff(); }
     public override void SetAllOff() {
         GetEspresso().SetAllStates();

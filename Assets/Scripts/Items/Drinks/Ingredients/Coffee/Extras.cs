@@ -15,9 +15,4 @@ public class Extras {
         ing.SetState((int)ExtrasType.MilkFoam, hasMilkFoam);
         ing.SetState((int)ExtrasType.Chocolate, hasChocolate);
     }
-
-    public void SetDebugVariables() {
-        hasMilkFoam = ing.GetState((int)ExtrasType.MilkFoam);
-        hasChocolate = ing.GetState((int)ExtrasType.Chocolate);
-    }
 }
