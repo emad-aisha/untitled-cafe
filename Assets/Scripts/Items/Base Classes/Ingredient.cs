@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Ingredient {
     // needs an enum to work
+    // TODO: make less ugly
     Priorities priority;
     bool[] states;
 

@@ -9,18 +9,18 @@ public class Inventory : MonoBehaviour {
 
 
     public void Interact(Collider interactable) {
+        // TODO: see if i can use one drink
         FizzyDrink inputFizzyDrink = interactable.GetComponent<FizzyDrink>();
         Coffee inputCoffee = interactable.GetComponent<Coffee>();
 
         if (inputFizzyDrink != null && myCoffee.IsEveryStateOff()) {
             inputFizzyDrink.Interact(ref myFizzyDrink, ref currPriority);
-            // TODO: fix this
-            //currPrice = FizzyDrinkManager.instance.SetFinalDrinkCost(myFizzyDrink);
+            currPrice = DrinkNameManager.instance.SetDrinkName(myFizzyDrink, NameType.FizzyDrink);
         }
 
         if (inputCoffee != null) {
             inputCoffee.Interact(ref myCoffee, ref currPriority);
-            //currPrice = CoffeeManager.instance.SetFinalDrinkCost(myCoffee);
+            currPrice = DrinkNameManager.instance.SetDrinkName(inputCoffee, NameType.Coffee);
         }
     }
 

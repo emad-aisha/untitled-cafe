@@ -1,10 +1,10 @@
 using UnityEngine;
 
+public enum CoffeeIngredients { Espresso, Liquid, Extras, Null };
+public enum FizzyDrinkIngredients { Soda, Syrup, Fruit, Null };
 public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
     // each needs it's own enum
-    protected enum CoffeeIngredients { Espresso, Liquid, Extras };
-    protected enum FizzyDrinkType { Soda, Syrup, Fruit };
 
     [Header("Base Class Variables")]
     public Ingredient[] ingredients;
@@ -23,12 +23,12 @@ public abstract class Drink : MonoBehaviour {
     // generally helpful functions
     protected void SetIngredient(ref Drink input, CoffeeIngredients ingredientType, ref int priority) {
         if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
-            MenuManager.instance.SetInteractionType(ingredientType.ToString());
+            MenuManager.instance.SetLastInteracted(ingredientType.ToString());
         }
     }
-    protected void SetIngredient(ref Drink input, FizzyDrinkType ingredientType, ref int priority) {
+    protected void SetIngredient(ref Drink input, FizzyDrinkIngredients ingredientType, ref int priority) {
         if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
-            MenuManager.instance.SetInteractionType(ingredientType.ToString());
+            MenuManager.instance.SetLastInteracted(ingredientType.ToString());
         }
     }
 }

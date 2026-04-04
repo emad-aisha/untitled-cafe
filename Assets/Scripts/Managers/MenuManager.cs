@@ -5,7 +5,7 @@ public class MenuManager : MonoBehaviour {
     public static MenuManager instance;
 
     [Header("Basic Drink")]
-    [SerializeField] TMP_Text baseInteraction;
+    [SerializeField] TMP_Text lastInteracted;
     [SerializeField] TMP_Text baseType;
 
     [Header("Finals")]
@@ -17,12 +17,7 @@ public class MenuManager : MonoBehaviour {
 
     public void SetInteractionType(string typeName) { baseType.text = typeName; }
 
-    public void SetDrinkInformation(string BaseType, string finalDrinkName, int cost) {
-        SetBaseInteraction(BaseType);
-        SetFinalDrink(finalDrinkName);
-        SetCost(cost.ToString());
-    }
-    public void SetBaseInteraction(string interactionName) { baseInteraction.text = interactionName; }
+    public void SetLastInteracted(string _lastInteracted) { lastInteracted.text = _lastInteracted; }
     public void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
     public void SetCost(string finalCost) { cost.text = finalCost; }
 }

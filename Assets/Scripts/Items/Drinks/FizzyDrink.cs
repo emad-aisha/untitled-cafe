@@ -9,9 +9,9 @@ public class FizzyDrink : Drink {
     override public void Interact(ref Drink input, ref int priority) {
 
         switch ((Priorities)priority) {
-            case Priorities.First: SetIngredient(ref input, FizzyDrinkType.Soda, ref priority); break;
-            case Priorities.Second: SetIngredient(ref input, FizzyDrinkType.Syrup, ref priority); break;
-            case Priorities.Third: SetIngredient(ref input, FizzyDrinkType.Fruit, ref priority); break;
+            case Priorities.First: SetIngredient(ref input, FizzyDrinkIngredients.Soda, ref priority); break;
+            case Priorities.Second: SetIngredient(ref input, FizzyDrinkIngredients.Syrup, ref priority); break;
+            case Priorities.Third: SetIngredient(ref input, FizzyDrinkIngredients.Fruit, ref priority); break;
             default: Debug.Log("Priority too high or low"); break;
         }
 
@@ -25,15 +25,15 @@ public class FizzyDrink : Drink {
         syrup.Set();
         fruit.Set();
 
-        ingredients[(int)FizzyDrinkType.Soda] = soda.ing;
-        ingredients[(int)FizzyDrinkType.Syrup] = syrup.ing;
-        ingredients[(int)FizzyDrinkType.Fruit] = fruit.ing;
+        ingredients[(int)FizzyDrinkIngredients.Soda] = soda.ing;
+        ingredients[(int)FizzyDrinkIngredients.Syrup] = syrup.ing;
+        ingredients[(int)FizzyDrinkIngredients.Fruit] = fruit.ing;
     }
 
     // getters
-    public Ingredient GetSoda() { return ingredients[(int)FizzyDrinkType.Soda]; }
-    public Ingredient GetSyrup() { return ingredients[(int)FizzyDrinkType.Syrup]; }
-    public Ingredient GetFruit() { return ingredients[(int)FizzyDrinkType.Fruit]; }
+    public Ingredient GetSoda() { return ingredients[(int)FizzyDrinkIngredients.Soda]; }
+    public Ingredient GetSyrup() { return ingredients[(int)FizzyDrinkIngredients.Syrup]; }
+    public Ingredient GetFruit() { return ingredients[(int)FizzyDrinkIngredients.Fruit]; }
 
 
     override public bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
