@@ -23,19 +23,22 @@ public class Idle {
     void RandomizeDrink(ref Drink[] drinks) {
         NameType drinkChosen = (NameType)Random.Range(0, (int)NameType.Count);
 
+        // TODO: organize
         int[] ingredientMaxes;
         switch (drinkChosen) {
             case NameType.FizzyDrink:
                 ingredientMaxes = new int[3];
                 SetFizzyDrink(ref ingredientMaxes, ref drinks);
+                DrinkNameManager.instance.PrintCustomerDrinkName(drinks[0], NameType.FizzyDrink);
                 break;
             case NameType.Coffee:
                 ingredientMaxes = new int[3];
                 SetCoffee(ref ingredientMaxes, ref drinks);
+                DrinkNameManager.instance.PrintCustomerDrinkName(drinks[1], NameType.Coffee);
                 break;
             default: Debug.Log("Didn't Randomize"); break;
         }
-
+        MenuManager.instance.SetCustomerOrder("Ready");
     }
 
     void SetFizzyDrink(ref int[] ingredientMaxes, ref Drink[] drinks) {
@@ -44,7 +47,6 @@ public class Idle {
         ingredientMaxes[(int)FizzyDrinkIngredients.Fruit] = (int)FruitType.Count;
 
         drinks[(int)Customer.DrinkOrder.FizzyDrink].RandomizeDrinkV2(ingredientMaxes);
-        DrinkNameManager.instance.SetCustomerDrinkName(drinks[(int)Customer.DrinkOrder.FizzyDrink], NameType.FizzyDrink);
     }
 
     void SetCoffee(ref int[] ingredientMaxes, ref Drink[] drinks) {
@@ -53,6 +55,5 @@ public class Idle {
         ingredientMaxes[(int)CoffeeIngredients.Extras] = (int)ExtrasType.Count;
 
         drinks[(int)Customer.DrinkOrder.Coffee].RandomizeDrinkV2(ingredientMaxes);
-        DrinkNameManager.instance.SetCustomerDrinkName(drinks[(int)Customer.DrinkOrder.Coffee], NameType.Coffee);
     }
 }

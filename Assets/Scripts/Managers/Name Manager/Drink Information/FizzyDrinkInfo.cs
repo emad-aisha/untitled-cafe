@@ -15,11 +15,19 @@ public class FizzyDrinkInfo {
         return cost;
     }
 
-    static public void SetCustomerFizzyDrinkInformation(Drink drink) {
+    static public void SetCustomerFizzyDrinkInformation(Drink drink, bool debugMode) {
         FizzyDrinkIngredients ignore = FizzyDrinkIngredients.Null;
         string drinkName = GetFizzyDrinkName(drink, ref ignore);
 
         MenuManager.instance.SetCustomerOrder(drinkName);
+        if (debugMode) Debug.Log(drinkName);
+    }
+
+    static public void SetCustomerDebugFizzyDrinkInformation(Drink drink, bool debugMode) {
+        FizzyDrinkIngredients ignore = FizzyDrinkIngredients.Null;
+        string drinkName = GetFizzyDrinkName(drink, ref ignore);
+
+        if (debugMode) Debug.Log(drinkName);
     }
 
     static string GetFizzyDrinkName(Drink drink, ref FizzyDrinkIngredients costType) {

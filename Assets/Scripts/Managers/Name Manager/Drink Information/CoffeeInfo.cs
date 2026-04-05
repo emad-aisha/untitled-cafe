@@ -18,11 +18,18 @@ public class CoffeeInfo {
 
         return cost;
     }
-    static public void SetCustomerCoffeeInformation(Drink drink) {
+    static public void SetCustomerCoffeeInformation(Drink drink, bool debugMode) {
         CoffeeIngredients ignore = CoffeeIngredients.Null;
         string drinkName = GetCoffeeName(drink, ref ignore);
 
         MenuManager.instance.SetCustomerOrder(drinkName);
+        if (debugMode) Debug.Log(drinkName);
+    }
+    static public void SetCustomerDebugCoffeeInformation(Drink drink, bool debugMode) {
+        CoffeeIngredients ignore = CoffeeIngredients.Null;
+        string drinkName = GetCoffeeName(drink, ref ignore);
+
+        if (debugMode) Debug.Log(drinkName);
     }
 
 

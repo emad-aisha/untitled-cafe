@@ -6,7 +6,12 @@ public enum NameType { Null = -1, FizzyDrink, Coffee, Count };
 public class DrinkNameManager : MonoBehaviour {
     static public DrinkNameManager instance;
     public delegate int NameFunction(Drink drink); // function pointer type
-    public delegate void CustomerNameFunction(Drink drink); // function pointer type
+    public delegate void CustomerNameFunction(Drink drink, bool debugMode); // function pointer type
+    public delegate void CustomerDebugFunction(Drink drink, bool debugMode); // function pointer type
+    // TODO: organize
+    // maybe can turn into a namespace instead????
+
+    [SerializeField] bool debugMode;
 
     void Start() { if (instance == null) instance = this; }
 
@@ -18,10 +23,15 @@ public class DrinkNameManager : MonoBehaviour {
 
     public void SetCustomerDrinkName(Drink drink, NameType nameType) {
         CustomerNameFunction SetName = GetCustomerFunctionPointer(nameType);
-        SetName(drink);
+        SetName(drink, debugMode);
     }
 
+    public void PrintCustomerDrinkName(Drink drink, NameType nameType) {
+        CustomerDebugFunction SetName = GetCustomerDebugFunctionPointer(nameType);
+        SetName(drink, debugMode);
+    }
 
+    // getters
     public NameFunction GetFunctionPointer(NameType nameType) {
         switch (nameType) {
             case NameType.FizzyDrink: return SetFizzyDrinkInformation;
@@ -44,7 +54,18 @@ public class DrinkNameManager : MonoBehaviour {
         return CustomerError;
     }
 
+    public CustomerDebugFunction GetCustomerDebugFunctionPointer(NameType nameType) {
+        switch (nameType) {
+            case NameType.FizzyDrink: return SetCustomerDebugFizzyDrinkInformation;
+            case NameType.Coffee: return SetCustomerDebugCoffeeInformation;
+            case NameType.Null: return SetDebugCustomerInformation;
+            default: Debug.Log("No nametype given"); break;
+        }
 
+        return DebugCustomerError;
+    }
+
+    // null case
     static public int SetNoInformation(Drink drink) {
         MenuManager.instance.SetInteractionType("NULL");
         MenuManager.instance.SetFinalDrink("nothing");
@@ -52,12 +73,15 @@ public class DrinkNameManager : MonoBehaviour {
 
         return 0;
     }
-    static public void SetNoCustomerInformation(Drink drink) {
+    static public void SetNoCustomerInformation(Drink drink, bool debugMode) {
         MenuManager.instance.SetInteractionType("NULL");
         MenuManager.instance.SetFinalDrink("nothing");
         MenuManager.instance.SetCost("0");
     }
+    static public void SetDebugCustomerInformation(Drink drink, bool debugMode) { Debug.Log("No Order"); }
 
+    // no case
     static public int Error(Drink drink) { Debug.Log("error"); return 0; }
-    static public void CustomerError(Drink drink) { Debug.Log("error"); }
+    static public void CustomerError(Drink drink, bool debugMode) { Debug.Log("error"); }
+    static public void DebugCustomerError(Drink drink, bool debugMode) { Debug.Log("printing error"); }
 }

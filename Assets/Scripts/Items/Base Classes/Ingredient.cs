@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Ingredient {
     // needs an enum to work
-    // TODO: make less ugly
     Priorities priority;
     bool[] states;
 
@@ -24,8 +23,6 @@ public class Ingredient {
     public bool CanChangeVariables() { return this != null && CanGetItem(); }
     bool CanGetItem() { return IsAllOff(); }
 
-
-    // viewers
     public bool IsAllOff() {
         for (int i = 0; i < states.Length; i++)
             if (states[i] == true) return false;
@@ -35,11 +32,8 @@ public class Ingredient {
     // getters 
     public Priorities GetPriority() { return priority; }
     public int GetStateIndex() {
-        for (int i = 0; i < states.Length; i++) {
-            if (states[i]) return i;
-        }
-        Debug.Log("Ingredients: No state set to true");
-        return -1;
+        for (int i = 0; i < states.Length; i++) if (states[i]) return i;
+        Debug.Log("Ingredients: No state set to true"); return -1;
     }
     public bool GetState(int index) {
         if (index < 0 || index >= states.Length) {
@@ -48,7 +42,6 @@ public class Ingredient {
         }
         return states[index];
     }
-
     public bool GetAnyState() {
         for (int i = 0; i < states.Length; i++) {
             if (states[i]) return true;
@@ -66,8 +59,7 @@ public class Ingredient {
     void InitializeStates(int numOfStates) { for (int i = 0; i < numOfStates; i++) states[i] = false; }
     public bool SetState(int index, bool inputBool) {
         if (index < 0 || index >= states.Length) { Debug.Log("index too high or low"); return false; }
-        states[index] = inputBool;
-        return true;
+        states[index] = inputBool; return true;
     }
     public void SetAllStates(bool state = false) { for (int i = 0; i < states.Length; i++) states[i] = state; }
 }
