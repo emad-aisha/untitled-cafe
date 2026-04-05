@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour {
     }
 
     void MoneyInteract(Collider interactable, NameType nameType) {
-        // TODO: make a class for this?
+        // TODO: make an interface for this
         if (interactable.CompareTag("Money")) {
             currMoney += currPrice;
             currPrice = 0;

@@ -4,7 +4,7 @@ public class CustomerManager : MonoBehaviour {
     static public CustomerManager instance;
 
     public int numberOfCustomers = 0;
-    public Seating[] seats; // TODO: sorted from smalllest NO of chairs to largest
+    public Seating[] seats;
 
     void Awake() {
         if (instance == null) instance = this;
@@ -21,15 +21,26 @@ public class CustomerManager : MonoBehaviour {
     }
 
     // getters
-    public Seating GetFreeTable() {
+    public Seating GetFreeTable(int preferedNumOfChairs) {
+        int closestIndex = -1;
+        int smallestNumOfChairs = 100; // arbitrary long number
+
+        // get table with closest num of chairs
         for (int i = 0; i < seats.Length; i++) {
-            if (seats[i].IsFree) {
-                seats[i].IsFree = false;
-                return seats[i];
+            if (seats[i].numberOfChairs >= preferedNumOfChairs && seats[i].numberOfChairs < smallestNumOfChairs) {
+                closestIndex = i;
+                smallestNumOfChairs = seats[closestIndex].numberOfChairs;
             }
         }
-        Debug.Log("couldn't find a seat");
-        return null;
+
+
+        if (closestIndex == -1) { Debug.Log("couldn't find a seat"); return null; }
+        else {
+            seats[closestIndex].IsFree = false;
+            return seats[closestIndex];
+        }
     }
 
+
+    // helpers
 }

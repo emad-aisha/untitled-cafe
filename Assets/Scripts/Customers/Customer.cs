@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum CustomerState { Idle, Ordering, Waitng, Eating, Leaving, Null };
 public class Customer : MonoBehaviour {
-    //parties of 1,2,3 (for num of chairs)
+    int party = 3; // TODO: make randomized
 
     // states
     CustomerState currentState = CustomerState.Idle;
@@ -33,7 +33,7 @@ public class Customer : MonoBehaviour {
     void Update() {
         // TODO: turn into switch
         currentState = currentState switch {
-            CustomerState.Idle => idleState.Update(ref seat, ref drinks),
+            CustomerState.Idle => idleState.Update(ref seat, ref drinks, party),
             CustomerState.Ordering => CustomerState.Null,
             CustomerState.Waitng => CustomerState.Null,
             CustomerState.Eating => CustomerState.Null,

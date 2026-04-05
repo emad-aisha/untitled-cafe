@@ -6,10 +6,10 @@ public class Idle {
 
     public Idle() { }
 
-    public CustomerState Update(ref Seating seat, ref Drink[] drinks) {
+    public CustomerState Update(ref Seating seat, ref Drink[] drinks, int party) {
         if (internalTimer < waitTimer) internalTimer += Time.deltaTime;
         else {
-            seat = CustomerManager.instance.GetFreeTable();
+            seat = CustomerManager.instance.GetFreeTable(party);
             if (seat == null) return CustomerState.Leaving;
 
             RandomizeDrink(ref drinks);
