@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+public enum CoffeeIngredients { Espresso, Liquid, Extras, Null = -1 };
 public class Coffee : Drink {
     [Header("Personal")]
     [SerializeField] Espresso espresso;

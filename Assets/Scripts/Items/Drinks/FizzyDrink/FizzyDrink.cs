@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+public enum FizzyDrinkIngredients { Soda, Syrup, Fruit, Null = -1 };
 public class FizzyDrink : Drink {
     [Header("Personal")]
     [SerializeField] Soda soda;

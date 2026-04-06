@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 public enum CustomerState { Idle, Ordering, Waitng, Eating, Leaving, Null };
-public class Customer : MonoBehaviour {
+public class Customer : MonoBehaviour, IMoney {
     [SerializeField] int party = 3; // TODO: make randomized
 
     // states

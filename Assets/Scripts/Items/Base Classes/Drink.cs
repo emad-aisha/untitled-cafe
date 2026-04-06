@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public enum CoffeeIngredients { Espresso, Liquid, Extras, Null = -1 };
-public enum FizzyDrinkIngredients { Soda, Syrup, Fruit, Null = -1 };
-public enum Priorities { First, Second, Third };
 
 public enum DrinkType { Null = -1, FizzyDrink, Coffee, Count };
+public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
     // each needs it's own enum
 
