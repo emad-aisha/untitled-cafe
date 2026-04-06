@@ -1,24 +1,24 @@
 using UnityEngine;
 
 
+public enum CustomerState { Idle, Ordering, Waitng, Eating, Leaving, Null };
 public class Customer : MonoBehaviour, IMoney {
+    CustomerState currentState = CustomerState.Idle;
     [SerializeField] State info;
 
     // states
-    CustomerState currentState = CustomerState.Idle;
-    Idle idleState;
+    [SerializeField] Idle idleState;
 
+
+    [Header("Idle State - Timer")]
+    [SerializeField][Range(0.5f, 1)] float minTime;
+    [SerializeField][Range(5, 20)] float maxTime;
+    [SerializeField] bool isDebug;
 
     void Start() {
-        idleState = new();
+        idleState = new(GetRandomWaitTime());
         CustomerManager.instance.numberOfCustomers++;
-
     }
-
-    void OnDestroy() {
-        CustomerManager.instance.numberOfCustomers--;
-    }
-
 
     void Update() {
         currentState = currentState switch {
@@ -31,4 +31,14 @@ public class Customer : MonoBehaviour, IMoney {
         };
 
     }
+
+    float GetRandomWaitTime() {
+        if (isDebug) return 0.5f;
+        return Random.Range(minTime, maxTime);
+    }
+
+    void OnDestroy() {
+        CustomerManager.instance.numberOfCustomers--;
+    }
+
 }

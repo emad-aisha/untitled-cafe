@@ -738,6 +738,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Customer
       objectReference: {fileID: 0}
+    - target: {fileID: 3651630946452339045, guid: 7081afef81a8a094f80b28695517424c, type: 3}
+      propertyPath: isDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651630946452339045, guid: 7081afef81a8a094f80b28695517424c, type: 3}
+      propertyPath: maxTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651630946452339045, guid: 7081afef81a8a094f80b28695517424c, type: 3}
+      propertyPath: minTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -873,17 +885,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2000406248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1794555878 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3840939229801779399, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-  m_PrefabInstance: {fileID: 8357220102850691516}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1990626502
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,17 +952,6 @@ Transform:
   - {fileID: 1660888200}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2131799343 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2875243724316941797, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-  m_PrefabInstance: {fileID: 8357220102850691516}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e4ad5949554a74b824ef036323024b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1802511972740621326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1089,10 +1079,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1922404749164058476, guid: 32ceaaeb525413b4ea65408fd750e0c1, type: 3}
-      propertyPath: customersToSpawn
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2434106582916264198, guid: 32ceaaeb525413b4ea65408fd750e0c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.5
@@ -1136,6 +1122,10 @@ PrefabInstance:
     - target: {fileID: 7819196879181661643, guid: 32ceaaeb525413b4ea65408fd750e0c1, type: 3}
       propertyPath: m_Name
       value: Customer Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819196879181661643, guid: 32ceaaeb525413b4ea65408fd750e0c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1326,18 +1316,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4484072085104642626, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-      propertyPath: drinks.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484072085104642626, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-      propertyPath: 'drinks.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2131799343}
-    - target: {fileID: 4484072085104642626, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
-      propertyPath: 'drinks.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1794555878}
     - target: {fileID: 5031423937345424416, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
       propertyPath: m_Name
       value: Player

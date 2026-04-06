@@ -1,8 +1,10 @@
 using UnityEngine;
 
 public class Idle {
-    float waitTimer = 2; // TODO: randomize
+    float waitTimer;
     float internalTimer = 0;
+
+    public Idle(float waitTime) { waitTimer = waitTime; }
 
     public CustomerState Update(ref State info) {
         if (internalTimer < waitTimer) internalTimer += Time.deltaTime;
@@ -18,10 +20,12 @@ public class Idle {
         return CustomerState.Idle;
     }
 
+    // setters
     void SetRandomizedDrink(ref Drink[] drinks) {
         DrinkType drinkChosen = (DrinkType)Random.Range(0, (int)DrinkType.Count);
-        CoffeeManager coffeeManager = new();
+
         FizzyDrinkManager fizzyDrinkManager = new();
+        CoffeeManager coffeeManager = new();
 
         switch (drinkChosen) {
             case DrinkType.FizzyDrink: SetDrink(ref drinks, fizzyDrinkManager, DrinkType.FizzyDrink); break;

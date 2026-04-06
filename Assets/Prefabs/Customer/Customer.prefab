@@ -220,6 +220,9 @@ MonoBehaviour:
     - {fileID: 3088518633334340854}
     party: 1
     personalSeat: {fileID: 0}
+  minTime: 0.5
+  maxTime: 15
+  isDebug: 1
 --- !u!143 &3673323950759305329
 CharacterController:
   m_ObjectHideFlags: 0
