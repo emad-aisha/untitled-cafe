@@ -16,8 +16,8 @@ public class FizzyDrinkManager : NameManager {
         return FinalDrinkLogic(sodaType, syrupType, fruitType);
     }
 
-    public override int SetCost() {
-        int cost = costType switch {
+    public override float SetCost() {
+        float cost = costType switch {
             FizzyDrinkIngredients.Soda => 3,
             FizzyDrinkIngredients.Syrup => 4,
             FizzyDrinkIngredients.Fruit => 5,

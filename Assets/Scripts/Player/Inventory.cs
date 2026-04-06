@@ -7,8 +7,8 @@ public class Inventory : MonoBehaviour {
     [SerializeField] private int currPriority;
 
     [Header("")]
-    public int currMoney = 0;
-    public int currPrice;
+    public float currMoney = 0;
+    public float currPrice;
 
     public void Interact(Collider interactable) {
         IMoney money = interactable.GetComponent<IMoney>();
@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour {
     void SetDrinkInfo(Drink drink) {
         currPrice = drink.price;
         MenuManager.instance.SetFinalDrink(drink.drinkName);
-        MenuManager.instance.SetCost(drink.price.ToString());
+        MenuManager.instance.SetCost(drink.price.ToString("#.00"));
     }
 
     // getters

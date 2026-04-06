@@ -15,8 +15,8 @@ public class CoffeeManager : NameManager {
         return DrinkNameLogic(espressoState, liquidState, extrasState);
     }
 
-    public override int SetCost() {
-        int price = costType switch {
+    public override float SetCost() {
+        float price = costType switch {
             CoffeeIngredients.Espresso => 3,
             CoffeeIngredients.Liquid => 5,
             CoffeeIngredients.Extras => 7,

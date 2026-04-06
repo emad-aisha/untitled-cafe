@@ -9,7 +9,7 @@ public abstract class Drink : MonoBehaviour {
 
     public Ingredient[] ingredients;
     public string drinkName;
-    public int price;
+    public float price;
 
     protected void SetMemberVariables(DrinkType type) {
         drinkType = type;

@@ -3,7 +3,7 @@
 public interface IMoney {
     public void Interact();
 
-    public void ClearInfo(int currMoney) {
+    public void ClearInfo(float currMoney) {
         MenuManager.instance.SetFinalDrink("nothing");
         MenuManager.instance.SetCost("0");
 
