@@ -1,30 +1,38 @@
+
 using UnityEngine;
 
 
-public enum CustomerState { Idle, Ordering, Waitng, Eating, Leaving, Null };
+public enum CustomerState { Idle, Ordering, Waiting, Eating, Leaving, Null };
 public class Customer : MonoBehaviour, IMoney {
-    CustomerState currentState = CustomerState.Idle;
-    [SerializeField] State info;
+    [SerializeField] CustomerInformation info;
 
     // states
     [SerializeField] Idle idleState;
+    [SerializeField] Ordering orderingState;
 
 
     [Header("Idle State - Timer")]
     [SerializeField][Range(0.5f, 1)] float minTime;
     [SerializeField][Range(5, 20)] float maxTime;
-    [SerializeField] bool isDebug;
+
+    [Header("Ordering State - Debugging")]
+    [SerializeField] bool CanOrder = false;
+
+
+    [Header("Debugging")]
+    [SerializeField] CustomerState currentState = CustomerState.Idle;
+
 
     void Start() {
-        idleState = new(GetRandomWaitTime());
+        SetStates();
         CustomerManager.instance.numberOfCustomers++;
     }
 
     void Update() {
         currentState = currentState switch {
             CustomerState.Idle => idleState.Update(ref info),
-            CustomerState.Ordering => CustomerState.Null,
-            CustomerState.Waitng => CustomerState.Null,
+            CustomerState.Ordering => orderingState.Update(ref info, CanOrder),
+            CustomerState.Waiting => CustomerState.Null,
             CustomerState.Eating => CustomerState.Null,
             CustomerState.Leaving => CustomerState.Null,
             _ => CustomerState.Null
@@ -32,10 +40,24 @@ public class Customer : MonoBehaviour, IMoney {
 
     }
 
+    public void Interact() {
+        if (currentState != CustomerState.Ordering) return;
+        CanOrder = true;
+    }
+
+    // setters
+    void SetStates() {
+        idleState = new(GetRandomWaitTime());
+        orderingState = new();
+    }
+
+
+    // getters
     float GetRandomWaitTime() {
-        if (isDebug) return 0.5f;
+        if (info.isDebugging) return 0.5f;
         return Random.Range(minTime, maxTime);
     }
+
 
     void OnDestroy() {
         CustomerManager.instance.numberOfCustomers--;

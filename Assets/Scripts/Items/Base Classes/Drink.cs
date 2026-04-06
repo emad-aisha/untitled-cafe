@@ -4,7 +4,7 @@ public enum DrinkType { Null = -1, FizzyDrink, Coffee, Count };
 public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
     [Header("Base Class Variables")]
-    public DrinkType currType;
+    public DrinkType drinkType;
     public int[] ingredientMaxes;
 
     public Ingredient[] ingredients;
@@ -12,14 +12,14 @@ public abstract class Drink : MonoBehaviour {
     public int price;
 
     protected void SetMemberVariables(DrinkType type) {
-        currType = type;
+        drinkType = type;
         SetIngredients();
         SetInfoOff();
     }
 
 
     abstract public void Interact(ref Drink drink, ref int priority);
-    public void RandomizeDrink() {
+    public void RandomizeDrink(NameManager nameManager) {
         int[] ingredientType = new int[ingredients.Length];
 
         for (int i = 0; i < ingredientType.Length; i++) {
@@ -31,6 +31,8 @@ public abstract class Drink : MonoBehaviour {
             // set type if available
             ingredients[i].SetState(ingredientType[i], true);
         }
+        drinkName = nameManager.SetName(this);
+        price = nameManager.SetCost();
     }
 
 

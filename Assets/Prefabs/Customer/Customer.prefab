@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266251120994736437}
+  - component: {fileID: 9122200171093443868}
   - component: {fileID: 8020154639517567535}
   - component: {fileID: 8190589722701653892}
   - component: {fileID: 1103745373700296038}
   m_Layer: 0
-  m_Name: Hitbox
+  m_Name: Customer Script + Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,6 +35,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1973106978503151187}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9122200171093443868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625951175990516764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743a2b49ee54fcc43b1fb1b3e04d53fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    drinks:
+    - {fileID: 7835522053926143856}
+    - {fileID: 3088518633334340854}
+    party: 1
+    personalSeat: {fileID: 0}
+    isDebugging: 1
+  minTime: 0.5
+  maxTime: 15
+  CanOrder: 0
+  currentState: 0
 --- !u!33 &8020154639517567535
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -154,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e4ad5949554a74b824ef036323024b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currType: 0
+  drinkType: 0
   ingredientMaxes: 
   drinkName: 
   price: 0
@@ -176,8 +200,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973106978503151187}
-  - component: {fileID: 3651630946452339045}
-  - component: {fileID: 3673323950759305329}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Untagged
@@ -202,52 +224,6 @@ Transform:
   - {fileID: 1559691898381025241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3651630946452339045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3538098323068639654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743a2b49ee54fcc43b1fb1b3e04d53fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info:
-    drinks:
-    - {fileID: 7835522053926143856}
-    - {fileID: 3088518633334340854}
-    party: 1
-    personalSeat: {fileID: 0}
-  minTime: 0.5
-  maxTime: 15
-  isDebug: 1
---- !u!143 &3673323950759305329
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3538098323068639654}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9015514221731655599
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currType: 0
+  drinkType: 0
   ingredientMaxes: 
   drinkName: 
   price: 0

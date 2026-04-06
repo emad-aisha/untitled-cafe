@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour {
 
     [Header("Customer")]
     [SerializeField] TMP_Text customerOrder;
+    [SerializeField] TMP_Text customerPrice;
 
 
     void Start() { if (instance == null) instance = this; }
@@ -31,4 +32,5 @@ public class MenuManager : MonoBehaviour {
 
 
     public void SetCustomerOrder(string order) { customerOrder.text = order; }
+    public void SetCustomerPrice(string price) { customerPrice.text = price; }
 }

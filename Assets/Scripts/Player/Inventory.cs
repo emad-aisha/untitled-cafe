@@ -17,7 +17,8 @@ public class Inventory : MonoBehaviour {
         DrinkType drinkType = GetDrinkType(interactable);
 
         if (drinkMachine != null) { Interact(drinkMachine, drinkType); }
-        else if (money != null) {
+        if (money != null) {
+            money.Interact();
             AddMoney();
             money.ResetDrinkInfo(ref drinks);
             money.ClearInfo(currMoney);

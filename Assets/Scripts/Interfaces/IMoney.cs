@@ -1,8 +1,12 @@
 
 
 public interface IMoney {
+    public void Interact();
+
     public void ClearInfo(int currMoney) {
-        SetDrinkInfo("nothing", "0");
+        MenuManager.instance.SetFinalDrink("nothing");
+        MenuManager.instance.SetCost("0");
+
         MenuManager.instance.SetPlayerMoney(currMoney.ToString());
     }
 
@@ -10,10 +14,5 @@ public interface IMoney {
         for (int i = 0; i < drinks.Length; i++) {
             drinks[i].ResetInfo();
         }
-    }
-
-    void SetDrinkInfo(string finalDrink, string cost) {
-        MenuManager.instance.SetFinalDrink(finalDrink);
-        MenuManager.instance.SetCost(cost);
     }
 }
