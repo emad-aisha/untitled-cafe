@@ -1,17 +1,25 @@
 using UnityEngine;
 
-public enum CoffeeIngredients { Espresso, Liquid, Extras, Null };
-public enum FizzyDrinkIngredients { Soda, Syrup, Fruit, Null };
+public enum CoffeeIngredients { Espresso, Liquid, Extras, Null = -1 };
+public enum FizzyDrinkIngredients { Soda, Syrup, Fruit, Null = -1 };
 public enum Priorities { First, Second, Third };
+
+public enum DrinkType { Null = -1, FizzyDrink, Coffee, Count };
 public abstract class Drink : MonoBehaviour {
     // each needs it's own enum
 
     [Header("Base Class Variables")]
     public Ingredient[] ingredients;
+
+    // TODO: rename
+    // and make everything less ugly
+    public string finalDrinkName;
     public int price;
 
     void Start() {
         SetIngredients();
+        finalDrinkName = "";
+        price = 0;
         price = 0;
     }
 
@@ -38,6 +46,13 @@ public abstract class Drink : MonoBehaviour {
         if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
             MenuManager.instance.SetLastInteracted(ingredientType.ToString());
         }
+    }
+    public void ResetInfo() {
+        for (int i = 0; i < ingredients.Length; i++) {
+            ingredients[i].SetAllStates();
+        }
+        finalDrinkName = "";
+        price = 0;
     }
 
     // personal functions

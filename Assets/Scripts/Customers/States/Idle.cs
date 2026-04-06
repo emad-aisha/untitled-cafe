@@ -21,24 +21,31 @@ public class Idle {
     }
 
     void RandomizeDrink(ref Drink[] drinks) {
-        NameType drinkChosen = (NameType)Random.Range(0, (int)NameType.Count);
+        DrinkType drinkChosen = (DrinkType)Random.Range(0, (int)DrinkType.Count);
+        CoffeeManager coffeeManager = new();
+        FizzyDrinkManager fizzyDrinkManager = new();
 
-        // TODO: organize
+        // TODO: organize and refactor
         int[] ingredientMaxes;
         switch (drinkChosen) {
-            case NameType.FizzyDrink:
+            case DrinkType.FizzyDrink:
                 ingredientMaxes = new int[3];
                 SetFizzyDrink(ref ingredientMaxes, ref drinks);
-                DrinkNameManager.instance.PrintCustomerDrinkName(drinks[0], NameType.FizzyDrink);
+
+                Debug.Log(fizzyDrinkManager.SetName(drinks[(int)DrinkType.FizzyDrink]));
+                MenuManager.instance.SetCustomerOrder(fizzyDrinkManager.SetName(drinks[(int)DrinkType.FizzyDrink]));
                 break;
-            case NameType.Coffee:
+            case DrinkType.Coffee:
                 ingredientMaxes = new int[3];
                 SetCoffee(ref ingredientMaxes, ref drinks);
-                DrinkNameManager.instance.PrintCustomerDrinkName(drinks[1], NameType.Coffee);
+
+                Debug.Log(coffeeManager.SetName(drinks[(int)DrinkType.Coffee]));
+                MenuManager.instance.SetCustomerOrder(coffeeManager.SetName(drinks[(int)DrinkType.Coffee]));
                 break;
             default: Debug.Log("Didn't Randomize"); break;
         }
         MenuManager.instance.SetCustomerOrder("Ready");
+
     }
 
     void SetFizzyDrink(ref int[] ingredientMaxes, ref Drink[] drinks) {

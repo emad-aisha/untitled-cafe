@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum CustomerState { Idle, Ordering, Waitng, Eating, Leaving, Null };
 public class Customer : MonoBehaviour {
-    int party = 3; // TODO: make randomized
+    [SerializeField] int party = 3; // TODO: make randomized
 
     // states
     CustomerState currentState = CustomerState.Idle;

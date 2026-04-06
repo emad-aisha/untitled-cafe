@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public enum EspressoType { Decaf, Regular, Count };
+public enum EspressoType { Decaf, Espresso, Count };
 [Serializable]
 public class Espresso {
     public Ingredient ing;
@@ -13,6 +13,6 @@ public class Espresso {
         ing = new Ingredient((int)EspressoType.Count, Priorities.First);
 
         ing.SetState((int)EspressoType.Decaf, hasDecaf);
-        ing.SetState((int)EspressoType.Regular, hasEspresso);
+        ing.SetState((int)EspressoType.Espresso, hasEspresso);
     }
 }

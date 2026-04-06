@@ -6,7 +6,10 @@ public class FizzyDrink : Drink {
     [SerializeField] Syrup syrup;
     [SerializeField] Fruit fruit;
 
+    FizzyDrinkManager manager;
+
     override public void Interact(ref Drink input, ref int priority) {
+        if (manager == null) manager = new FizzyDrinkManager();
 
         switch ((Priorities)priority) {
             case Priorities.First: SetIngredient(ref input, FizzyDrinkIngredients.Soda, ref priority); break;
@@ -15,7 +18,8 @@ public class FizzyDrink : Drink {
             default: Debug.Log("Priority too high or low"); break;
         }
 
-        DrinkNameManager.instance.SetDrinkName(input, NameType.FizzyDrink);
+        input.finalDrinkName = manager.SetName(input);
+        input.price = manager.SetCost();
     }
 
 
