@@ -1,40 +1,39 @@
 using UnityEngine;
 
-
 public enum DrinkType { Null = -1, FizzyDrink, Coffee, Count };
 public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
-    // each needs it's own enum
-
     [Header("Base Class Variables")]
     public Ingredient[] ingredients;
-
-    // TODO: rename
-    // and make everything less ugly
-    public string finalDrinkName;
+    public string drinkName;
     public int price;
 
     void Start() {
         SetIngredients();
-        finalDrinkName = "";
-        price = 0;
+        drinkName = "";
         price = 0;
     }
 
-    // overrides
+
     abstract public void Interact(ref Drink drink, ref int priority);
-    abstract protected void SetIngredients();
-    abstract public bool IsEveryStateOff();
-    abstract public void SetAllOff();
-
-    //abstract public Drink RandomizeDrink(Drink blank);
-
-    public void RandomizeDrinkV2(int[] ingredientMaxes) {
+    public void RandomizeDrink(int[] ingredientMaxes) {
         int[] ingredientType = new int[ingredients.Length];
         RandomizeAndSet(ingredientType, ingredientMaxes);
     }
 
-    // generally helpful functions
+
+    // setters
+    abstract public void SetAllOff();
+    abstract protected void SetIngredients();
+    public void ResetInfo() {
+        for (int i = 0; i < ingredients.Length; i++) ingredients[i].SetAllStates();
+        SetInfoOff();
+    }
+
+
+    abstract public bool IsEveryStateOff();
+
+    // private functions
     protected void SetIngredient(ref Drink input, CoffeeIngredients ingredientType, ref int priority) {
         if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
             MenuManager.instance.SetLastInteracted(ingredientType.ToString());
@@ -45,15 +44,7 @@ public abstract class Drink : MonoBehaviour {
             MenuManager.instance.SetLastInteracted(ingredientType.ToString());
         }
     }
-    public void ResetInfo() {
-        for (int i = 0; i < ingredients.Length; i++) {
-            ingredients[i].SetAllStates();
-        }
-        finalDrinkName = "";
-        price = 0;
-    }
 
-    // personal functions
     void RandomizeAndSet(int[] ingredientType, int[] ingredientMaxes) {
         for (int i = 0; i < ingredientType.Length; i++) {
             // randomly set each type
@@ -65,4 +56,10 @@ public abstract class Drink : MonoBehaviour {
             ingredients[i].SetState(ingredientType[i], true);
         }
     }
+
+    void SetInfoOff() {
+        drinkName = "";
+        price = 0;
+    }
+
 }

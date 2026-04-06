@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour {
     [SerializeField] Transform[] spawnLocations;
+    bool[] spawnedLocation;
     [SerializeField] int customersToSpawn;
     int customersSpawned = 0;
 
@@ -11,19 +12,21 @@ public class CustomerSpawner : MonoBehaviour {
     float internalTimer = 0;
 
     void Start() {
-
+        spawnedLocation = new bool[spawnLocations.Length];
+        for (int i = 0; i < spawnLocations.Length; i++) spawnedLocation[i] = false;
     }
 
     void Update() {
         if (internalTimer >= cooldown && customersSpawned < customersToSpawn) {
+            customersSpawned++;
             internalTimer = 0;
 
-            // TODO: make this randomized haha
-            Instantiate(customer, spawnLocations[customersSpawned].position, spawnLocations[customersSpawned].rotation);
-            customersSpawned++;
+            int index = Random.Range(0, spawnLocations.Length);
+            Instantiate(customer, spawnLocations[index].position, spawnLocations[index].rotation);
         }
         else {
             internalTimer += Time.deltaTime;
         }
     }
+
 }

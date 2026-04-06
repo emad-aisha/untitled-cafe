@@ -53,7 +53,7 @@ public class Idle {
         ingredientMaxes[(int)FizzyDrinkIngredients.Syrup] = (int)SyrupType.Count;
         ingredientMaxes[(int)FizzyDrinkIngredients.Fruit] = (int)FruitType.Count;
 
-        drinks[(int)Customer.DrinkOrder.FizzyDrink].RandomizeDrinkV2(ingredientMaxes);
+        drinks[(int)Customer.DrinkOrder.FizzyDrink].RandomizeDrink(ingredientMaxes);
     }
 
     void SetCoffee(ref int[] ingredientMaxes, ref Drink[] drinks) {
@@ -61,6 +61,6 @@ public class Idle {
         ingredientMaxes[(int)CoffeeIngredients.Liquid] = (int)LiquidType.Count;
         ingredientMaxes[(int)CoffeeIngredients.Extras] = (int)ExtrasType.Count;
 
-        drinks[(int)Customer.DrinkOrder.Coffee].RandomizeDrinkV2(ingredientMaxes);
+        drinks[(int)Customer.DrinkOrder.Coffee].RandomizeDrink(ingredientMaxes);
     }
 }

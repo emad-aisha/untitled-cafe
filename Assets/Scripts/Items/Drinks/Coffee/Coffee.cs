@@ -7,7 +7,6 @@ public class Coffee : Drink {
     [SerializeField] Espresso espresso;
     [SerializeField] Liquid liquid;
     [SerializeField] Extras extras;
-
     CoffeeManager manager;
 
     override public void Interact(ref Drink input, ref int priority) {
@@ -21,10 +20,9 @@ public class Coffee : Drink {
             default: Debug.Log("Priority too high or low"); break;
         }
 
-        input.finalDrinkName = manager.SetName(input);
+        input.drinkName = manager.SetName(input);
         input.price = manager.SetCost();
     }
-
 
     // setters
     override protected void SetIngredients() {
@@ -37,7 +35,12 @@ public class Coffee : Drink {
         ingredients[(int)CoffeeIngredients.Liquid] = liquid.ing;
         ingredients[(int)CoffeeIngredients.Extras] = extras.ing;
     }
+    public override void SetAllOff() {
+        GetEspresso().SetAllStates();
+        GetLiquid().SetAllStates();
+        GetExtras().SetAllStates();
 
+    }
     public void Set(Espresso _espresso, Liquid _liquid, Extras _extras) {
         espresso = _espresso;
         liquid = _liquid;
@@ -49,12 +52,5 @@ public class Coffee : Drink {
     public Ingredient GetLiquid() { return ingredients[(int)CoffeeIngredients.Liquid]; }
     public Ingredient GetExtras() { return ingredients[(int)CoffeeIngredients.Extras]; }
 
-
     public override bool IsEveryStateOff() { return GetEspresso().IsAllOff() && GetLiquid().IsAllOff() && GetExtras().IsAllOff(); }
-    public override void SetAllOff() {
-        GetEspresso().SetAllStates();
-        GetLiquid().SetAllStates();
-        GetExtras().SetAllStates();
-
-    }
 }

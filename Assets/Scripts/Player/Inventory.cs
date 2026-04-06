@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour {
     // setters
     void SetDrinkInfo(Drink drink) {
         currPrice = drink.price;
-        MenuManager.instance.SetFinalDrink(drink.finalDrinkName);
+        MenuManager.instance.SetFinalDrink(drink.drinkName);
         MenuManager.instance.SetCost(drink.price.ToString());
     }
 
