@@ -9,6 +9,14 @@ public class Coffee : Drink {
     [SerializeField] Extras extras;
     CoffeeManager manager;
 
+    void Start() {
+        SetMemberVariables(DrinkType.Coffee);
+        ingredientMaxes = new int[3];
+        ingredientMaxes[(int)CoffeeIngredients.Espresso] = (int)EspressoType.Count;
+        ingredientMaxes[(int)CoffeeIngredients.Liquid] = (int)LiquidType.Count;
+        ingredientMaxes[(int)CoffeeIngredients.Extras] = (int)ExtrasType.Count;
+    }
+
     override public void Interact(ref Drink input, ref int priority) {
         if (manager == null) manager = new CoffeeManager();
         bool hasMilk = input.ingredients[(int)CoffeeIngredients.Liquid].GetState((int)LiquidType.Milk);
@@ -25,7 +33,7 @@ public class Coffee : Drink {
     }
 
     // setters
-    override protected void SetIngredients() {
+    protected override void SetIngredients() {
         ingredients = new Ingredient[3];
         espresso.Set();
         liquid.Set();
@@ -45,6 +53,11 @@ public class Coffee : Drink {
         espresso = _espresso;
         liquid = _liquid;
         extras = _extras;
+    }
+    public override void SetMaxes(ref int[] ingredientMaxes) {
+        ingredientMaxes[(int)CoffeeIngredients.Espresso] = (int)EspressoType.Count;
+        ingredientMaxes[(int)CoffeeIngredients.Liquid] = (int)LiquidType.Count;
+        ingredientMaxes[(int)CoffeeIngredients.Extras] = (int)ExtrasType.Count;
     }
 
     // getters

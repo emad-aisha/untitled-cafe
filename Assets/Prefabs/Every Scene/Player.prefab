@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e4ad5949554a74b824ef036323024b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drinkName: 
   price: 0
   soda:
     hasSoda: 0
@@ -326,8 +327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f81a0b24054344d8117bd8b1a70020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myFizzyDrink: {fileID: 2875243724316941797}
-  myCoffee: {fileID: 3840939229801779399}
+  drinks:
+  - {fileID: 2875243724316941797}
+  - {fileID: 3840939229801779399}
   currPriority: 0
   currMoney: 0
   currPrice: 0
@@ -486,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drinkName: 
   price: 0
   espresso:
     hasDecaf: 0

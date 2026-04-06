@@ -9,6 +9,14 @@ public class FizzyDrink : Drink {
     [SerializeField] Fruit fruit;
     FizzyDrinkManager manager;
 
+    void Start() {
+        SetMemberVariables(DrinkType.FizzyDrink);
+        ingredientMaxes = new int[3];
+        ingredientMaxes[(int)FizzyDrinkIngredients.Soda] = (int)SodaType.Count;
+        ingredientMaxes[(int)FizzyDrinkIngredients.Syrup] = (int)SyrupType.Count;
+        ingredientMaxes[(int)FizzyDrinkIngredients.Fruit] = (int)FruitType.Count;
+    }
+
     override public void Interact(ref Drink input, ref int priority) {
         if (manager == null) manager = new FizzyDrinkManager();
 
@@ -43,6 +51,11 @@ public class FizzyDrink : Drink {
         soda = _soda;
         syrup = _syrup;
         fruit = _fruit;
+    }
+    public override void SetMaxes(ref int[] ingredientMaxes) {
+        ingredientMaxes[(int)FizzyDrinkIngredients.Soda] = (int)SodaType.Count;
+        ingredientMaxes[(int)FizzyDrinkIngredients.Syrup] = (int)SyrupType.Count;
+        ingredientMaxes[(int)FizzyDrinkIngredients.Fruit] = (int)FruitType.Count;
     }
 
     // getters

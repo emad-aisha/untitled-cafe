@@ -4,15 +4,13 @@ public class Idle {
     float waitTimer = 2; // TODO: randomize
     float internalTimer = 0;
 
-    public Idle() { }
-
-    public CustomerState Update(ref Seating seat, ref Drink[] drinks, int party) {
+    public CustomerState Update(ref State info) {
         if (internalTimer < waitTimer) internalTimer += Time.deltaTime;
         else {
-            seat = CustomerManager.instance.GetFreeTable(party);
-            if (seat == null) return CustomerState.Leaving;
+            info.personalSeat = CustomerManager.instance.GetFreeTable(info.party);
+            if (info.personalSeat == null) return CustomerState.Leaving;
 
-            RandomizeDrink(ref drinks);
+            SetRandomizedDrink(ref info.drinks);
             internalTimer = 0;
 
             return CustomerState.Ordering;
@@ -20,47 +18,28 @@ public class Idle {
         return CustomerState.Idle;
     }
 
-    void RandomizeDrink(ref Drink[] drinks) {
+    void SetRandomizedDrink(ref Drink[] drinks) {
         DrinkType drinkChosen = (DrinkType)Random.Range(0, (int)DrinkType.Count);
         CoffeeManager coffeeManager = new();
         FizzyDrinkManager fizzyDrinkManager = new();
 
-        // TODO: organize and refactor
-        int[] ingredientMaxes;
         switch (drinkChosen) {
-            case DrinkType.FizzyDrink:
-                ingredientMaxes = new int[3];
-                SetFizzyDrink(ref ingredientMaxes, ref drinks);
-
-                Debug.Log(fizzyDrinkManager.SetName(drinks[(int)DrinkType.FizzyDrink]));
-                MenuManager.instance.SetCustomerOrder(fizzyDrinkManager.SetName(drinks[(int)DrinkType.FizzyDrink]));
-                break;
-            case DrinkType.Coffee:
-                ingredientMaxes = new int[3];
-                SetCoffee(ref ingredientMaxes, ref drinks);
-
-                Debug.Log(coffeeManager.SetName(drinks[(int)DrinkType.Coffee]));
-                MenuManager.instance.SetCustomerOrder(coffeeManager.SetName(drinks[(int)DrinkType.Coffee]));
-                break;
+            case DrinkType.FizzyDrink: SetDrink(ref drinks, fizzyDrinkManager, DrinkType.FizzyDrink); break;
+            case DrinkType.Coffee: SetDrink(ref drinks, coffeeManager, DrinkType.Coffee); break;
             default: Debug.Log("Didn't Randomize"); break;
         }
         MenuManager.instance.SetCustomerOrder("Ready");
-
     }
 
-    void SetFizzyDrink(ref int[] ingredientMaxes, ref Drink[] drinks) {
-        ingredientMaxes[(int)FizzyDrinkIngredients.Soda] = (int)SodaType.Count;
-        ingredientMaxes[(int)FizzyDrinkIngredients.Syrup] = (int)SyrupType.Count;
-        ingredientMaxes[(int)FizzyDrinkIngredients.Fruit] = (int)FruitType.Count;
+    void SetDrink(ref Drink[] drinks, NameManager nameManager, DrinkType drinkType) {
+        switch (drinkType) {
+            case DrinkType.FizzyDrink: drinks[(int)DrinkType.FizzyDrink].RandomizeDrink(); break;
+            case DrinkType.Coffee: drinks[(int)DrinkType.Coffee].RandomizeDrink(); break;
+            default: Debug.Log("error"); break;
+        }
 
-        drinks[(int)Customer.DrinkOrder.FizzyDrink].RandomizeDrink(ingredientMaxes);
+        Debug.Log(nameManager.SetName(drinks[(int)drinkType]));
+        MenuManager.instance.SetCustomerOrder(nameManager.SetName(drinks[(int)drinkType]));
     }
 
-    void SetCoffee(ref int[] ingredientMaxes, ref Drink[] drinks) {
-        ingredientMaxes[(int)CoffeeIngredients.Espresso] = (int)EspressoType.Count;
-        ingredientMaxes[(int)CoffeeIngredients.Liquid] = (int)LiquidType.Count;
-        ingredientMaxes[(int)CoffeeIngredients.Extras] = (int)ExtrasType.Count;
-
-        drinks[(int)Customer.DrinkOrder.Coffee].RandomizeDrink(ingredientMaxes);
-    }
 }

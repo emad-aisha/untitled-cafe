@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour {
     [SerializeField] Transform[] spawnLocations;
-    bool[] spawnedLocation;
     [SerializeField] int customersToSpawn;
     int customersSpawned = 0;
 
@@ -11,10 +10,7 @@ public class CustomerSpawner : MonoBehaviour {
     float cooldown = 2;
     float internalTimer = 0;
 
-    void Start() {
-        spawnedLocation = new bool[spawnLocations.Length];
-        for (int i = 0; i < spawnLocations.Length; i++) spawnedLocation[i] = false;
-    }
+    void Start() { }
 
     void Update() {
         if (internalTimer >= cooldown && customersSpawned < customersToSpawn) {

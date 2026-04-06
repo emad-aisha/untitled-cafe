@@ -4,21 +4,33 @@ public enum DrinkType { Null = -1, FizzyDrink, Coffee, Count };
 public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
     [Header("Base Class Variables")]
+    public DrinkType currType;
+    public int[] ingredientMaxes;
+
     public Ingredient[] ingredients;
     public string drinkName;
     public int price;
 
-    void Start() {
+    protected void SetMemberVariables(DrinkType type) {
+        currType = type;
         SetIngredients();
-        drinkName = "";
-        price = 0;
+        SetInfoOff();
     }
 
 
     abstract public void Interact(ref Drink drink, ref int priority);
-    public void RandomizeDrink(int[] ingredientMaxes) {
+    public void RandomizeDrink() {
         int[] ingredientType = new int[ingredients.Length];
-        RandomizeAndSet(ingredientType, ingredientMaxes);
+
+        for (int i = 0; i < ingredientType.Length; i++) {
+            // randomly set each type
+            if (i == 0) ingredientType[0] = Random.Range(0, ingredientMaxes[0]);
+            else ingredientType[i] = Random.Range(-1, ingredientMaxes[i]);
+
+            if (ingredientType[i] == -1) break;
+            // set type if available
+            ingredients[i].SetState(ingredientType[i], true);
+        }
     }
 
 
@@ -29,7 +41,7 @@ public abstract class Drink : MonoBehaviour {
         for (int i = 0; i < ingredients.Length; i++) ingredients[i].SetAllStates();
         SetInfoOff();
     }
-
+    abstract public void SetMaxes(ref int[] ingredientMaxes);
 
     abstract public bool IsEveryStateOff();
 
@@ -42,18 +54,6 @@ public abstract class Drink : MonoBehaviour {
     protected void SetIngredient(ref Drink input, FizzyDrinkIngredients ingredientType, ref int priority) {
         if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
             MenuManager.instance.SetLastInteracted(ingredientType.ToString());
-        }
-    }
-
-    void RandomizeAndSet(int[] ingredientType, int[] ingredientMaxes) {
-        for (int i = 0; i < ingredientType.Length; i++) {
-            // randomly set each type
-            if (i == 0) ingredientType[0] = Random.Range(0, ingredientMaxes[0]);
-            else ingredientType[i] = Random.Range(-1, ingredientMaxes[i]);
-
-            if (ingredientType[i] == -1) break;
-            // set type if available
-            ingredients[i].SetState(ingredientType[i], true);
         }
     }
 

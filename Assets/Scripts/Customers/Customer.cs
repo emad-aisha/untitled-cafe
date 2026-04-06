@@ -1,26 +1,16 @@
 using UnityEngine;
 
 
-public enum CustomerState { Idle, Ordering, Waitng, Eating, Leaving, Null };
 public class Customer : MonoBehaviour, IMoney {
-    [SerializeField] int party = 3; // TODO: make randomized
+    [SerializeField] State info;
 
     // states
     CustomerState currentState = CustomerState.Idle;
-    Idle idleState = new();
-
-    Seating seat;
-
-    // TODO: put in it's own class...
-    // possible orders
-    public enum DrinkOrder { FizzyDrink, Coffee };
-    [SerializeField] DrinkOrder orderChecker;
-    [SerializeField] Drink[] drinks;
-
-    Seating personalSeat;
+    Idle idleState;
 
 
     void Start() {
+        idleState = new();
         CustomerManager.instance.numberOfCustomers++;
 
     }
@@ -31,9 +21,8 @@ public class Customer : MonoBehaviour, IMoney {
 
 
     void Update() {
-        // TODO: turn into switch
         currentState = currentState switch {
-            CustomerState.Idle => idleState.Update(ref seat, ref drinks, party),
+            CustomerState.Idle => idleState.Update(ref info),
             CustomerState.Ordering => CustomerState.Null,
             CustomerState.Waitng => CustomerState.Null,
             CustomerState.Eating => CustomerState.Null,

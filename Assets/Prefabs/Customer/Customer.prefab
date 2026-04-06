@@ -154,7 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e4ad5949554a74b824ef036323024b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDrinkName: 
+  currType: 0
+  ingredientMaxes: 
+  drinkName: 
   price: 0
   soda:
     hasSoda: 0
@@ -212,11 +214,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743a2b49ee54fcc43b1fb1b3e04d53fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  party: 2
-  orderChecker: 0
-  drinks:
-  - {fileID: 7835522053926143856}
-  - {fileID: 3088518633334340854}
+  info:
+    drinks:
+    - {fileID: 7835522053926143856}
+    - {fileID: 3088518633334340854}
+    party: 1
+    personalSeat: {fileID: 0}
 --- !u!143 &3673323950759305329
 CharacterController:
   m_ObjectHideFlags: 0
@@ -286,7 +289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDrinkName: 
+  currType: 0
+  ingredientMaxes: 
+  drinkName: 
   price: 0
   espresso:
     hasDecaf: 0
