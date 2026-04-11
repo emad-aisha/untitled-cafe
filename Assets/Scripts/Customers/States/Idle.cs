@@ -12,7 +12,7 @@ public class Idle : State {
             info.personalSeat = CustomerManager.instance.GetFreeTable(info.party);
             if (info.personalSeat == null) return CustomerState.Leaving;
 
-            SetRandomizedDrink(ref info.drinks, info);
+            SetRandomizedDrink(info);
             internalTimer = 0;
 
             return CustomerState.Ordering;
@@ -21,13 +21,13 @@ public class Idle : State {
     }
 
     // setters
-    void SetRandomizedDrink(ref Drink[] drinks, CustomerInformation info) {
+    void SetRandomizedDrink(CustomerInformation info) {
         DrinkType drinkChosen = (DrinkType)Random.Range(0, (int)DrinkType.Count);
 
         FizzyDrinkManager fizzyDrinkManager = new();
         CoffeeManager coffeeManager = new();
 
-        Drink drink = GetDrink(drinkChosen, drinks);
+        Drink drink = info.GetDrink(drinkChosen);
         switch (drinkChosen) {
             case DrinkType.FizzyDrink: drink.RandomizeDrink(fizzyDrinkManager); break;
             case DrinkType.Coffee: drink.RandomizeDrink(coffeeManager); break;

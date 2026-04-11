@@ -25,12 +25,22 @@ public class MenuManager : MonoBehaviour {
     public void SetInteractionType(string typeName) { baseType.text = typeName; }
 
     public void SetLastInteracted(string _lastInteracted) { lastInteracted.text = _lastInteracted; }
+
+    public void SetDrinkInfo(string finalDrinkName, string finalCost) {
+        SetFinalDrink(finalDrinkName);
+        SetCost(finalCost);
+    }
     public void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
     public void SetCost(string finalCost) { cost.text = finalCost; }
 
     public void SetPlayerMoney(string money) { totalMoney.text = money; }
+    public int GetPlayerMoney() { return int.Parse(totalMoney.text); }
 
 
+    public void SetCustomerInfo(string order, string price) {
+        SetCustomerOrder(order);
+        SetCustomerPrice(price);
+    }
     public void SetCustomerOrder(string order) { customerOrder.text = order; }
     public void SetCustomerPrice(string price) { customerPrice.text = price; }
 }

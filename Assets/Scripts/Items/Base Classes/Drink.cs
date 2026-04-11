@@ -35,7 +35,6 @@ public abstract class Drink : MonoBehaviour {
         price = nameManager.SetCost();
     }
 
-
     // setters
     abstract public void SetAllOff();
     abstract protected void SetIngredients();

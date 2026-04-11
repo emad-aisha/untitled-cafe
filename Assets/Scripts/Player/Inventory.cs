@@ -5,11 +5,9 @@ public class Inventory : MonoBehaviour {
 
     [Header("Debug")]
     [SerializeField] private int currPriority;
+    [SerializeField] private float currPrice;
 
-    [Header("")]
-    public float currMoney = 0;
-    public float currPrice;
-
+    // TODO: refactor
     public void Interact(Collider interactable) {
         IMoney money = interactable.GetComponent<IMoney>();
 
@@ -18,10 +16,10 @@ public class Inventory : MonoBehaviour {
 
         if (drinkMachine != null) { Interact(drinkMachine, drinkType); }
         if (money != null) {
-            money.Interact();
+            money.Interact(GetActiveDrink());
             AddMoney();
             money.ResetDrinkInfo(ref drinks);
-            money.ClearInfo(currMoney);
+            money.ClearInfo(GameManager.instance.playerMoney);
         }
     }
 
@@ -60,8 +58,15 @@ public class Inventory : MonoBehaviour {
 
     // money help
     void AddMoney() {
-        currMoney += currPrice;
+        GameManager.instance.playerMoney += currPrice;
         currPrice = 0;
         currPriority = 0;
+    }
+
+    // TODO: organize into static instance?
+    public Drink GetActiveDrink() {
+        for (int i = 0; i < drinks.Length; i++) if (!drinks[i].IsEveryStateOff()) return drinks[i];
+        Debug.Log("Couldn't find an active drink");
+        return null;
     }
 }

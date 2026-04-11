@@ -1,7 +1,7 @@
 
 
 public interface IMoney {
-    public void Interact();
+    public void Interact(Drink drink);
 
     public void ClearInfo(float currMoney) {
         MenuManager.instance.SetFinalDrink("nothing");

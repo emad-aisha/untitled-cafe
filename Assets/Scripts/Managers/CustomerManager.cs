@@ -27,7 +27,7 @@ public class CustomerManager : MonoBehaviour {
 
         // get table with closest num of chairs
         for (int i = 0; i < seats.Length; i++) {
-            if (seats[i].numberOfChairs >= preferedNumOfChairs && seats[i].numberOfChairs < smallestNumOfChairs) {
+            if (seats[i].numberOfChairs >= preferedNumOfChairs && seats[i].numberOfChairs < smallestNumOfChairs && seats[i].isFree) {
                 closestIndex = i;
                 smallestNumOfChairs = seats[closestIndex].numberOfChairs;
             }
@@ -36,7 +36,7 @@ public class CustomerManager : MonoBehaviour {
 
         if (closestIndex == -1) { Debug.Log("couldn't find a seat"); return null; }
         else {
-            seats[closestIndex].IsFree = false;
+            seats[closestIndex].isFree = false;
             return seats[closestIndex];
         }
     }
