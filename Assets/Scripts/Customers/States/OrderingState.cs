@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class Ordering : State {
+public class OrderingState : State {
 
-    public CustomerState Update(ref CustomerInformation info, bool canOrder) {
-        if (canOrder) {
+
+    public override void UpdateState() {
+        if (info.canOrder) {
             Drink drink = info.GetActiveDrink();
             MenuManager.instance.SetCustomerOrder(drink.drinkName);
             MenuManager.instance.SetCustomerPrice(drink.price.ToString());
-            return CustomerState.Waiting;
+
+            info.currentState = CustomerState.Waiting;
         }
-        else return CustomerState.Ordering;
     }
+
 }

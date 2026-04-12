@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockMin: -60
   lockMax: 60
-  sensitivity: 600
+  sensitivity: 850
   invertY: 0
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraForward: {x: 0, y: 0, z: 0}
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e4ad5949554a74b824ef036323024b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drinkType: 0
   drinkName: 
   price: 0
   soda:
@@ -331,7 +332,6 @@ MonoBehaviour:
   - {fileID: 2875243724316941797}
   - {fileID: 3840939229801779399}
   currPriority: 0
-  currMoney: 0
   currPrice: 0
 --- !u!143 &1549749218890152255
 CharacterController:
@@ -488,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drinkType: 0
   drinkName: 
   price: 0
   espresso:

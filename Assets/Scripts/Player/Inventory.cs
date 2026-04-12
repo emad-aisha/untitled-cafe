@@ -9,17 +9,19 @@ public class Inventory : MonoBehaviour {
 
     // TODO: refactor
     public void Interact(Collider interactable) {
-        IMoney money = interactable.GetComponent<IMoney>();
+        Money money = interactable.GetComponent<Money>();
+        Customer customer = interactable.GetComponent<Customer>();
 
         Drink drinkMachine = interactable.GetComponent<Drink>();
         DrinkType drinkType = GetDrinkType(interactable);
 
-        if (drinkMachine != null) { Interact(drinkMachine, drinkType); }
-        if (money != null) {
+        if (drinkMachine) { Interact(drinkMachine, drinkType); }
+        else if (customer) { customer.Interact(GetActiveDrink()); }
+        else if (money != null) {
             money.Interact(GetActiveDrink());
             AddMoney();
-            money.ResetDrinkInfo(ref drinks);
-            money.ClearInfo(GameManager.instance.playerMoney);
+            ResetDrinkInfo(ref drinks);
+            ClearInfo(GameManager.instance.playerMoney);
         }
     }
 
@@ -61,6 +63,19 @@ public class Inventory : MonoBehaviour {
         GameManager.instance.playerMoney += currPrice;
         currPrice = 0;
         currPriority = 0;
+    }
+
+    public void ClearInfo(float currMoney) {
+        MenuManager.instance.SetFinalDrink("nothing");
+        MenuManager.instance.SetCost("0");
+
+        MenuManager.instance.SetPlayerMoney(currMoney.ToString());
+    }
+
+    public void ResetDrinkInfo(ref Drink[] drinks) {
+        for (int i = 0; i < drinks.Length; i++) {
+            drinks[i].ResetInfo();
+        }
     }
 
     // TODO: organize into static instance?

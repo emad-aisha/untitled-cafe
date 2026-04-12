@@ -2,73 +2,59 @@
 using UnityEngine;
 
 
-public enum CustomerState { Idle, Ordering, Waiting, Eating, Leaving, Null };
+public enum CustomerState { Null = -1, Idle, Ordering, Waiting, Eating, Leaving, Count };
 public class Customer : MonoBehaviour, IMoney {
-    [SerializeField] CustomerInformation info;
+    CustomerInformation info;
 
-    // states - TODO: change into one big class
-    [SerializeField] Idle idleState;
-    [SerializeField] Ordering orderingState;
-    [SerializeField] Waiting waitingState;
-    void SetStates() {
-        idleState = new(GetRandomWaitTime());
-        orderingState = new();
-        waitingState = new();
-    }
+    [Header("States")]
+    [SerializeField] GameObject stateObject;
 
-
-    [Header("Idle State - Timer")]
-    [SerializeField][Range(0.5f, 1)] float minTime;
-    [SerializeField][Range(5, 20)] float maxTime;
-
-    [Header("Ordering State - Debugging")]
-    [SerializeField] bool canOrder = false;
-
-    [Header("Waiting State - Debugging")]
-    [SerializeField] bool stopWaiting = false;
-
-
-    [Header("Debugging")]
-    [SerializeField] CustomerState currentState;
-
+    State[] states;
 
     void Start() {
-        SetStates();
         CustomerManager.instance.numberOfCustomers++;
-        currentState = CustomerState.Idle;
+        info = GetComponent<CustomerInformation>();
+        SetStates();
     }
 
+
     void Update() {
-        currentState = currentState switch {
-            CustomerState.Idle => idleState.Update(ref info),
-            CustomerState.Ordering => orderingState.Update(ref info, canOrder),
-            CustomerState.Waiting => waitingState.Update(ref info, stopWaiting),
-            CustomerState.Eating => CustomerState.Null,
-            CustomerState.Leaving => CustomerState.Leaving,
-            _ => CustomerState.Null // TODO: maybe switch this to leaving
-        };
-        if (currentState == CustomerState.Leaving) { Destroy(gameObject); }
+        switch (info.currentState) {
+            case CustomerState.Idle: states[(int)CustomerState.Idle].UpdateState(); break;
+            case CustomerState.Ordering: states[(int)CustomerState.Ordering].UpdateState(); break;
+            case CustomerState.Waiting: states[(int)CustomerState.Waiting].UpdateState(); break;
+            case CustomerState.Eating: break;
+            case CustomerState.Leaving: break;
+            default: Debug.Log("error"); break;
+        }
+
+        if (info.currentState == CustomerState.Leaving) { Destroy(gameObject); }
     }
 
     public void Interact(Drink drink) {
-        switch (currentState) {
-            case CustomerState.Ordering:
-                canOrder = true;
-                break;
-            case CustomerState.Waiting:
-                Debug.Log(drink.drinkName);
-                Debug.Log(info.GetActiveDrink().drinkName);
-                if (drink.drinkName == info.GetActiveDrink().drinkName) stopWaiting = true;
-                break;
+        switch (info.currentState) {
+            case CustomerState.Ordering: info.CanOrder(); break;
+            case CustomerState.Waiting: info.StopWaiting(drink); break;
         }
     }
 
-    // getters
-    float GetRandomWaitTime() {
-        if (info.isDebugging) return 0.5f;
-        return Random.Range(minTime, maxTime);
-    }
 
+    // setters
+    void SetStates() {
+        states = new State[(int)CustomerState.Count];
+        for (int i = 0; i < (int)CustomerState.Count; i++) {
+            states[i] = i switch {
+                (int)CustomerState.Idle => stateObject.GetComponent<IdleState>(),
+                (int)CustomerState.Ordering => stateObject.GetComponent<OrderingState>(),
+                (int)CustomerState.Waiting => stateObject.GetComponent<WaitingState>(),
+                (int)CustomerState.Eating => null,
+                (int)CustomerState.Leaving => null,
+                _ => null
+            };
+
+            if (states[i]) states[i].SetCustomerInfo(info);
+        }
+    }
 
     void OnDestroy() {
         CustomerManager.instance.numberOfCustomers--;

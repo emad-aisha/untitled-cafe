@@ -4,8 +4,8 @@ public enum DrinkType { Null = -1, FizzyDrink, Coffee, Count };
 public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
     [Header("Base Class Variables")]
-    public DrinkType drinkType;
-    public int[] ingredientMaxes;
+    [HideInInspector] public DrinkType drinkType;
+    [HideInInspector] protected int[] ingredientMaxes;
 
     public Ingredient[] ingredients;
     public string drinkName;

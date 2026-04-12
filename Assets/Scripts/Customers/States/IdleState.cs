@@ -1,27 +1,21 @@
 using UnityEngine;
 
-public class Idle : State {
-    float waitTimer;
+public class IdleState : State {
     float internalTimer = 0;
 
-    public Idle(float waitTime) { waitTimer = waitTime; }
-
-    public CustomerState Update(ref CustomerInformation info) {
-        if (internalTimer < waitTimer) internalTimer += Time.deltaTime;
+    public override void UpdateState() {
+        if (internalTimer < info.waitTime) { internalTimer += Time.deltaTime; }
         else {
-            info.personalSeat = CustomerManager.instance.GetFreeTable(info.party);
-            if (info.personalSeat == null) return CustomerState.Leaving;
+            if (info.personalSeat == null) info.personalSeat = CustomerManager.instance.GetFreeTable(info.party);
+            if (info.personalSeat == null) { info.currentState = CustomerState.Leaving; return; }
 
-            SetRandomizedDrink(info);
-            internalTimer = 0;
-
-            return CustomerState.Ordering;
+            SetRandomizedDrink(ref info);
+            info.currentState = CustomerState.Ordering;
         }
-        return CustomerState.Idle;
     }
 
     // setters
-    void SetRandomizedDrink(CustomerInformation info) {
+    void SetRandomizedDrink(ref CustomerInformation info) {
         DrinkType drinkChosen = (DrinkType)Random.Range(0, (int)DrinkType.Count);
 
         FizzyDrinkManager fizzyDrinkManager = new();
@@ -37,5 +31,4 @@ public class Idle : State {
         if (info.isDebugging) Debug.Log(drink.drinkName);
         MenuManager.instance.SetCustomerOrder("Ready");
     }
-
 }
