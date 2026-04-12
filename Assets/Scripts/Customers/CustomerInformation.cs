@@ -20,7 +20,14 @@ public class CustomerInformation : MonoBehaviour {
     public float discountTime = 30; // changes with upgrades
     public float leaveTime = 60;
 
+    [Header("Eating")]
+    public float eatingTime = 5; // TODO: randomize
+
+    [Header("Leaving")]
+    public float leavingTime = 2; // TODO: randomize
+
     [Header("Debugging")]
+    public GameObject customer;
     public bool isDebugging;
     public Seating personalSeat;
     public Drink[] drinks;
@@ -28,6 +35,7 @@ public class CustomerInformation : MonoBehaviour {
 
     void Start() {
         // TODO: clean up
+        customer = gameObject;
         if (leaveTime < discountTime) leaveTime = discountTime + 30;
 
         currentState = CustomerState.Idle;

@@ -17,19 +17,8 @@ public class Customer : MonoBehaviour, IMoney {
         SetStates();
     }
 
+    void Update() { states[(int)info.currentState].UpdateState(); }
 
-    void Update() {
-        switch (info.currentState) {
-            case CustomerState.Idle: states[(int)CustomerState.Idle].UpdateState(); break;
-            case CustomerState.Ordering: states[(int)CustomerState.Ordering].UpdateState(); break;
-            case CustomerState.Waiting: states[(int)CustomerState.Waiting].UpdateState(); break;
-            case CustomerState.Eating: break;
-            case CustomerState.Leaving: break;
-            default: Debug.Log("error"); break;
-        }
-
-        if (info.currentState == CustomerState.Leaving) { Destroy(gameObject); }
-    }
 
     public void Interact(Drink drink) {
         switch (info.currentState) {
@@ -47,8 +36,8 @@ public class Customer : MonoBehaviour, IMoney {
                 (int)CustomerState.Idle => stateObject.GetComponent<IdleState>(),
                 (int)CustomerState.Ordering => stateObject.GetComponent<OrderingState>(),
                 (int)CustomerState.Waiting => stateObject.GetComponent<WaitingState>(),
-                (int)CustomerState.Eating => null,
-                (int)CustomerState.Leaving => null,
+                (int)CustomerState.Eating => stateObject.GetComponent<EatingState>(),
+                (int)CustomerState.Leaving => stateObject.GetComponent<LeavingState>(),
                 _ => null
             };
 
