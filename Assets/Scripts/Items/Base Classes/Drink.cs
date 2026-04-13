@@ -11,12 +11,12 @@ public abstract class Drink : MonoBehaviour {
     public string drinkName;
     public float price;
 
+    // TODO: organize
     protected void SetMemberVariables(DrinkType type) {
         drinkType = type;
         SetIngredients();
         SetInfoOff();
     }
-
 
     abstract public void Interact(ref Drink drink, ref int priority);
     public void RandomizeDrink(NameManager nameManager) {
@@ -43,6 +43,12 @@ public abstract class Drink : MonoBehaviour {
         SetInfoOff();
     }
     abstract public void SetMaxes(ref int[] ingredientMaxes);
+
+    protected void SetDrinkInfo(Drink drink, NameManager nameManager) {
+        MenuManager.instance.SetBaseType(drinkType.ToString());
+        drink.drinkName = nameManager.SetName(drink);
+        drink.price = nameManager.SetCost();
+    }
 
     abstract public bool IsEveryStateOff();
 

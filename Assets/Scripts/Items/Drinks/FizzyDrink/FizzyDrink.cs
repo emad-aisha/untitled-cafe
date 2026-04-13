@@ -27,8 +27,7 @@ public class FizzyDrink : Drink {
             default: Debug.Log("Priority too high or low"); break;
         }
 
-        input.drinkName = manager.SetName(input);
-        input.price = manager.SetCost();
+        SetDrinkInfo(input, manager);
     }
 
     // setters

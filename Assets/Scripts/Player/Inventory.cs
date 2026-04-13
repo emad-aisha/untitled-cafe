@@ -17,11 +17,13 @@ public class Inventory : MonoBehaviour {
         if (drinkMachine) { Interact(drinkMachine, drinkType); }
         else if (customer) {
             float amountToAdd = customer.Interact(GetActiveDrink());
+            MenuManager.instance.SetInteractionTypes("iinteractable", "customer");
         }
         else if (money != null) {
             float amountToAdd = money.Interact(GetActiveDrink());
             AddMoney(amountToAdd);
             ResetDrinkInfo(ref drinks);
+            MenuManager.instance.SetInteractionTypes("iinteractable", "money");
             ClearInfo(GameManager.instance.playerMoney);
         }
     }

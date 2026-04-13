@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour {
@@ -21,9 +20,11 @@ public class MenuManager : MonoBehaviour {
 
     void Start() { if (instance == null) instance = this; }
 
-
-    public void SetInteractionType(string typeName) { baseType.text = typeName; }
-
+    public void SetInteractionTypes(string typeName, string _lastInteracted) {
+        SetBaseType(typeName);
+        SetLastInteracted(_lastInteracted);
+    }
+    public void SetBaseType(string typeName) { baseType.text = typeName; }
     public void SetLastInteracted(string _lastInteracted) { lastInteracted.text = _lastInteracted; }
 
     public void SetDrinkInfo(string finalDrinkName, string finalCost) {
