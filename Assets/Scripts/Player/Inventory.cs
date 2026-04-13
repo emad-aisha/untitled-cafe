@@ -5,7 +5,6 @@ public class Inventory : MonoBehaviour {
 
     [Header("Debug")]
     [SerializeField] private int currPriority;
-    [SerializeField] private float currPrice;
 
     // TODO: refactor
     public void Interact(Collider interactable) {
@@ -16,10 +15,12 @@ public class Inventory : MonoBehaviour {
         DrinkType drinkType = GetDrinkType(interactable);
 
         if (drinkMachine) { Interact(drinkMachine, drinkType); }
-        else if (customer) { customer.Interact(GetActiveDrink()); }
+        else if (customer) {
+            float amountToAdd = customer.Interact(GetActiveDrink());
+        }
         else if (money != null) {
-            money.Interact(GetActiveDrink());
-            AddMoney();
+            float amountToAdd = money.Interact(GetActiveDrink());
+            AddMoney(amountToAdd);
             ResetDrinkInfo(ref drinks);
             ClearInfo(GameManager.instance.playerMoney);
         }
@@ -27,7 +28,6 @@ public class Inventory : MonoBehaviour {
 
     // setters
     void SetDrinkInfo(Drink drink) {
-        currPrice = drink.price;
         MenuManager.instance.SetFinalDrink(drink.drinkName);
         MenuManager.instance.SetCost(drink.price.ToString("#.00"));
     }
@@ -59,9 +59,8 @@ public class Inventory : MonoBehaviour {
     }
 
     // money help
-    void AddMoney() {
-        GameManager.instance.playerMoney += currPrice;
-        currPrice = 0;
+    void AddMoney(float amountToAdd) {
+        GameManager.instance.playerMoney += amountToAdd;
         currPriority = 0;
     }
 

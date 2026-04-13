@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8570599799189863480}
   - component: {fileID: 122236006034098620}
   - component: {fileID: 573369276969482155}
+  - component: {fileID: 206437007251285988}
+  - component: {fileID: 2567966914081360861}
   m_Layer: 0
   m_Name: States
   m_TagString: Untagged
@@ -70,6 +72,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 776184763203ace40a89c3e267effe9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 0}
+--- !u!114 &206437007251285988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092942228448991226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8bd300164fee646a21201dacaecb2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 0}
+--- !u!114 &2567966914081360861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092942228448991226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be6cb5fd70733641b61aa6a61a2387a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 0}
@@ -253,6 +281,9 @@ MonoBehaviour:
   stopWaiting: 0
   discountTime: 30
   leaveTime: 60
+  eatingTime: 5
+  leavingTime: 2
+  customer: {fileID: 0}
   isDebugging: 1
   personalSeat: {fileID: 0}
   drinks: []

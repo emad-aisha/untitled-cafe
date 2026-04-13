@@ -16,7 +16,9 @@ public class CustomerInformation : MonoBehaviour {
     public bool canOrder = false;
 
     [Header("Waiting State - Debugging")]
+    public float tip;
     public bool stopWaiting = false;
+
     public float discountTime = 30; // changes with upgrades
     public float leaveTime = 60;
 
@@ -54,6 +56,7 @@ public class CustomerInformation : MonoBehaviour {
         if (drink == null) { Debug.Log("no drink lol"); return; }
         if (isDebugging) Debug.Log(drink.drinkName + " and " + GetActiveDrink().drinkName);
 
+        // TODO: implement wrong drink check
         if (drink.drinkName == GetActiveDrink().drinkName) stopWaiting = true;
     }
 
