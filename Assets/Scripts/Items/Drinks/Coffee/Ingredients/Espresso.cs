@@ -10,7 +10,7 @@ public class Espresso {
     [SerializeField] bool hasEspresso;
 
     public void Set() {
-        ing = new Ingredient((int)EspressoType.Count, Priorities.First);
+        ing = new Ingredient((int)EspressoType.Count, Priorities.First, (int)EspressoType.Count);
 
         ing.SetState((int)EspressoType.Decaf, hasDecaf);
         ing.SetState((int)EspressoType.Espresso, hasEspresso);

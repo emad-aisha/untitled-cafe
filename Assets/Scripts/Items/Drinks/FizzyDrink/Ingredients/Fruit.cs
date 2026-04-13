@@ -11,7 +11,7 @@ public class Fruit {
 
 
     public void Set() {
-        ing = new Ingredient((int)FruitType.Count, Priorities.Third);
+        ing = new Ingredient((int)FruitType.Count, Priorities.Third, (int)FruitType.Count);
 
         ing.SetState((int)FruitType.Lime, hasLime);
         ing.SetState((int)FruitType.Lemon, hasLemon);

@@ -23,8 +23,8 @@ public class IdleState : State {
 
         Drink drink = info.GetDrink(drinkChosen);
         switch (drinkChosen) {
-            case DrinkType.FizzyDrink: drink.RandomizeDrink(fizzyDrinkManager); break;
-            case DrinkType.Coffee: drink.RandomizeDrink(coffeeManager); break;
+            case DrinkType.FizzyDrink: drink.RandomizeDrink(); break;
+            case DrinkType.Coffee: drink.RandomizeDrink(); break;
             default: Debug.Log("Didn't Randomize"); break;
         }
 

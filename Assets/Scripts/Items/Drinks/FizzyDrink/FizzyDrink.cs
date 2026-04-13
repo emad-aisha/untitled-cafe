@@ -7,27 +7,18 @@ public class FizzyDrink : Drink {
     [SerializeField] Soda soda;
     [SerializeField] Syrup syrup;
     [SerializeField] Fruit fruit;
-    FizzyDrinkManager manager;
 
-    void Start() {
-        SetMemberVariables(DrinkType.FizzyDrink);
-        ingredientMaxes = new int[3];
-        ingredientMaxes[(int)FizzyDrinkIngredients.Soda] = (int)SodaType.Count;
-        ingredientMaxes[(int)FizzyDrinkIngredients.Syrup] = (int)SyrupType.Count;
-        ingredientMaxes[(int)FizzyDrinkIngredients.Fruit] = (int)FruitType.Count;
-    }
+    void Start() { SetMemberVariables(DrinkType.FizzyDrink); }
 
-    override public void Interact(ref Drink input, ref int priority) {
-        if (manager == null) manager = new FizzyDrinkManager();
-
+    public override void Interact(ref Drink input, ref int priority) {
         switch ((Priorities)priority) {
-            case Priorities.First: SetIngredient(ref input, FizzyDrinkIngredients.Soda, ref priority); break;
-            case Priorities.Second: SetIngredient(ref input, FizzyDrinkIngredients.Syrup, ref priority); break;
-            case Priorities.Third: SetIngredient(ref input, FizzyDrinkIngredients.Fruit, ref priority); break;
+            case Priorities.First: SetIngredient(ref input, (int)FizzyDrinkIngredients.Soda, ref priority); break;
+            case Priorities.Second: SetIngredient(ref input, (int)FizzyDrinkIngredients.Syrup, ref priority); break;
+            case Priorities.Third: SetIngredient(ref input, (int)FizzyDrinkIngredients.Fruit, ref priority); break;
             default: Debug.Log("Priority too high or low"); break;
         }
 
-        SetDrinkInfo(input, manager);
+        ShowDrinkInfo(ref input);
     }
 
     // setters
@@ -51,16 +42,12 @@ public class FizzyDrink : Drink {
         syrup = _syrup;
         fruit = _fruit;
     }
-    public override void SetMaxes(ref int[] ingredientMaxes) {
-        ingredientMaxes[(int)FizzyDrinkIngredients.Soda] = (int)SodaType.Count;
-        ingredientMaxes[(int)FizzyDrinkIngredients.Syrup] = (int)SyrupType.Count;
-        ingredientMaxes[(int)FizzyDrinkIngredients.Fruit] = (int)FruitType.Count;
-    }
+
 
     // getters
     public Ingredient GetSoda() { return ingredients[(int)FizzyDrinkIngredients.Soda]; }
     public Ingredient GetSyrup() { return ingredients[(int)FizzyDrinkIngredients.Syrup]; }
     public Ingredient GetFruit() { return ingredients[(int)FizzyDrinkIngredients.Fruit]; }
 
-    override public bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
+    public override bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
 }

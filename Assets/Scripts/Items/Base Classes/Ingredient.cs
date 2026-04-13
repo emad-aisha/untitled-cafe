@@ -4,12 +4,17 @@ public class Ingredient {
     // needs an enum to work
     Priorities priority;
     bool[] states;
+    int max;
 
+    public Ingredient this[FizzyDrinkIngredients index] { get => this[index]; set => this[index] = value; }
+    public Ingredient this[CoffeeIngredients index] { get => this[index]; set => this[index] = value; }
 
-    public Ingredient(int numOfStates, Priorities _priority) {
+    // TODO: cleanup
+    public Ingredient(int numOfStates, Priorities _priority, int _max) {
         states = new bool[numOfStates];
         InitializeStates(numOfStates);
         priority = _priority;
+        max = _max;
     }
 
     public bool SetIngredient(ref Ingredient input, ref int priority) {
@@ -31,6 +36,7 @@ public class Ingredient {
 
     // getters 
     public Priorities GetPriority() { return priority; }
+    public int GetMax() { return max; }
     public int GetStateIndex() {
         for (int i = 0; i < states.Length; i++) if (states[i]) return i;
         Debug.Log("Ingredients: No state set to true"); return -1;

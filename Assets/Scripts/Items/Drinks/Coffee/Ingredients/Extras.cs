@@ -10,7 +10,7 @@ public class Extras {
     [SerializeField] bool hasChocolate;
 
     public void Set() {
-        ing = new Ingredient((int)ExtrasType.Count, Priorities.Third);
+        ing = new Ingredient((int)ExtrasType.Count, Priorities.Third, (int)ExtrasType.Count);
 
         ing.SetState((int)ExtrasType.MilkFoam, hasMilkFoam);
         ing.SetState((int)ExtrasType.Chocolate, hasChocolate);

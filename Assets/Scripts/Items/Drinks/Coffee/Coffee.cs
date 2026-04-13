@@ -7,28 +7,20 @@ public class Coffee : Drink {
     [SerializeField] Espresso espresso;
     [SerializeField] Liquid liquid;
     [SerializeField] Extras extras;
-    CoffeeManager manager;
 
-    void Start() {
-        SetMemberVariables(DrinkType.Coffee);
-        ingredientMaxes = new int[3];
-        ingredientMaxes[(int)CoffeeIngredients.Espresso] = (int)EspressoType.Count;
-        ingredientMaxes[(int)CoffeeIngredients.Liquid] = (int)LiquidType.Count;
-        ingredientMaxes[(int)CoffeeIngredients.Extras] = (int)ExtrasType.Count;
-    }
+    void Start() { SetMemberVariables(DrinkType.Coffee); }
 
     override public void Interact(ref Drink input, ref int priority) {
-        if (manager == null) manager = new CoffeeManager();
         bool hasMilk = input.ingredients[(int)CoffeeIngredients.Liquid].GetState((int)LiquidType.Milk);
 
         switch ((Priorities)priority) {
-            case Priorities.First: SetIngredient(ref input, CoffeeIngredients.Espresso, ref priority); break;
-            case Priorities.Second: SetIngredient(ref input, CoffeeIngredients.Liquid, ref priority); break;
-            case Priorities.Third: if (hasMilk) SetIngredient(ref input, CoffeeIngredients.Extras, ref priority); break;
+            case Priorities.First: SetIngredient(ref input, (int)CoffeeIngredients.Espresso, ref priority); break;
+            case Priorities.Second: SetIngredient(ref input, (int)CoffeeIngredients.Liquid, ref priority); break;
+            case Priorities.Third: if (hasMilk) SetIngredient(ref input, (int)CoffeeIngredients.Extras, ref priority); break;
             default: Debug.Log("Priority too high or low"); break;
         }
 
-        SetDrinkInfo(input, manager);
+        ShowDrinkInfo(ref input);
     }
 
     // setters
@@ -52,11 +44,6 @@ public class Coffee : Drink {
         espresso = _espresso;
         liquid = _liquid;
         extras = _extras;
-    }
-    public override void SetMaxes(ref int[] ingredientMaxes) {
-        ingredientMaxes[(int)CoffeeIngredients.Espresso] = (int)EspressoType.Count;
-        ingredientMaxes[(int)CoffeeIngredients.Liquid] = (int)LiquidType.Count;
-        ingredientMaxes[(int)CoffeeIngredients.Extras] = (int)ExtrasType.Count;
     }
 
     // getters

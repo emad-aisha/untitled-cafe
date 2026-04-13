@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class CoffeeManager : NameManager {
+public class CoffeeManager : Name {
+    // TODO: fix how this is worked
     CoffeeIngredients costType;
     // setters
     public override string SetName(Drink drink) {

@@ -11,7 +11,7 @@ public class Soda {
 
 
     public void Set() {
-        ing = new Ingredient((int)SodaType.Count, Priorities.First);
+        ing = new Ingredient((int)SodaType.Count, Priorities.First, (int)SodaType.Count);
 
         ing.SetState((int)SodaType.Soda, hasSoda);
     }

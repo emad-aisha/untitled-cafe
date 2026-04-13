@@ -5,68 +5,87 @@ public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
     [Header("Base Class Variables")]
     [HideInInspector] public DrinkType drinkType;
-    [HideInInspector] protected int[] ingredientMaxes;
+    [HideInInspector] public Ingredient[] ingredients;
 
-    public Ingredient[] ingredients;
+    protected Name nameManager;
     public string drinkName;
     public float price;
 
-    // TODO: organize
-    protected void SetMemberVariables(DrinkType type) {
-        drinkType = type;
-        SetIngredients();
-        SetInfoOff();
-    }
 
-    abstract public void Interact(ref Drink drink, ref int priority);
-    public void RandomizeDrink(NameManager nameManager) {
-        int[] ingredientType = new int[ingredients.Length];
+    public void RandomizeDrink() {
+        int ingredientType = 0;
 
-        for (int i = 0; i < ingredientType.Length; i++) {
-            // randomly set each type
-            if (i == 0) ingredientType[0] = Random.Range(0, ingredientMaxes[0]);
-            else ingredientType[i] = Random.Range(-1, ingredientMaxes[i]);
-
-            if (ingredientType[i] == -1) break;
-            // set type if available
-            ingredients[i].SetState(ingredientType[i], true);
+        for (int i = 0; i < ingredients.Length; i++) {
+            ingredientType = GetRandomIngredient(i);
+            if (ingredientType != -1) ingredients[i].SetState(ingredientType, true);
         }
-        drinkName = nameManager.SetName(this);
-        price = nameManager.SetCost();
+
+        SetDrinkInfo(nameManager.SetName(this), nameManager.SetCost());
     }
+
+
+    // abstract
+    abstract public void Interact(ref Drink drink, ref int priority);
+    abstract protected void SetIngredients();
+    abstract public void SetAllOff();
+    abstract public bool IsEveryStateOff();
+
 
     // setters
-    abstract public void SetAllOff();
-    abstract protected void SetIngredients();
-    public void ResetInfo() {
-        for (int i = 0; i < ingredients.Length; i++) ingredients[i].SetAllStates();
-        SetInfoOff();
+    public void SetIngredient(ref Drink input, int ingredientType, ref int priority) {
+        // TODO: rework?
+        bool canSetIngredient = ingredients[ingredientType].SetIngredient(ref input.ingredients[ingredientType], ref priority);
+        if (canSetIngredient) {
+            switch (drinkType) {
+                case DrinkType.FizzyDrink: SetBaseType((FizzyDrinkIngredients)ingredientType); break;
+                case DrinkType.Coffee: SetBaseType((CoffeeIngredients)ingredientType); break;
+                default: Debug.Log("Didn't Set Base Type"); break;
+            }
+        }
     }
-    abstract public void SetMaxes(ref int[] ingredientMaxes);
 
-    protected void SetDrinkInfo(Drink drink, NameManager nameManager) {
-        MenuManager.instance.SetBaseType(drinkType.ToString());
+    protected void SetMemberVariables(DrinkType type) {
+        drinkType = type;
+        SetNameManager();
+        SetIngredients();
+        SetDrinkInfo("", 0);
+    }
+    private void SetNameManager() {
+        nameManager = drinkType switch {
+            DrinkType.FizzyDrink => new FizzyDrinkManager(),
+            DrinkType.Coffee => new CoffeeManager(),
+            _ => null
+        };
+        if (nameManager == null) Debug.Log("No Name Manager Set");
+    }
+    public void ResetInfo() {
+        foreach (Ingredient ing in ingredients) ing.SetAllStates(false);
+        SetDrinkInfo("", 0);
+    }
+
+    // drinkname + price
+    void SetDrinkInfo(string newdrinkName, float newPrice) {
+        drinkName = newdrinkName;
+        price = newPrice;
+    }
+    protected void SetDrinkInfo(ref Drink drink) {
         drink.drinkName = nameManager.SetName(drink);
         drink.price = nameManager.SetCost();
     }
-
-    abstract public bool IsEveryStateOff();
-
-    // private functions
-    protected void SetIngredient(ref Drink input, CoffeeIngredients ingredientType, ref int priority) {
-        if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
-            MenuManager.instance.SetLastInteracted(ingredientType.ToString());
-        }
-    }
-    protected void SetIngredient(ref Drink input, FizzyDrinkIngredients ingredientType, ref int priority) {
-        if (ingredients[(int)ingredientType].SetIngredient(ref input.ingredients[(int)ingredientType], ref priority)) {
-            MenuManager.instance.SetLastInteracted(ingredientType.ToString());
-        }
+    protected void ShowDrinkInfo(ref Drink drink) {
+        SetDrinkInfo(ref drink);
+        MenuManager.instance.SetBaseType(drinkType.ToString());
     }
 
-    void SetInfoOff() {
-        drinkName = "";
-        price = 0;
+
+    // getters
+    private int GetRandomIngredient(int index) {
+        if (index == 0) return Random.Range(0, ingredients[0].GetMax());
+        else return Random.Range(-1, ingredients[index].GetMax());
     }
+
+
+    // TODO: use this more 
+    void SetBaseType<T>(T enumValue) where T : System.Enum { MenuManager.instance.SetLastInteracted(enumValue.ToString()); }
 
 }

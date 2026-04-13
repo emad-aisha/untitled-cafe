@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FizzyDrinkManager : NameManager {
+public class FizzyDrinkManager : Name {
     FizzyDrinkIngredients costType;
 
     public override string SetName(Drink drink) {

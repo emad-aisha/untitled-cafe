@@ -11,7 +11,7 @@ public class Syrup {
     [SerializeField] bool hasOrange;
 
     public void Set() {
-        ing = new Ingredient((int)SyrupType.Count, Priorities.Second);
+        ing = new Ingredient((int)SyrupType.Count, Priorities.Second, (int)SyrupType.Count);
 
         ing.SetState((int)SyrupType.Strawberry, hasStrawberry);
         ing.SetState((int)SyrupType.Lemon, hasLemon);

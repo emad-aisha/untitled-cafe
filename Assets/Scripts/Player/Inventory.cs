@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour {
     [Header("Debug")]
     [SerializeField] private int currPriority;
 
-    // TODO: refactor
+    // TODO: refactor + finish
     public void Interact(Collider interactable) {
         Money money = interactable.GetComponent<Money>();
         Customer customer = interactable.GetComponent<Customer>();
@@ -16,11 +16,11 @@ public class Inventory : MonoBehaviour {
 
         if (drinkMachine) { Interact(drinkMachine, drinkType); }
         else if (customer) {
-            float amountToAdd = customer.Interact(GetActiveDrink());
+            float amountToAdd = customer.Interact(DrinkManager.instance.GetActiveDrink(drinks));
             MenuManager.instance.SetInteractionTypes("iinteractable", "customer");
         }
         else if (money != null) {
-            float amountToAdd = money.Interact(GetActiveDrink());
+            float amountToAdd = money.Interact(DrinkManager.instance.GetActiveDrink(drinks));
             AddMoney(amountToAdd);
             ResetDrinkInfo(ref drinks);
             MenuManager.instance.SetInteractionTypes("iinteractable", "money");
@@ -77,12 +77,5 @@ public class Inventory : MonoBehaviour {
         for (int i = 0; i < drinks.Length; i++) {
             drinks[i].ResetInfo();
         }
-    }
-
-    // TODO: organize into static instance?
-    public Drink GetActiveDrink() {
-        for (int i = 0; i < drinks.Length; i++) if (!drinks[i].IsEveryStateOff()) return drinks[i];
-        Debug.Log("Couldn't find an active drink");
-        return null;
     }
 }
