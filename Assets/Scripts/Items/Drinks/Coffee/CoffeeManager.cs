@@ -5,9 +5,9 @@ public class CoffeeManager : Name {
     CoffeeIngredients costType;
     // setters
     public override string SetName(Drink drink) {
-        Ingredient espresso = drink.ingredients[(int)CoffeeIngredients.Espresso];
-        Ingredient liquid = drink.ingredients[(int)CoffeeIngredients.Liquid];
-        Ingredient extras = drink.ingredients[(int)CoffeeIngredients.Extras];
+        Ingredient espresso = drink.ingredients.At(CoffeeIngredients.Espresso);
+        Ingredient liquid = drink.ingredients.At(CoffeeIngredients.Liquid);
+        Ingredient extras = drink.ingredients.At(CoffeeIngredients.Extras);
 
         int espressoState = espresso.GetAnyStateIndex();
         int liquidState = liquid.GetAnyStateIndex();

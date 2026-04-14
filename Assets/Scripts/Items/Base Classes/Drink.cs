@@ -18,6 +18,7 @@ public abstract class Drink : MonoBehaviour {
         for (int i = 0; i < ingredients.Length; i++) {
             ingredientType = GetRandomIngredient(i);
             if (ingredientType != -1) ingredients[i].SetState(ingredientType, true);
+            else break;
         }
 
         SetDrinkInfo(nameManager.SetName(this), nameManager.SetCost());
@@ -32,16 +33,11 @@ public abstract class Drink : MonoBehaviour {
 
 
     // setters
-    public void SetIngredient(ref Drink input, int ingredientType, ref int priority) {
-        // TODO: rework?
-        bool canSetIngredient = ingredients[ingredientType].SetIngredient(ref input.ingredients[ingredientType], ref priority);
-        if (canSetIngredient) {
-            switch (drinkType) {
-                case DrinkType.FizzyDrink: SetBaseType((FizzyDrinkIngredients)ingredientType); break;
-                case DrinkType.Coffee: SetBaseType((CoffeeIngredients)ingredientType); break;
-                default: Debug.Log("Didn't Set Base Type"); break;
-            }
-        }
+    public void SetIngredient<T>(ref Drink input, T ingredientType, ref int priority) where T : System.Enum {
+        int ingredientIndex = (int)(object)ingredientType;
+
+        bool canSetIngredient = ingredients[ingredientIndex].SetIngredient(ref input.ingredients[ingredientIndex], ref priority);
+        if (canSetIngredient) { SetBaseType(ingredientType); }
     }
 
     protected void SetMemberVariables(DrinkType type) {

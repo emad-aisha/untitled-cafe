@@ -11,14 +11,14 @@ public class Fruit {
 
 
     public void Set() {
-        ing = new Ingredient((int)FruitType.Count, Priorities.Third, (int)FruitType.Count);
+        ing = new Ingredient((int)FruitType.Count, Priorities.Third);
 
-        ing.SetState((int)FruitType.Lime, hasLime);
-        ing.SetState((int)FruitType.Lemon, hasLemon);
+        ing.SetState(FruitType.Lime, hasLime);
+        ing.SetState(FruitType.Lemon, hasLemon);
     }
 
     public void SetDebugVariables() {
-        hasLime = ing.GetState((int)FruitType.Lime);
-        hasLemon = ing.GetState((int)FruitType.Lemon);
+        hasLime = ing.GetState(FruitType.Lime);
+        hasLemon = ing.GetState(FruitType.Lemon);
     }
 }

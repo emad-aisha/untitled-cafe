@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Ingredient {
@@ -6,15 +7,12 @@ public class Ingredient {
     bool[] states;
     int max;
 
-    public Ingredient this[FizzyDrinkIngredients index] { get => this[index]; set => this[index] = value; }
-    public Ingredient this[CoffeeIngredients index] { get => this[index]; set => this[index] = value; }
-
     // TODO: cleanup
-    public Ingredient(int numOfStates, Priorities _priority, int _max) {
+    public Ingredient(int numOfStates, Priorities _priority) {
         states = new bool[numOfStates];
-        InitializeStates(numOfStates);
+        SetAllStates(false);
         priority = _priority;
-        max = _max;
+        max = numOfStates;
     }
 
     public bool SetIngredient(ref Ingredient input, ref int priority) {
@@ -41,7 +39,9 @@ public class Ingredient {
         for (int i = 0; i < states.Length; i++) if (states[i]) return i;
         Debug.Log("Ingredients: No state set to true"); return -1;
     }
-    public bool GetState(int index) {
+    public bool GetState<T>(T enumValue) where T : Enum {
+        int index = (int)(object)enumValue;
+
         if (index < 0 || index >= states.Length) {
             Debug.Log("Error Getting State");
             return false;
@@ -62,10 +62,11 @@ public class Ingredient {
     }
 
     // setters
-    void InitializeStates(int numOfStates) { for (int i = 0; i < numOfStates; i++) states[i] = false; }
+    public bool SetState<T>(T index, bool inputBool) where T : Enum { states.At(index) = inputBool; return true; }
     public bool SetState(int index, bool inputBool) {
-        if (index < 0 || index >= states.Length) { Debug.Log("index too high or low"); return false; }
+        if (index < 0 || index > states.Length) throw new IndexOutOfRangeException("index is out of range");
         states[index] = inputBool; return true;
     }
+
     public void SetAllStates(bool state = false) { for (int i = 0; i < states.Length; i++) states[i] = state; }
 }

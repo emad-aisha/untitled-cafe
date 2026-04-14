@@ -4,9 +4,9 @@ public class FizzyDrinkManager : Name {
     FizzyDrinkIngredients costType;
 
     public override string SetName(Drink drink) {
-        Ingredient soda = drink.ingredients[(int)FizzyDrinkIngredients.Soda];
-        Ingredient syrup = drink.ingredients[(int)FizzyDrinkIngredients.Syrup];
-        Ingredient fruit = drink.ingredients[(int)FizzyDrinkIngredients.Fruit];
+        Ingredient soda = drink.ingredients.At(FizzyDrinkIngredients.Soda);
+        Ingredient syrup = drink.ingredients.At(FizzyDrinkIngredients.Syrup);
+        Ingredient fruit = drink.ingredients.At(FizzyDrinkIngredients.Fruit);
 
         int sodaType = soda.GetAnyStateIndex();
         int syrupType = syrup.GetAnyStateIndex();
@@ -30,6 +30,7 @@ public class FizzyDrinkManager : Name {
     string FinalDrinkLogic(int sodaType, int syrupType, int fruitType) {
         string finalDrink = "";
 
+        // TODO: refactor
         if (sodaType == (int)SodaType.Soda) finalDrink = "Soda";
         if (syrupType >= 0 && syrupType < (int)SyrupType.Count) finalDrink = ((SyrupType)syrupType).ToString() + " " + finalDrink;
         if (fruitType >= 0 && fruitType < (int)FruitType.Count) finalDrink += " with " + ((FruitType)fruitType).ToString();

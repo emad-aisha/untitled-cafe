@@ -12,9 +12,9 @@ public class FizzyDrink : Drink {
 
     public override void Interact(ref Drink input, ref int priority) {
         switch ((Priorities)priority) {
-            case Priorities.First: SetIngredient(ref input, (int)FizzyDrinkIngredients.Soda, ref priority); break;
-            case Priorities.Second: SetIngredient(ref input, (int)FizzyDrinkIngredients.Syrup, ref priority); break;
-            case Priorities.Third: SetIngredient(ref input, (int)FizzyDrinkIngredients.Fruit, ref priority); break;
+            case Priorities.First: SetIngredient(ref input, FizzyDrinkIngredients.Soda, ref priority); break;
+            case Priorities.Second: SetIngredient(ref input, FizzyDrinkIngredients.Syrup, ref priority); break;
+            case Priorities.Third: SetIngredient(ref input, FizzyDrinkIngredients.Fruit, ref priority); break;
             default: Debug.Log("Priority too high or low"); break;
         }
 
@@ -28,9 +28,9 @@ public class FizzyDrink : Drink {
         syrup.Set();
         fruit.Set();
 
-        ingredients[(int)FizzyDrinkIngredients.Soda] = soda.ing;
-        ingredients[(int)FizzyDrinkIngredients.Syrup] = syrup.ing;
-        ingredients[(int)FizzyDrinkIngredients.Fruit] = fruit.ing;
+        ingredients.At(FizzyDrinkIngredients.Soda) = soda.ing;
+        ingredients.At(FizzyDrinkIngredients.Syrup) = syrup.ing;
+        ingredients.At(FizzyDrinkIngredients.Fruit) = fruit.ing;
     }
     override public void SetAllOff() {
         GetSoda().SetAllStates();
@@ -45,9 +45,9 @@ public class FizzyDrink : Drink {
 
 
     // getters
-    public Ingredient GetSoda() { return ingredients[(int)FizzyDrinkIngredients.Soda]; }
-    public Ingredient GetSyrup() { return ingredients[(int)FizzyDrinkIngredients.Syrup]; }
-    public Ingredient GetFruit() { return ingredients[(int)FizzyDrinkIngredients.Fruit]; }
+    public Ingredient GetSoda() { return ingredients.At(FizzyDrinkIngredients.Soda); }
+    public Ingredient GetSyrup() { return ingredients.At(FizzyDrinkIngredients.Syrup); }
+    public Ingredient GetFruit() { return ingredients.At(FizzyDrinkIngredients.Fruit); }
 
     public override bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
 }

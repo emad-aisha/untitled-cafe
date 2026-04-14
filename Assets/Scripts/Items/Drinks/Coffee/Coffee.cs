@@ -11,12 +11,12 @@ public class Coffee : Drink {
     void Start() { SetMemberVariables(DrinkType.Coffee); }
 
     override public void Interact(ref Drink input, ref int priority) {
-        bool hasMilk = input.ingredients[(int)CoffeeIngredients.Liquid].GetState((int)LiquidType.Milk);
+        bool hasMilk = input.ingredients.At(CoffeeIngredients.Liquid).GetState(LiquidType.Milk);
 
         switch ((Priorities)priority) {
-            case Priorities.First: SetIngredient(ref input, (int)CoffeeIngredients.Espresso, ref priority); break;
-            case Priorities.Second: SetIngredient(ref input, (int)CoffeeIngredients.Liquid, ref priority); break;
-            case Priorities.Third: if (hasMilk) SetIngredient(ref input, (int)CoffeeIngredients.Extras, ref priority); break;
+            case Priorities.First: SetIngredient(ref input, CoffeeIngredients.Espresso, ref priority); break;
+            case Priorities.Second: SetIngredient(ref input, CoffeeIngredients.Liquid, ref priority); break;
+            case Priorities.Third: if (hasMilk) SetIngredient(ref input, CoffeeIngredients.Extras, ref priority); break;
             default: Debug.Log("Priority too high or low"); break;
         }
 
@@ -30,9 +30,9 @@ public class Coffee : Drink {
         liquid.Set();
         extras.Set();
 
-        ingredients[(int)CoffeeIngredients.Espresso] = espresso.ing;
-        ingredients[(int)CoffeeIngredients.Liquid] = liquid.ing;
-        ingredients[(int)CoffeeIngredients.Extras] = extras.ing;
+        ingredients.At(CoffeeIngredients.Espresso) = espresso.ing;
+        ingredients.At(CoffeeIngredients.Liquid) = liquid.ing;
+        ingredients.At(CoffeeIngredients.Extras) = extras.ing;
     }
     public override void SetAllOff() {
         GetEspresso().SetAllStates();
@@ -47,9 +47,9 @@ public class Coffee : Drink {
     }
 
     // getters
-    public Ingredient GetEspresso() { return ingredients[(int)CoffeeIngredients.Espresso]; }
-    public Ingredient GetLiquid() { return ingredients[(int)CoffeeIngredients.Liquid]; }
-    public Ingredient GetExtras() { return ingredients[(int)CoffeeIngredients.Extras]; }
+    public Ingredient GetEspresso() { return ingredients.At(CoffeeIngredients.Espresso); }
+    public Ingredient GetLiquid() { return ingredients.At(CoffeeIngredients.Liquid); }
+    public Ingredient GetExtras() { return ingredients.At(CoffeeIngredients.Extras); }
 
     public override bool IsEveryStateOff() { return GetEspresso().IsAllOff() && GetLiquid().IsAllOff() && GetExtras().IsAllOff(); }
 }

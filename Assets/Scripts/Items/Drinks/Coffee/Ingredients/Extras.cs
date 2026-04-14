@@ -10,9 +10,9 @@ public class Extras {
     [SerializeField] bool hasChocolate;
 
     public void Set() {
-        ing = new Ingredient((int)ExtrasType.Count, Priorities.Third, (int)ExtrasType.Count);
+        ing = new Ingredient((int)ExtrasType.Count, Priorities.Third);
 
-        ing.SetState((int)ExtrasType.MilkFoam, hasMilkFoam);
-        ing.SetState((int)ExtrasType.Chocolate, hasChocolate);
+        ing.SetState(ExtrasType.MilkFoam, hasMilkFoam);
+        ing.SetState(ExtrasType.Chocolate, hasChocolate);
     }
 }

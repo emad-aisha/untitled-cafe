@@ -49,8 +49,8 @@ public class Inventory : MonoBehaviour {
     void Interact(Drink drinkMachine, DrinkType drink) {
         if (!IsOtherDrinksOff(drink)) return;
 
-        drinkMachine.Interact(ref drinks[(int)drink], ref currPriority);
-        SetDrinkInfo(drinks[(int)drink]);
+        drinkMachine.Interact(ref drinks.At(drink), ref currPriority);
+        SetDrinkInfo(drinks.At(drink));
     }
     bool IsOtherDrinksOff(DrinkType drinkToCompare) {
         for (int i = 0; i < drinks.Length; i++) {

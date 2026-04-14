@@ -54,7 +54,6 @@ public class CustomerInformation : MonoBehaviour {
     public void CanOrder() { canOrder = true; }
     public void StopWaiting(Drink drink) {
         if (drink == null) { Debug.Log("no drink lol"); return; }
-        if (isDebugging) Debug.Log(drink.drinkName + " and " + DrinkManager.instance.GetActiveDrink(drinks).drinkName);
 
         // TODO: implement wrong drink check
         if (drink.drinkName == DrinkManager.instance.GetActiveDrink(drinks).drinkName) stopWaiting = true;

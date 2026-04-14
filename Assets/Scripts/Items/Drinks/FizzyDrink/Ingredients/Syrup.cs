@@ -11,16 +11,16 @@ public class Syrup {
     [SerializeField] bool hasOrange;
 
     public void Set() {
-        ing = new Ingredient((int)SyrupType.Count, Priorities.Second, (int)SyrupType.Count);
+        ing = new Ingredient((int)SyrupType.Count, Priorities.Second);
 
-        ing.SetState((int)SyrupType.Strawberry, hasStrawberry);
-        ing.SetState((int)SyrupType.Lemon, hasLemon);
-        ing.SetState((int)SyrupType.Orange, hasOrange);
+        ing.SetState(SyrupType.Strawberry, hasStrawberry);
+        ing.SetState(SyrupType.Lemon, hasLemon);
+        ing.SetState(SyrupType.Orange, hasOrange);
     }
 
     public void SetDebugVariables() {
-        hasStrawberry = ing.GetState((int)SyrupType.Strawberry);
-        hasLemon = ing.GetState((int)SyrupType.Lemon);
-        hasOrange = ing.GetState((int)SyrupType.Orange);
+        hasStrawberry = ing.GetState(SyrupType.Strawberry);
+        hasLemon = ing.GetState(SyrupType.Lemon);
+        hasOrange = ing.GetState(SyrupType.Orange);
     }
 }

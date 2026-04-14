@@ -10,9 +10,9 @@ public class Liquid {
     [SerializeField] bool hasMilk;
 
     public void Set() {
-        ing = new Ingredient((int)LiquidType.Count, Priorities.Second, (int)LiquidType.Count);
+        ing = new Ingredient((int)LiquidType.Count, Priorities.Second);
 
-        ing.SetState((int)LiquidType.Water, hasWater);
-        ing.SetState((int)LiquidType.Milk, hasMilk);
+        ing.SetState(LiquidType.Water, hasWater);
+        ing.SetState(LiquidType.Milk, hasMilk);
     }
 }

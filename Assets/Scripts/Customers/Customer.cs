@@ -16,7 +16,7 @@ public class Customer : MonoBehaviour, IInteractable {
         SetStates();
     }
 
-    void Update() { states[(int)info.currentState].UpdateState(); }
+    void Update() { states.At(info.currentState).UpdateState(); }
 
 
     public float Interact(Drink drink) {

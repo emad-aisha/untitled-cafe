@@ -9,14 +9,14 @@ public class Soda {
     [SerializeField] bool hasSoda;
 
 
-
+    // TODO:enum stuff here too
     public void Set() {
-        ing = new Ingredient((int)SodaType.Count, Priorities.First, (int)SodaType.Count);
+        ing = new Ingredient((int)SodaType.Count, Priorities.First);
 
-        ing.SetState((int)SodaType.Soda, hasSoda);
+        ing.SetState(SodaType.Soda, hasSoda);
     }
 
     public void SetDebugVariables() {
-        hasSoda = ing.GetState((int)SodaType.Soda);
+        hasSoda = ing.GetState(SodaType.Soda);
     }
 }
