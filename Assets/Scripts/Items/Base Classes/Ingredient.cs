@@ -64,7 +64,7 @@ public class Ingredient {
     // setters
     public bool SetState<T>(T index, bool inputBool) where T : Enum { states.At(index) = inputBool; return true; }
     public bool SetState(int index, bool inputBool) {
-        if (index < 0 || index > states.Length) throw new IndexOutOfRangeException("index is out of range");
+        if (index < 0 || index > states.Length) { Debug.Log("index is out of range"); return false; }
         states[index] = inputBool; return true;
     }
 

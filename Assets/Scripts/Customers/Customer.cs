@@ -23,8 +23,8 @@ public class Customer : MonoBehaviour, IInteractable {
         switch (info.currentState) {
             case CustomerState.Ordering: info.CanOrder(); return 0;
             case CustomerState.Waiting:
-                if (!info.stopWaiting) { info.StopWaiting(drink); return 0; }
-                else return info.GetActiveDrink().price + info.tip;
+                if (!info.stopWaiting) { info.StopWaiting(drink); return info.GetActiveDrink().price + info.tip; }
+                break;
         }
         return 0;
     }

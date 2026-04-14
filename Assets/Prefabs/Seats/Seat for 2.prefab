@@ -375,4 +375,4 @@ MonoBehaviour:
   - {fileID: 3161196740864951540}
   - {fileID: 2200113258019152175}
   numberOfChairs: 0
-  IsFree: 0
+  isFree: 0

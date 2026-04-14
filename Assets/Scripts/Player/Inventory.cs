@@ -2,56 +2,47 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     [SerializeField] Drink[] drinks;
+    private int currPriority;
 
-    [Header("Debug")]
-    [SerializeField] private int currPriority;
 
-    // TODO: refactor + finish
     public void Interact(Collider interactable) {
-        Money money = interactable.GetComponent<Money>();
         Customer customer = interactable.GetComponent<Customer>();
+        Drink drink = interactable.GetComponent<Drink>();
+        Trash trash = interactable.GetComponent<Trash>();
 
-        Drink drinkMachine = interactable.GetComponent<Drink>();
-        DrinkType drinkType = GetDrinkType(interactable);
-
-        if (drinkMachine) { Interact(drinkMachine, drinkType); }
-        else if (customer) {
-            float amountToAdd = customer.Interact(DrinkManager.instance.GetActiveDrink(drinks));
-            MenuManager.instance.SetInteractionTypes("iinteractable", "customer");
-        }
-        else if (money != null) {
-            float amountToAdd = money.Interact(DrinkManager.instance.GetActiveDrink(drinks));
-            AddMoney(amountToAdd);
-            ResetDrinkInfo(ref drinks);
-            MenuManager.instance.SetInteractionTypes("iinteractable", "money");
-            ClearInfo(GameManager.instance.playerMoney);
-        }
+        // TODO: make less ugly
+        if (drink) { UpdateCurrDrink(drink); }
+        else if (customer) { UpdateCustomer(customer); }
+        else if (trash) { UpdateTrash(trash); }
     }
 
-    // setters
-    void SetDrinkInfo(Drink drink) {
-        MenuManager.instance.SetFinalDrink(drink.drinkName);
-        MenuManager.instance.SetCost(drink.price.ToString("#.00"));
+    // Base Functions for each if
+    void UpdateCurrDrink(Drink drinkMachine) {
+        DrinkType currDrink = drinkMachine.drinkType;
+        if (!IsOtherDrinksOff(currDrink)) return;
+
+        drinkMachine.Interact(ref drinks.At(currDrink), ref currPriority);
+        MenuManager.instance.SetDrinkInfo(drinks.At(currDrink).drinkName, drinks.At(currDrink).price.ToString("#.00"));
     }
+    void UpdateCustomer(Customer customer) {
+        UpdateMoney(customer.Interact(DrinkManager.instance.GetActiveDrink(drinks)));
 
-    // getters
-    DrinkType GetDrinkType(Collider interactable) {
-        FizzyDrink fizzyComponent = interactable.GetComponent<FizzyDrink>();
-        Coffee coffeeComponent = interactable.GetComponent<Coffee>();
-
-        if (fizzyComponent != null) return DrinkType.FizzyDrink;
-        else if (coffeeComponent != null) return DrinkType.Coffee;
-
-        return DrinkType.Null;
+        ResetCustomerDrinkInfo();
+        MenuManager.instance.SetInteractionTypes("ignore", "Customer");
+    }
+    void UpdateTrash(Trash trash) {
+        UpdateMoney(0);
     }
 
 
-    void Interact(Drink drinkMachine, DrinkType drink) {
-        if (!IsOtherDrinksOff(drink)) return;
+    // misc
+    void UpdateMoney(float money) {
+        GameManager.instance.playerMoney += money;
 
-        drinkMachine.Interact(ref drinks.At(drink), ref currPriority);
-        SetDrinkInfo(drinks.At(drink));
+        ResetDrinkInfo();
+        UpdateMoneyInfo();
     }
+
     bool IsOtherDrinksOff(DrinkType drinkToCompare) {
         for (int i = 0; i < drinks.Length; i++) {
             if (i == (int)drinkToCompare) continue;
@@ -60,22 +51,14 @@ public class Inventory : MonoBehaviour {
         return true;
     }
 
-    // money help
-    void AddMoney(float amountToAdd) {
-        GameManager.instance.playerMoney += amountToAdd;
+    // UI updates
+    void UpdateMoneyInfo() { MenuManager.instance.SetPlayerMoney(GameManager.instance.playerMoney.ToString()); }
+
+    void ResetDrinkInfo() {
+        for (int i = 0; i < drinks.Length; i++) drinks[i].ResetInfo();
         currPriority = 0;
-    }
 
-    public void ClearInfo(float currMoney) {
-        MenuManager.instance.SetFinalDrink("nothing");
-        MenuManager.instance.SetCost("0");
-
-        MenuManager.instance.SetPlayerMoney(currMoney.ToString());
+        MenuManager.instance.SetDrinkInfo("nothing", "0");
     }
-
-    public void ResetDrinkInfo(ref Drink[] drinks) {
-        for (int i = 0; i < drinks.Length; i++) {
-            drinks[i].ResetInfo();
-        }
-    }
+    void ResetCustomerDrinkInfo() { MenuManager.instance.SetCustomerInfo("", "0"); }
 }

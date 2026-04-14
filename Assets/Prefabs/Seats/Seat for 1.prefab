@@ -49,7 +49,7 @@ MonoBehaviour:
   seats:
   - {fileID: 9122044205722912887}
   numberOfChairs: 0
-  IsFree: 0
+  isFree: 0
 --- !u!1 &815065370256875900
 GameObject:
   m_ObjectHideFlags: 0
