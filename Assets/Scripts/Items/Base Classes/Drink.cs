@@ -29,7 +29,7 @@ public abstract class Drink : MonoBehaviour {
     abstract public void Interact(ref Drink drink, ref int priority);
     abstract protected void SetIngredients();
     abstract public void SetAllOff();
-    abstract public bool IsEveryStateOff();
+    abstract public bool IsEveryStateOn();
 
 
     // setters

@@ -51,5 +51,5 @@ public class Coffee : Drink {
     public Ingredient GetLiquid() { return ingredients.At(CoffeeIngredients.Liquid); }
     public Ingredient GetExtras() { return ingredients.At(CoffeeIngredients.Extras); }
 
-    public override bool IsEveryStateOff() { return GetEspresso().IsAllOff() && GetLiquid().IsAllOff() && GetExtras().IsAllOff(); }
+    public override bool IsEveryStateOn() { return GetEspresso().IsActive() && GetLiquid().IsActive() && GetExtras().IsActive(); }
 }

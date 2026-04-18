@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour {
     bool IsOtherDrinksOff(DrinkType drinkToCompare) {
         for (int i = 0; i < drinks.Length; i++) {
             if (i == (int)drinkToCompare) continue;
-            if (!drinks[i].IsEveryStateOff()) return false;
+            if (drinks[i].IsEveryStateOn()) return false;
         }
         return true;
     }

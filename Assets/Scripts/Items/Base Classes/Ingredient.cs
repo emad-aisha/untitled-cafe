@@ -23,12 +23,12 @@ public class Ingredient {
         return true;
     }
 
-    public bool CanChangeVariables(Ingredient ingredient) { return ingredient != null && ingredient.IsAllOff(); }
-    public bool CanChangeVariables() { return this != null && IsAllOff(); }
+    public bool CanChangeVariables(Ingredient ingredient) { return ingredient != null && !ingredient.IsActive(); }
+    public bool CanChangeVariables() { return this != null && !IsActive(); }
 
-    public bool IsAllOff() {
-        foreach (bool state in states) if (state) return false;
-        return true;
+    public bool IsActive() {
+        foreach (bool state in states) if (state) return true;
+        return false;
     }
 
     // getters 
@@ -44,7 +44,7 @@ public class Ingredient {
     }
     public int GetActiveStateIndex() {
         for (int i = 0; i < states.Length; i++) { if (states[i]) return i; }
-        Debug.Log("Ingredients: No state set to true"); return -1;
+        return -1;
     }
 
     // setters

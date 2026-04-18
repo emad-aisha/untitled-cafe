@@ -49,5 +49,5 @@ public class FizzyDrink : Drink {
     public Ingredient GetSyrup() { return ingredients.At(FizzyDrinkIngredients.Syrup); }
     public Ingredient GetFruit() { return ingredients.At(FizzyDrinkIngredients.Fruit); }
 
-    public override bool IsEveryStateOff() { return GetSoda().IsAllOff() && GetSyrup().IsAllOff() && GetFruit().IsAllOff(); }
+    public override bool IsEveryStateOn() { return GetSoda().IsActive() && GetSyrup().IsActive() && GetFruit().IsActive(); }
 }

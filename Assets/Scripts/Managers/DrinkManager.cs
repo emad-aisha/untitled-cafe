@@ -5,7 +5,7 @@ public class DrinkManager : MonoBehaviour {
     void Start() { if (instance == null) instance = this; }
 
     public Drink GetActiveDrink(Drink[] drinks) {
-        for (int i = 0; i < drinks.Length; i++) if (!drinks[i].IsEveryStateOff()) return drinks[i];
+        for (int i = 0; i < drinks.Length; i++) if (drinks[i].IsEveryStateOn()) return drinks[i];
         /*Debug.Log("Couldn't find an active drink");*/
         return null;
     }
