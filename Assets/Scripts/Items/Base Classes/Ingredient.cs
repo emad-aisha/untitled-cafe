@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public class Ingredient {
-    // TODO: find a wya to make this show up in inspector
+    // TODO: find a way to make this show up in inspector
     // needs an enum to work
     Priorities priority;
     bool[] states;
@@ -17,7 +17,7 @@ public class Ingredient {
     }
 
     public bool SetIngredient(ref Ingredient input, ref int priority) {
-        if (!CanChangeVariables(input) || !input.SetState(GetStateIndex(), true)) return false;
+        if (!CanChangeVariables(input) || !input.SetState(GetActiveStateIndex(), true)) return false;
         priority++;
 
         return true;
@@ -34,26 +34,17 @@ public class Ingredient {
     // getters 
     public Priorities GetPriority() { return priority; }
     public int GetMax() { return max; }
-    public int GetStateIndex() {
-        for (int i = 0; i < states.Length; i++) if (states[i]) return i;
-        Debug.Log("Ingredients: No state set to true"); return -1;
-    }
-    public bool GetState<T>(T enumValue) where T : Enum {
-        int index = (int)(object)enumValue;
+    public bool[] GetStates() { return states; }
 
-        if (index < 0 || index >= states.Length) {
-            Debug.Log("Error Getting State");
-            return false;
-        }
-        return states[index];
-    }
+    // get actives
+    public bool GetStateValue<T>(T index) where T : Enum { return states.At(index); }
     public bool GetActiveState() {
         for (int i = 0; i < states.Length; i++) { if (states[i]) return true; }
         return false;
     }
     public int GetActiveStateIndex() {
         for (int i = 0; i < states.Length; i++) { if (states[i]) return i; }
-        return -1;
+        Debug.Log("Ingredients: No state set to true"); return -1;
     }
 
     // setters

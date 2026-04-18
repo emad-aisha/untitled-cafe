@@ -16,9 +16,4 @@ public class Fruit {
         ing.SetState(FruitType.Lime, hasLime);
         ing.SetState(FruitType.Lemon, hasLemon);
     }
-
-    public void SetDebugVariables() {
-        hasLime = ing.GetState(FruitType.Lime);
-        hasLemon = ing.GetState(FruitType.Lemon);
-    }
 }

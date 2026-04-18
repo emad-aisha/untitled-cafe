@@ -11,7 +11,7 @@ public class Coffee : Drink {
     void Start() { SetMemberVariables(DrinkType.Coffee); }
 
     override public void Interact(ref Drink input, ref int priority) {
-        bool hasMilk = input.ingredients.At(CoffeeIngredients.Liquid).GetState(LiquidType.Milk);
+        bool hasMilk = input.ingredients.At(CoffeeIngredients.Liquid).GetStateValue(LiquidType.Milk);
 
         switch ((Priorities)priority) {
             case Priorities.First: SetIngredient(ref input, CoffeeIngredients.Espresso, ref priority); break;

@@ -23,13 +23,9 @@ public class FizzyDrinkManager : Name {
     protected override void SetIngredientTypes(Drink drink) {
         if (types == null) types = new int[drink.ingredients.Length];
 
-        int sodaType = drink.ingredients.At(FizzyDrinkIngredients.Soda).GetActiveStateIndex();
-        int syrupType = drink.ingredients.At(FizzyDrinkIngredients.Syrup).GetActiveStateIndex();
-        int fruitType = drink.ingredients.At(FizzyDrinkIngredients.Fruit).GetActiveStateIndex();
-
-        types.At(FizzyDrinkIngredients.Soda) = sodaType;
-        types.At(FizzyDrinkIngredients.Syrup) = syrupType;
-        types.At(FizzyDrinkIngredients.Fruit) = fruitType;
+        types.At(FizzyDrinkIngredients.Soda) = drink.ingredients.At(FizzyDrinkIngredients.Soda).GetActiveStateIndex();
+        types.At(FizzyDrinkIngredients.Syrup) = drink.ingredients.At(FizzyDrinkIngredients.Syrup).GetActiveStateIndex();
+        types.At(FizzyDrinkIngredients.Fruit) = drink.ingredients.At(FizzyDrinkIngredients.Fruit).GetActiveStateIndex();
     }
 
     // TODO: refactor

@@ -12,8 +12,4 @@ public class Soda {
         ing = new Ingredient((int)SodaType.Count, Priorities.First);
         ing.SetState(SodaType.Soda, hasSoda);
     }
-
-    public void SetDebugVariables() {
-        hasSoda = ing.GetState(SodaType.Soda);
-    }
 }

@@ -17,10 +17,4 @@ public class Syrup {
         ing.SetState(SyrupType.Lemon, hasLemon);
         ing.SetState(SyrupType.Orange, hasOrange);
     }
-
-    public void SetDebugVariables() {
-        hasStrawberry = ing.GetState(SyrupType.Strawberry);
-        hasLemon = ing.GetState(SyrupType.Lemon);
-        hasOrange = ing.GetState(SyrupType.Orange);
-    }
 }
