@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 public class Ingredient {
+    // TODO: find a wya to make this show up in inspector
     // needs an enum to work
     Priorities priority;
     bool[] states;
@@ -22,13 +23,11 @@ public class Ingredient {
         return true;
     }
 
-    public bool CanChangeVariables(Ingredient ingredient) { return ingredient != null && ingredient.CanGetItem(); }
-    public bool CanChangeVariables() { return this != null && CanGetItem(); }
-    bool CanGetItem() { return IsAllOff(); }
+    public bool CanChangeVariables(Ingredient ingredient) { return ingredient != null && ingredient.IsAllOff(); }
+    public bool CanChangeVariables() { return this != null && IsAllOff(); }
 
     public bool IsAllOff() {
-        for (int i = 0; i < states.Length; i++)
-            if (states[i] == true) return false;
+        foreach (bool state in states) if (state) return false;
         return true;
     }
 
@@ -48,23 +47,19 @@ public class Ingredient {
         }
         return states[index];
     }
-    public bool GetAnyState() {
-        for (int i = 0; i < states.Length; i++) {
-            if (states[i]) return true;
-        }
+    public bool GetActiveState() {
+        for (int i = 0; i < states.Length; i++) { if (states[i]) return true; }
         return false;
     }
-    public int GetAnyStateIndex() {
-        for (int i = 0; i < states.Length; i++) {
-            if (states[i]) return i;
-        }
+    public int GetActiveStateIndex() {
+        for (int i = 0; i < states.Length; i++) { if (states[i]) return i; }
         return -1;
     }
 
     // setters
     public bool SetState<T>(T index, bool inputBool) where T : Enum { states.At(index) = inputBool; return true; }
     public bool SetState(int index, bool inputBool) {
-        if (index < 0 || index > states.Length) { Debug.Log("index is out of range"); return false; }
+        if (index < 0 || index >= states.Length) { Debug.Log("index is out of range"); return false; }
         states[index] = inputBool; return true;
     }
 

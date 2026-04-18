@@ -1,23 +1,16 @@
 using UnityEngine;
 
 public class FizzyDrinkManager : Name {
-    FizzyDrinkIngredients costType;
+    public FizzyDrinkManager(Drink drink) : base(drink) { }
 
+    // TODO: refactor?
     public override string SetName(Drink drink) {
-        Ingredient soda = drink.ingredients.At(FizzyDrinkIngredients.Soda);
-        Ingredient syrup = drink.ingredients.At(FizzyDrinkIngredients.Syrup);
-        Ingredient fruit = drink.ingredients.At(FizzyDrinkIngredients.Fruit);
-
-        int sodaType = soda.GetAnyStateIndex();
-        int syrupType = syrup.GetAnyStateIndex();
-        int fruitType = fruit.GetAnyStateIndex();
-
-        SetCostType(sodaType, syrupType, fruitType);
-        return FinalDrinkLogic(sodaType, syrupType, fruitType);
+        SetIngredientTypes(drink);
+        return FinalDrinkLogic();
     }
 
     public override float SetCost() {
-        float cost = costType switch {
+        float cost = GetCostType<FizzyDrinkIngredients>() switch {
             FizzyDrinkIngredients.Soda => 3,
             FizzyDrinkIngredients.Syrup => 4,
             FizzyDrinkIngredients.Fruit => 5,
@@ -27,23 +20,32 @@ public class FizzyDrinkManager : Name {
     }
 
     // helper
-    string FinalDrinkLogic(int sodaType, int syrupType, int fruitType) {
-        string finalDrink = "";
+    protected override void SetIngredientTypes(Drink drink) {
+        if (types == null) types = new int[drink.ingredients.Length];
 
-        // TODO: refactor
-        if (sodaType == (int)SodaType.Soda) finalDrink = "Soda";
-        if (syrupType >= 0 && syrupType < (int)SyrupType.Count) finalDrink = ((SyrupType)syrupType).ToString() + " " + finalDrink;
-        if (fruitType >= 0 && fruitType < (int)FruitType.Count) finalDrink += " with " + ((FruitType)fruitType).ToString();
+        int sodaType = drink.ingredients.At(FizzyDrinkIngredients.Soda).GetActiveStateIndex();
+        int syrupType = drink.ingredients.At(FizzyDrinkIngredients.Syrup).GetActiveStateIndex();
+        int fruitType = drink.ingredients.At(FizzyDrinkIngredients.Fruit).GetActiveStateIndex();
 
-        if (finalDrink.StartsWith(" ")) finalDrink = finalDrink.Substring(1);
-
-        return finalDrink;
+        types.At(FizzyDrinkIngredients.Soda) = sodaType;
+        types.At(FizzyDrinkIngredients.Syrup) = syrupType;
+        types.At(FizzyDrinkIngredients.Fruit) = fruitType;
     }
 
-    void SetCostType(int sodaType, int syrupType, int fruitType) {
-        if (sodaType != -1) costType = FizzyDrinkIngredients.Soda;
-        if (syrupType != -1) costType = FizzyDrinkIngredients.Syrup;
-        if (fruitType != -1) costType = FizzyDrinkIngredients.Fruit;
+    // TODO: refactor
+    protected override string FinalDrinkLogic() {
+        string finalDrink = "";
+
+        if (InRange(types.At(FizzyDrinkIngredients.Soda), SodaType.Count)) finalDrink = "Soda";
+
+        if (InRange(types.At(FizzyDrinkIngredients.Syrup), SyrupType.Count))
+            finalDrink = ((SyrupType)types.At(FizzyDrinkIngredients.Syrup)).ToString() + " " + finalDrink;
+
+        if (InRange(types.At(FizzyDrinkIngredients.Fruit), FruitType.Count))
+            finalDrink += " with " + ((FruitType)types.At(FizzyDrinkIngredients.Fruit)).ToString();
+
+        if (finalDrink.StartsWith(" ")) finalDrink = finalDrink.Substring(1);
+        return finalDrink;
     }
 
 }

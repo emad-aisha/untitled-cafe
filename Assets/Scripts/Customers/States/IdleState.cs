@@ -17,11 +17,11 @@ public class IdleState : State {
     // setters
     void SetRandomizedDrink(ref CustomerInformation info) {
         DrinkType drinkChosen = (DrinkType)Random.Range(0, (int)DrinkType.Count);
-
-        FizzyDrinkManager fizzyDrinkManager = new();
-        CoffeeManager coffeeManager = new();
-
         Drink drink = info.GetDrink(drinkChosen);
+
+        FizzyDrinkManager fizzyDrinkManager = new(drink);
+        CoffeeManager coffeeManager = new(drink);
+
         switch (drinkChosen) {
             case DrinkType.FizzyDrink: drink.RandomizeDrink(); break;
             case DrinkType.Coffee: drink.RandomizeDrink(); break;

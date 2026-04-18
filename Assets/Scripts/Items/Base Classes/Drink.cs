@@ -5,7 +5,7 @@ public enum Priorities { First, Second, Third };
 public abstract class Drink : MonoBehaviour {
     [Header("Base Class Variables")]
     [HideInInspector] public DrinkType drinkType;
-    [HideInInspector] public Ingredient[] ingredients;
+    public Ingredient[] ingredients;
 
     protected Name nameManager;
     public string drinkName;
@@ -42,14 +42,14 @@ public abstract class Drink : MonoBehaviour {
 
     protected void SetMemberVariables(DrinkType type) {
         drinkType = type;
-        SetNameManager();
         SetIngredients();
+        SetNameManager();
         SetDrinkInfo("", 0);
     }
     private void SetNameManager() {
         nameManager = drinkType switch {
-            DrinkType.FizzyDrink => new FizzyDrinkManager(),
-            DrinkType.Coffee => new CoffeeManager(),
+            DrinkType.FizzyDrink => new FizzyDrinkManager(this),
+            DrinkType.Coffee => new CoffeeManager(this),
             _ => null
         };
         if (nameManager == null) Debug.Log("No Name Manager Set");

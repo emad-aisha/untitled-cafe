@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+// TODO: change drink types (either ingredient.type or smth else)
 public enum EspressoType { Decaf, Espresso, Count };
 [Serializable]
 public class Espresso {

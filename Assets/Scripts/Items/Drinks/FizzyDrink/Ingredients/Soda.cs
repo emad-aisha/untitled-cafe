@@ -8,11 +8,8 @@ public class Soda {
 
     [SerializeField] bool hasSoda;
 
-
-    // TODO:enum stuff here too
     public void Set() {
         ing = new Ingredient((int)SodaType.Count, Priorities.First);
-
         ing.SetState(SodaType.Soda, hasSoda);
     }
 
