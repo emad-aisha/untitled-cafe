@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 public enum CustomerState { Null = -1, Idle, Ordering, Waiting, Eating, Leaving, Count };
-public class Customer : MonoBehaviour, IInteractable {
+public class Customer : MonoBehaviour {
     CustomerInformation info;
 
     [Header("States")]
@@ -14,19 +14,6 @@ public class Customer : MonoBehaviour, IInteractable {
         CustomerManager.instance.numberOfCustomers++;
         info = GetComponent<CustomerInformation>();
         SetStates();
-    }
-
-    void Update() { states.At(info.currentState).UpdateState(); }
-
-
-    public float Interact(Drink drink) {
-        switch (info.currentState) {
-            case CustomerState.Ordering: info.CanOrder(); return 0;
-            case CustomerState.Waiting:
-                if (!info.stopWaiting) { info.StopWaiting(drink); return info.GetActiveDrink().price + info.tip; }
-                break;
-        }
-        return 0;
     }
 
 

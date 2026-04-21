@@ -32,38 +32,7 @@ public class CustomerInformation : MonoBehaviour {
     public GameObject customer;
     public bool isDebugging;
     public Seating personalSeat;
-    public Drink[] drinks;
+    //public Drink[] drinks;
     public CustomerState currentState;
 
-    void Start() {
-        // TODO: clean up
-        customer = gameObject;
-        if (leaveTime < discountTime) leaveTime = discountTime + 30;
-
-        currentState = CustomerState.Idle;
-        waitTime = GetRandomWaitTime();
-
-        drinks = new Drink[(int)DrinkType.Count];
-
-        drinks[(int)DrinkType.FizzyDrink] = drinkObject.GetComponent<FizzyDrink>();
-        drinks[(int)DrinkType.Coffee] = drinkObject.GetComponent<Coffee>();
-    }
-
-
-    // state helpers
-    public void CanOrder() { canOrder = true; }
-    public void StopWaiting(Drink drink) {
-        if (drink == null) { Debug.Log("no drink lol"); return; }
-
-        // TODO: implement wrong drink check
-        if (drink.drinkName == DrinkManager.instance.GetActiveDrink(drinks).drinkName) stopWaiting = true;
-    }
-
-    public Drink GetActiveDrink() { return DrinkManager.instance.GetActiveDrink(drinks); }
-    public Drink GetDrink(DrinkType drinkType) { return DrinkManager.instance.GetDrink(drinks, drinkType); }
-
-    public float GetRandomWaitTime() {
-        if (isDebugging) return 0.5f;
-        return UnityEngine.Random.Range(minTime, maxTime);
-    }
 }

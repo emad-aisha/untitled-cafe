@@ -9,26 +9,8 @@ public class IdleState : State {
             if (info.personalSeat == null) info.personalSeat = CustomerManager.instance.GetFreeTable(info.party);
             if (info.personalSeat == null) { info.currentState = CustomerState.Leaving; return; }
 
-            SetRandomizedDrink(ref info);
             info.currentState = CustomerState.Ordering;
         }
     }
 
-    // setters
-    void SetRandomizedDrink(ref CustomerInformation info) {
-        DrinkType drinkChosen = (DrinkType)Random.Range(0, (int)DrinkType.Count);
-        Drink drink = info.GetDrink(drinkChosen);
-
-        FizzyDrinkManager fizzyDrinkManager = new(drink);
-        CoffeeManager coffeeManager = new(drink);
-
-        switch (drinkChosen) {
-            case DrinkType.FizzyDrink: drink.RandomizeDrink(); break;
-            case DrinkType.Coffee: drink.RandomizeDrink(); break;
-            default: Debug.Log("Didn't Randomize"); break;
-        }
-
-        if (info.isDebugging) Debug.Log(drink.drinkName);
-        MenuManager.instance.SetCustomerOrder("Ready");
-    }
 }

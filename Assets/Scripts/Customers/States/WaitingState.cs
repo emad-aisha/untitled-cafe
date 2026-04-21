@@ -6,9 +6,6 @@ public class WaitingState : State {
     public override void UpdateState() {
         if (info.stopWaiting) {
             // TODO: finish this
-            //GameManager.instance.playerMoney;
-            Drink drink = info.GetActiveDrink();
-            float tip = GetTip(drink);
 
             info.currentState = CustomerState.Eating;
         }
@@ -25,26 +22,5 @@ public class WaitingState : State {
     }
 
 
-    float GetTip(Drink drink) {
-        float finalTip = 0;
-
-        if (internalTimer > info.leaveTime) {
-            Debug.Log("left");
-            return finalTip;
-        }
-        else if (internalTimer > info.discountTime) {
-            // TODO: make negative
-            Debug.Log("discounted");
-
-            return finalTip;
-        }
-        else {
-            // TODO: set this up
-            Debug.Log("regular tip");
-            finalTip = (float)drink.price / internalTimer;
-
-            return finalTip;
-        }
-    }
 
 }
