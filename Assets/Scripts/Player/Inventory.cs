@@ -3,7 +3,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
     [SerializeField] Drink[] drinks;
 
-    int currPriority = 1;
+    int currPriority = 0;
 
     public void Interact(Collider collider) {
         BaseIngredient ingredient = collider.GetComponent<BaseIngredient>();

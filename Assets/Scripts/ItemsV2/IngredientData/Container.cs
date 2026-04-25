@@ -1,8 +1,4 @@
-using System;
 using UnityEngine;
-// TODO: sperate
-// TODO: organize
-// TODO: rename have of this kaka
 
 // fizzy, coffee, etc
 public class Container {
@@ -49,28 +45,4 @@ public class Container {
     }
 
     public ref Data[] GetIngredient() { return ref ingredient; }
-}
-
-// syrup, fruit, etc
-public enum Priority { First = 1, Second = 2, Third = 3 };
-public class Data {
-    public int priority;
-    public string name;
-    public Ingredient[] type;
-
-    public Data(string _name = "null", int _priority = -1) {
-        name = _name;
-        priority = _priority;
-    }
-}
-
-// lemon, soda, water
-public class Ingredient {
-    public string name;
-    public bool value;
-
-    public Ingredient(string _name = "null", bool _value = false) {
-        name = _name;
-        value = _value;
-    }
 }
