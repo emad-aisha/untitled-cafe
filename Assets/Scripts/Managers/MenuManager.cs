@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour {
     [SerializeField] TMP_Text customerPrice;
 
 
-    void Start() { if (instance == null) instance = this; }
+    void Awake() { if (instance == null) instance = this; }
 
     public void SetInteractionTypes(string typeName, string _lastInteracted) {
         SetBaseType(typeName);

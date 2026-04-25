@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+[Serializable]
 public class FizzyDrinkIngredient : BaseIngredient {
     [Serializable]
     struct Soda {
@@ -26,11 +27,7 @@ public class FizzyDrinkIngredient : BaseIngredient {
     Ingredient[] syrup;
     Ingredient[] fruit;
 
-    void Start() {
-        SetIngredients();
-        baseIngredient = new Container("FizzyDrink");
-        baseIngredient.ingredient = data;
-    }
+    void Awake() { SetMemberVariables("FizzyDrink"); }
 
     // setters 
     protected override void SetIngredients() {

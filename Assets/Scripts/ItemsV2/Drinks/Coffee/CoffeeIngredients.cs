@@ -26,11 +26,7 @@ public class CoffeeIngredients : BaseIngredient {
     Ingredient[] liquid;
     Ingredient[] extras;
 
-    void Start() {
-        SetIngredients();
-        baseIngredient = new Container("Coffee");
-        baseIngredient.ingredient = data;
-    }
+    void Start() { SetMemberVariables("Coffee"); }
 
     // setters
     protected override void SetIngredients() {
