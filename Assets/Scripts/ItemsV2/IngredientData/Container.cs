@@ -1,11 +1,13 @@
 using UnityEngine;
+// TODO: organize
 
 // fizzy, coffee, etc
+// TODO: do i need this????
 public class Container {
     public static int end = -1;
 
     public string name;
-    public Data[] ingredient;
+    public IngredientType[] types;
 
     public Container(string _name = "null") {
         end++;
@@ -13,24 +15,26 @@ public class Container {
     }
 
     public bool IsActive() {
-        for (int i = 0; i < ingredient.Length; i++) {
-            for (int j = 0; j < ingredient[i].type.Length; j++) {
-                if (ingredient[i].type[j].value) return true;
+        for (int i = 0; i < types.Length; i++) {
+            for (int j = 0; j < types[i].ingredients.Length; j++) {
+                if (types[i].ingredients[j].value) return true;
             }
         }
         return false;
     }
 
     public ref Ingredient GetActiveIngredient(int ingredientType) {
-        for (int j = 0; j < ingredient[ingredientType].type.Length; j++) {
-            if (ingredient[ingredientType].type[j].value) return ref ingredient[ingredientType].type[j];
+        for (int j = 0; j < types[ingredientType].ingredients.Length; j++) {
+            if (types[ingredientType].ingredients[j].value)
+                return ref types[ingredientType].ingredients[j];
         }
         return ref ArrayExtension.nullIng;
     }
 
     public ref Ingredient GetActiveIngredient(string ingredientType) {
-        for (int i = 0; i < ingredient.Find(ingredientType).Length; i++) {
-            if (ingredient.Find(ingredientType)[i].value) return ref ingredient.Find(ingredientType)[i];
+        for (int i = 0; i < types.Find(ingredientType).Length; i++) {
+            if (types.Find(ingredientType)[i].value)
+                return ref types.Find(ingredientType)[i];
         }
         return ref ArrayExtension.nullIng;
     }
@@ -44,5 +48,5 @@ public class Container {
         return drinkType;
     }
 
-    public ref Data[] GetIngredient() { return ref ingredient; }
+    public ref IngredientType[] GetTypes() { return ref types; }
 }

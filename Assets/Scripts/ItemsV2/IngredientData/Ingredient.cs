@@ -1,6 +1,4 @@
 using UnityEngine;
-// TODO: organize
-// TODO: rename have of this kaka
 
 // lemon, soda, water
 public class Ingredient {

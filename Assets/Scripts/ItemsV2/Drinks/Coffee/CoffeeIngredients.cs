@@ -31,7 +31,7 @@ public class CoffeeIngredients : BaseIngredient {
 
     // setters
     protected override void SetIngredients() {
-        data = new Data[3];
+        data = new IngredientType[3];
 
         SetEspresso();
         SetLiquid();

@@ -26,12 +26,12 @@ public abstract class Drink : MonoBehaviour {
         if (drinkData.GetActiveIngredient(priority).name == otherDrinkData.GetActiveIngredient(priority).name) return;
         if (otherDrinkData.GetActiveIngredient(priority) == ArrayExtension.nullIng) return;
 
-        drinkData.ingredient[priority] = otherDrinkData.ingredient[priority];
+        drinkData.types[priority] = otherDrinkData.types[priority];
         MenuManager.instance.SetLastInteracted(drinkData.GetActiveIngredient(priority).name);
         priority++;
     }
 
     // getters
-    public ref Data[] GetIngredients() { return ref drinkData.GetIngredient(); }
+    public ref IngredientType[] GetTypes() { return ref drinkData.GetTypes(); }
 
 }

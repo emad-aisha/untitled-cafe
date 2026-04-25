@@ -165,7 +165,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 578059056090196563}
-  - component: {fileID: 2875243724316941797}
+  - component: {fileID: 5926890907770093156}
+  - component: {fileID: 8541682282154371736}
   m_Layer: 0
   m_Name: FizzyDrink
   m_TagString: Untagged
@@ -188,7 +189,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1493931422058053139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2875243724316941797
+--- !u!114 &5926890907770093156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,21 +198,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 456850913540389182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e4ad5949554a74b824ef036323024b, type: 3}
+  m_Script: {fileID: 11500000, guid: c85a964980377d14e8e163bd2284341f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkType: 0
-  drinkName: 
+  name: 
   price: 0
-  soda:
+  ingredients: {fileID: 8541682282154371736}
+--- !u!114 &8541682282154371736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456850913540389182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7abdb17a0831b4144b5af5bdf9e88902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sodaInit:
     hasSoda: 0
-  syrup:
+  syrupInit:
     hasStrawberry: 0
-    hasLemon: 0
     hasOrange: 0
-  fruit:
-    hasLime: 0
     hasLemon: 0
+  fruitInit:
+    hasLemon: 0
+    hasLime: 0
 --- !u!1 &1050279954250507340
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,10 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drinks:
-  - {fileID: 2875243724316941797}
-  - {fileID: 3840939229801779399}
-  currPriority: 0
-  currPrice: 0
+  - {fileID: 5926890907770093156}
+  - {fileID: 8270485174899091856}
 --- !u!143 &1549749218890152255
 CharacterController:
   m_ObjectHideFlags: 0
@@ -453,7 +464,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4269344718467885136}
-  - component: {fileID: 3840939229801779399}
+  - component: {fileID: 8270485174899091856}
+  - component: {fileID: 4496026699760385736}
   m_Layer: 0
   m_Name: Coffee
   m_TagString: Untagged
@@ -476,7 +488,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1493931422058053139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3840939229801779399
+--- !u!114 &8270485174899091856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -485,18 +497,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 6378585494797574430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
+  m_Script: {fileID: 11500000, guid: bde21a00209e44b4bbef25852960e783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkType: 0
-  drinkName: 
+  name: 
   price: 0
-  espresso:
+  ingredients: {fileID: 4496026699760385736}
+--- !u!114 &4496026699760385736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378585494797574430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54bc38418c0e7642a092dfdd839fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  espressoInit:
     hasDecaf: 0
     hasEspresso: 0
-  liquid:
+  liquidInit:
     hasWater: 0
     hasMilk: 0
-  extras:
+  extrasInit:
     hasMilkFoam: 0
     hasChocolate: 0
