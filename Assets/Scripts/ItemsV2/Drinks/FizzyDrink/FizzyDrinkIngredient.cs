@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+// TODO: organize
 [Serializable]
 public class FizzyDrinkIngredient : BaseIngredient {
     [Serializable]

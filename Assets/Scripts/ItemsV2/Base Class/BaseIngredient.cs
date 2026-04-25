@@ -3,7 +3,7 @@ using UnityEngine;
 public class BaseIngredient : MonoBehaviour, IInteractable {
     public Container baseIngredient;
     public Data[] data;
-    int ingIndex = 0;
+    protected int ingIndex = 0;
 
     protected virtual void SetMemberVariables(string name) {
         SetIngredients();

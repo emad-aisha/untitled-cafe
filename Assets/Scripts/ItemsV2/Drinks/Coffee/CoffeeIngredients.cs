@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class CoffeeIngredients : BaseIngredient {
     [Serializable]
@@ -26,7 +27,7 @@ public class CoffeeIngredients : BaseIngredient {
     Ingredient[] liquid;
     Ingredient[] extras;
 
-    void Start() { SetMemberVariables("Coffee"); }
+    void Awake() { SetMemberVariables("Coffee"); }
 
     // setters
     protected override void SetIngredients() {

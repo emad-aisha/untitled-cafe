@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
-//TODO: sperate
+// TODO: sperate
+// TODO: organize
+// TODO: rename have of this kaka
 
 // fizzy, coffee, etc
 public class Container {
