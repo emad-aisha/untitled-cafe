@@ -49,6 +49,18 @@ public class Drink : MonoBehaviour {
     }
 
 
+    public bool IsActive() {
+        KeyValuePair<string, bool> entry = new();
+
+        for (int a = 0; a < internalData.Count; a++) {
+            for (int i = 0; i < ingredients[a.ToString()].Count; i++) {
+                entry = ingredients[a.ToString()].ElementAt(i);
+                if (entry.Value) return true;
+            }
+        }
+        return false;
+    }
+
     // misc
     // print
     void PrintActiveIngredients() {

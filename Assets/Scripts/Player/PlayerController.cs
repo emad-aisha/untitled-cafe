@@ -14,14 +14,14 @@ public class PlayerController : MonoBehaviour {
 
     // Other Classes
     Movement movement;
-    Inventory inventory;
+    Interaction inventory;
     CameraController cameraController;
 
     float interactCooldownTimer;
 
     void Start() {
         movement = GetComponent<Movement>();
-        inventory = GetComponent<Inventory>();
+        inventory = GetComponent<Interaction>();
         interactCooldownTimer = interactCooldown;
         cameraController = GameManager.instance.mainCameraController;
     }
