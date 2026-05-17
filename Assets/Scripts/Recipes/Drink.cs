@@ -12,8 +12,6 @@ public class Drink : MonoBehaviour {
 
     void Start() {
         InitializeDictionary();
-
-        PrintActiveIngredients();
     }
 
     // init
