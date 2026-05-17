@@ -1,22 +1,24 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 using Ingredients = System.Collections.Generic.Dictionary<string, bool>;
-using System.Linq;
 
 public class Drink : MonoBehaviour {
     public IngredientsData ingredientData; // for initialization
     public List<ListWrapper> internalData; // for initialization
-    public int type; // for initialization
+    public int type = -1; // for initialization (-1 = All)
 
     public Dictionary<string, Ingredients> ingredients; // able to use numbers or name
 
     void Start() {
         InitializeDictionary();
 
+        PrintActiveIngredients();
     }
 
     // init
     public void InitializeInternalData() {
+        if (ingredientData == null) return;
         internalData = new();
 
         for (int typeIndex = 0; typeIndex < ingredientData.Data.Count; typeIndex++) {
@@ -30,6 +32,7 @@ public class Drink : MonoBehaviour {
     }
 
     public void InitializeDictionary() {
+        if (internalData == null) return;
         ingredients = new();
 
         for (int typeIndex = 0; typeIndex < internalData.Count; typeIndex++) {

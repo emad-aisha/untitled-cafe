@@ -19,6 +19,19 @@ public class DrinkEditor : Editor {
         EditorGUILayout.PropertyField(serializedObject.FindProperty("ingredientData"));
         EditorGUILayout.Space();
 
+        if (drink.ingredientData == null) {
+            serializedObject.ApplyModifiedProperties();
+
+            // if set to real object, init
+            if (drink.ingredientData != null) {
+                drink.InitializeInternalData();
+                drink.InitializeDictionary();
+                serializedObject.ApplyModifiedProperties();
+            }
+            return;
+        }
+
+
         SetValue<FizzyDrink.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientsData.IngredientType.FizzyDrink);
         SetValue<Coffee.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientsData.IngredientType.Coffee);
 

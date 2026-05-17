@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397736bfc91ed5f44b9e56d647cb83f9, type: 3}
   m_Name: Coffee Ingredients
   m_EditorClassIdentifier: 
+  type: 1
   data:
   - name: Espresso
     ingredients:
