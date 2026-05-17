@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     static public GameManager instance;
 
-    // TODO: sort these (either into seperate managers or classes)
+    // TODO: sort these? (either into seperate managers or classes)
     [Header("Player")]
     public GameObject player;
     public CharacterController playerController;

@@ -5,7 +5,6 @@ public class WaitingState : State {
 
     public override void UpdateState() {
         if (info.stopWaiting) {
-            // TODO: finish this
             //GameManager.instance.playerMoney;
 
             info.currentState = CustomerState.Eating;

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// TODO: see if needed
 public class CustomerManager : MonoBehaviour {
     static public CustomerManager instance;
 

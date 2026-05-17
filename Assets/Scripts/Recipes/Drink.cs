@@ -4,28 +4,15 @@ using Ingredients = System.Collections.Generic.Dictionary<string, bool>;
 using System.Linq;
 
 public class Drink : MonoBehaviour {
-    public enum TYPE { FizzyDrink, Coffee }
-    public TYPE ingType;
+    public IngredientsData ingredientData; // for initialization
+    public List<ListWrapper> internalData; // for initialization
+    public int type; // for initialization
 
-    // children need a enum
-    [SerializeField] public IngredientsData ingredientData;
-    [SerializeField] public List<ListWrapper> internalData;
-
-    public Dictionary<string, Ingredients> ingredients; // use "0" and stuff
+    public Dictionary<string, Ingredients> ingredients; // able to use numbers or name
 
     void Start() {
-        // TODO: fix lol
         InitializeDictionary();
-        KeyValuePair<string, bool> entry = new();
 
-        // should work for any type
-        for (int a = 0; a < internalData.Count; a++) {
-            for (int i = 0; i < ingredients[a.ToString()].Count; i++) {
-                entry = ingredients[a.ToString()].ElementAt(i);
-                if (!entry.Value) continue;
-                Debug.Log(entry.Key + " " + entry.Value);
-            }
-        }
     }
 
     // init
@@ -60,4 +47,19 @@ public class Drink : MonoBehaviour {
         }
     }
 
+
+    // misc
+    // print
+    void PrintActiveIngredients() {
+        KeyValuePair<string, bool> entry = new();
+
+        for (int a = 0; a < internalData.Count; a++) {
+            for (int i = 0; i < ingredients[a.ToString()].Count; i++) {
+                entry = ingredients[a.ToString()].ElementAt(i);
+                if (!entry.Value) continue;
+
+                Debug.Log(ingredientData.Type.ToString() + ": " + entry.Key + " is " + entry.Value);
+            }
+        }
+    }
 }
