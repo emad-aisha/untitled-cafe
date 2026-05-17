@@ -30,7 +30,7 @@ public class DrinkEditor : Editor {
             }
             return;
         }
-
+        Undo.RecordObject(drink, "internalData"); // for prefab support
 
         SetValue<FizzyDrink.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientsData.IngredientType.FizzyDrink);
         SetValue<Coffee.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientsData.IngredientType.Coffee);

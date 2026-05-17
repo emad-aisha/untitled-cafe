@@ -34,8 +34,8 @@ public class Interaction : MonoBehaviour {
     }
 
     bool OtherDrinksActive() {
-        foreach (Drink dirnk in drinks) {
-            if (dirnk.IsActive()) return true;
+        foreach (Drink drink in drinks) {
+            if (drink.IsActive()) return true;
         }
         return false;
     }
