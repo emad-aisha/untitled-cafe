@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class ContainerData {
+    public string name;
+    public List<IngredientData> ingredients;
+}
+
+
+[Serializable]
+public class IngredientData {
+    public string name;
+    public bool value;
+}
+
+
+
+[Serializable]
+public class test {
+    [SerializeField] public List<bool> data = new();
+}
