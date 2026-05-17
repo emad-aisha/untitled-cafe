@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class FizzyDrink : Drink {
+public class Coffee : Drink {
     public enum Ingredient {
-        Soda = 0, Syrup = 1, Fruit = 2,
+        Espresso = 0, Liquid = 1, Extra = 2,
         All = -2, None = -1
     }
     public Ingredient type;

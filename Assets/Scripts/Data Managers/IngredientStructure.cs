@@ -15,9 +15,7 @@ public class IngredientData {
     public bool value;
 }
 
-
-
 [Serializable]
-public class test {
+public class ListWrapper {
     [SerializeField] public List<bool> data = new();
 }

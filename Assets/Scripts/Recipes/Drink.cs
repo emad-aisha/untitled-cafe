@@ -4,42 +4,36 @@ using Ingredients = System.Collections.Generic.Dictionary<string, bool>;
 using System.Linq;
 
 public class Drink : MonoBehaviour {
+    public enum TYPE { FizzyDrink, Coffee }
+    public TYPE ingType;
+
     // children need a enum
     [SerializeField] public IngredientsData ingredientData;
-    [SerializeField] public List<test> internalData;
+    [SerializeField] public List<ListWrapper> internalData;
 
     public Dictionary<string, Ingredients> ingredients; // use "0" and stuff
 
     void Start() {
+        // TODO: fix lol
         InitializeDictionary();
+        KeyValuePair<string, bool> entry = new();
 
-        KeyValuePair<string, bool> entry = ingredients["Soda"].ElementAt(0);
-        Debug.Log(entry.Key + " " + entry.Value);
-
-        for (int i = 0; i < 3; i++) {
-            entry = ingredients["Syrup"].ElementAt(i);
-            if (!entry.Value) continue;
-            Debug.Log(entry.Key + " " + entry.Value);
+        // should work for any type
+        for (int a = 0; a < internalData.Count; a++) {
+            for (int i = 0; i < ingredients[a.ToString()].Count; i++) {
+                entry = ingredients[a.ToString()].ElementAt(i);
+                if (!entry.Value) continue;
+                Debug.Log(entry.Key + " " + entry.Value);
+            }
         }
-
-        for (int i = 0; i < 2; i++) {
-            entry = ingredients["Fruit"].ElementAt(i);
-            if (!entry.Value) continue;
-            Debug.Log(entry.Key + " " + entry.Value);
-        }
-    }
-
-    public void Initialize() {
-        InitializeDictionary();
-        InitializeInternalData();
     }
 
     // init
-    void InitializeInternalData() {
+    public void InitializeInternalData() {
         internalData = new();
 
         for (int typeIndex = 0; typeIndex < ingredientData.Data.Count; typeIndex++) {
-            test data = new();
+            ListWrapper data = new();
 
             for (int index = 0; index < ingredientData.Data[typeIndex].ingredients.Count; index++) {
                 data.data.Add(false);
@@ -48,7 +42,7 @@ public class Drink : MonoBehaviour {
         }
     }
 
-    void InitializeDictionary() {
+    public void InitializeDictionary() {
         ingredients = new();
 
         for (int typeIndex = 0; typeIndex < internalData.Count; typeIndex++) {
