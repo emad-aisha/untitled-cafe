@@ -350,6 +350,7 @@ MonoBehaviour:
   - data: 00
   - data: 000000
   - data: 0000
+  - data: 0000
   type: -1
 --- !u!1 &5791811003536701537
 GameObject:

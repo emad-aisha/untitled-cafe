@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397736bfc91ed5f44b9e56d647cb83f9, type: 3}
   m_Name: Fizzy Drink Ingredients
   m_EditorClassIdentifier: 
+  type: 0
   data:
   - name: Soda
-    priority: 0
     ingredients:
     - name: Soda
       value: 0
   - name: Syrup
-    priority: 1
     ingredients:
     - name: Strawberry
       value: 0
@@ -28,7 +27,12 @@ MonoBehaviour:
     - name: Orange
       value: 0
   - name: Fruit
-    priority: 2
+    ingredients:
+    - name: Strawberry
+      value: 0
+    - name: Orange Slice
+      value: 0
+  - name: Citrus
     ingredients:
     - name: Lime
       value: 0

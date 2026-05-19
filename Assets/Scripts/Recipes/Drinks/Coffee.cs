@@ -6,12 +6,11 @@ public class Coffee : Drink {
         All = -1, None = -2
     }
 
+    // dont use ingredients with numbers here cuz it can prob change?
+    public override void Interact(Drink otherDrink, ref int priority) {
+        Debug.Log("coffee");
 
-    //override protected bool SetIngredient(ref Drink otherDrink, ref int priority) {
-    //    if (IsTypeActive(priority) || (Ingredient)priority != Ingredient.Extra) return false;
-    //
-    //      ingredients[priority.ToString()] = otherDrink.ingredients[priority.ToString()];
-    //     if ((Ingredient)priority != Ingredient.Extra) priority++;
-    //    return true;
-    //}
+
+
+    }
 }

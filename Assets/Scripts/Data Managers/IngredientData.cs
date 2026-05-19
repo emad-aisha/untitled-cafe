@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
+
+public enum IngredientType { FizzyDrink = 0, Coffee = 1 };
+
 
 [CreateAssetMenu(fileName = "Data", menuName = "Data/Ingredients")]
 public class IngredientsData : ScriptableObject {
-    public enum IngredientType { FizzyDrink = 0, Coffee = 1 };
 
     [SerializeField] IngredientType type;
     [SerializeField] List<ContainerData> data;

@@ -19,9 +19,9 @@ public class InteractionManager : MonoBehaviour {
         return ref drinks[index];
     }
 
-    public ref Drink GetDrinkType<Type>(Drink[] drinks) {
+    public ref Drink GetDrinkType(Drink[] drinks, IngredientType ingredientType) {
         for (int i = 0; i < drinks.Length; i++) {
-            if (drinks[i] is Type) return ref drinks[i];
+            if (drinks[i].ingredientData.Type == ingredientType) return ref drinks[i];
         }
         throw new System.Exception("No Matching Drink Type");
     }

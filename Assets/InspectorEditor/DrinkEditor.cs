@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.Rendering;
 
 [CustomEditor(typeof(Drink), true)]
 public class DrinkEditor : Editor {
@@ -20,16 +19,16 @@ public class DrinkEditor : Editor {
         serializedObject.Update();
         var drink = (Drink)target;
 
+        EditorGUI.BeginChangeCheck();
         EditorGUILayout.PropertyField(serializedObject.FindProperty("ingredientData"));
         EditorGUILayout.Space();
 
-        //showDictionary = EditorGUILayout.Toggle("Show Dictionary?", showDictionary);
         if (Application.isPlaying) showDictionary = true;
 
         if (drink.ingredientData == null) {
             serializedObject.ApplyModifiedProperties();
 
-            // if set to real object, init
+            // if set to real object , init
             if (drink.ingredientData != null) {
                 drink.InitializeInternalData();
                 drink.InitializeDictionary();
@@ -37,10 +36,17 @@ public class DrinkEditor : Editor {
             }
             return;
         }
+
+        if (EditorGUI.EndChangeCheck()) {
+            drink.InitializeInternalData();
+            drink.InitializeDictionary();
+            serializedObject.ApplyModifiedProperties();
+            Repaint();
+        }
         Undo.RecordObject(drink, "internalData");
 
-        SetValue<FizzyDrink.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientsData.IngredientType.FizzyDrink);
-        SetValue<Coffee.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientsData.IngredientType.Coffee);
+        SetValue<FizzyDrink.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientType.FizzyDrink);
+        SetValue<Coffee.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientType.Coffee);
 
         if (!showDictionary) {
             DrawInternalData(ref drink);
@@ -72,9 +78,13 @@ public class DrinkEditor : Editor {
     }
 
 
-    void SetValue<IngredientType>(ref int value, IngredientsData.IngredientType drinkType, IngredientsData.IngredientType ingredientType)
-    where IngredientType : System.Enum {
-        if (drinkType == ingredientType) value = (int)(object)(IngredientType)EditorGUILayout.EnumPopup((IngredientType)(object)value);
+    void test(SerializedProperty proprty) {
+
+    }
+
+    void SetValue<NewIngredientType>(ref int value, IngredientType drinkType, IngredientType ingredientType)
+    where NewIngredientType : System.Enum {
+        if (drinkType == ingredientType) value = (int)(object)(NewIngredientType)EditorGUILayout.EnumPopup((NewIngredientType)(object)value);
     }
 
 }
