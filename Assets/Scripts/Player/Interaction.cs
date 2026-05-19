@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour {
     [SerializeField] Drink[] drinks;
-    private int currPriority;
-
+    [SerializeField] private int currPriority;
 
     public void Interact(Collider interactable) {
         Customer customer = interactable.GetComponent<Customer>();
@@ -18,25 +17,20 @@ public class Interaction : MonoBehaviour {
     }
 
     void DrinkSystem(Drink otherDrink) {
-        if (OtherDrinksActive())
-            if (otherDrink.ingredientData.Type != drinks[GetActiveDrinkIndex()].ingredientData.Type) return;
+        if (!InteractionManager.instance.CanInteract(drinks, otherDrink)) return;
+        Drink activeDrink;
+
+        if (InteractionManager.instance.GetActiveDrinkIndex(drinks) == -1) {
+            if (otherDrink is Coffee) activeDrink = InteractionManager.instance.GetDrinkType<Coffee>(drinks);
+            else if (otherDrink is FizzyDrink) activeDrink = InteractionManager.instance.GetDrinkType<FizzyDrink>(drinks);
+            else throw new System.Exception("No Matching Drink Type");
+        }
+        else activeDrink = InteractionManager.instance.GetActiveDrink(drinks);
+
+        activeDrink.Interact(otherDrink, ref currPriority);
+        InteractionManager.instance.GetDrinkType<FizzyDrink>(drinks) = activeDrink;
 
         Debug.Log("drink");
     }
 
-
-
-    int GetActiveDrinkIndex() {
-        for (int i = 0; i < drinks.Length; i++) {
-            if (drinks[i].IsActive()) return i;
-        }
-        return -1;
-    }
-
-    bool OtherDrinksActive() {
-        foreach (Drink drink in drinks) {
-            if (drink.IsActive()) return true;
-        }
-        return false;
-    }
 }

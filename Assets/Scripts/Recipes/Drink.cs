@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using Ingredients = System.Collections.Generic.Dictionary<string, bool>;
+using UnityEditor;
 
 public class Drink : MonoBehaviour {
     public IngredientsData ingredientData; // for initialization
@@ -12,6 +13,20 @@ public class Drink : MonoBehaviour {
 
     void Start() {
         InitializeDictionary();
+    }
+
+    virtual public void Interact(Drink otherDrink, ref int priority) {
+        SetIngredient(otherDrink, ref priority);
+    }
+
+    virtual protected bool SetIngredient(Drink otherDrink, ref int priority) {
+        if (IsOutOfBounds(priority)) return false;
+        if (IsTypeActive(priority)) return false;
+        // TODO: add another check here so I dont have to keep overriding
+
+        ingredients[priority.ToString()] = new(otherDrink.ingredients[priority.ToString()]);
+        priority++;
+        return true;
     }
 
     // init
@@ -48,7 +63,7 @@ public class Drink : MonoBehaviour {
         }
     }
 
-
+    // get active ingredient
     public bool IsActive() {
         KeyValuePair<string, bool> entry = new();
 
@@ -59,6 +74,24 @@ public class Drink : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public bool IsOutOfBounds(int ingredientType) {
+        if (ingredientType >= internalData.Count) { Debug.Log("priority out of bounds"); return true; }
+        return false;
+    }
+
+    public bool IsTypeActive(int ingredientType) {
+        KeyValuePair<string, bool> entry = new();
+        for (int i = 0; i < ingredients[ingredientType.ToString()].Count; i++) {
+            entry = ingredients[ingredientType.ToString()].ElementAt(i);
+            if (entry.Value) return true;
+        }
+        return false;
+    }
+
+    public int GetActiveType() {
+        return 0;
     }
 
     // misc

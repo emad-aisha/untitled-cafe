@@ -242,6 +242,7 @@ MonoBehaviour:
   drinks:
   - {fileID: 3891943853738363835}
   - {fileID: 6869292294854614161}
+  currPriority: 0
 --- !u!143 &1353016598734787388
 CharacterController:
   m_ObjectHideFlags: 0
