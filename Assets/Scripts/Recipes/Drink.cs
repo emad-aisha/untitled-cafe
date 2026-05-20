@@ -44,6 +44,20 @@ public class Drink : MonoBehaviour {
         return true;
     }
 
+    public bool IsFull(string key) {
+        bool result = true;
+
+        bool value = false;
+        for (int i = 0; i < ingredients[key].Count; i++) {
+            value = ingredients[key][i];
+            if (!value) result = false;
+        }
+
+        return result;
+    }
+
+    public bool Has(string name) { return IsTypeActive(name); }
+    public bool HasNo(string name) { return !IsTypeActive(name); }
 
     // checks
     public bool IsOutOfBounds(int ingredientType) {

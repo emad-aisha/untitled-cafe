@@ -5,27 +5,34 @@ public class FizzyDrink : Drink {
         Soda = 0, Syrup = 1, Fruit = 2, Citrus = 3,
         All = -1, None = -2
     }
+    bool finishedDrink = false;
 
-    // dont use ingredients with numbers here cuz it can prob change?
     public override void Interact(Drink otherDrink, ref int priority) {
-        if (!IsActive()) {
-            if (otherDrink.IsTypeActive("Soda") || otherDrink.IsTypeActive("Syrup")) SetIngredient(otherDrink); // set either
+        if (finishedDrink) {
+            Debug.Log("completed drink");
+            return;
         }
-        else if (IsTypeActive("Soda") && !IsTypeActive("Syrup")) SetIngredient(otherDrink, "Syrup"); // set syrup
-        else if (IsTypeActive("Syrup") && !IsTypeActive("Soda")) SetIngredient(otherDrink, "Soda"); // set soda
-        else if (IsTypeActive("Syrup") && IsTypeActive("Soda")) {
-            if (!IsTypeActive("Fruit") && !IsTypeActive("Citrus")) {
-                if (otherDrink.IsTypeActive("Fruit") || otherDrink.IsTypeActive("Citrus")) SetIngredient(otherDrink);
+
+        if (!IsActive()) {
+            if (otherDrink.Has("Soda") || otherDrink.Has("Syrup")) SetIngredient(otherDrink); // set either
+        }
+        else if (Has("Soda") && HasNo("Syrup")) SetIngredient(otherDrink, "Syrup"); // set syrup
+        else if (Has("Syrup") && HasNo("Soda")) SetIngredient(otherDrink, "Soda"); // set soda
+        else if (Has("Syrup") && Has("Soda") && (HasNo("Fruit") || HasNo("Citrus"))) {
+            if (HasNo("Fruit") && HasNo("Citrus")) {
+                if (otherDrink.Has("Fruit") || otherDrink.Has("Citrus")) SetIngredient(otherDrink);
             }
-            else if (IsTypeActive("Fruit") && !IsTypeActive("Citrus")) SetIngredient(otherDrink, "Citrus");
-            else if (IsTypeActive("Citrus") && !IsTypeActive("Fruit")) SetIngredient(otherDrink, "Fruit", true);
+            else if (Has("Fruit") && HasNo("Citrus")) SetIngredient(otherDrink, "Citrus");
+            else if (Has("Citrus") && HasNo("Fruit")) {
+                SetIngredient(otherDrink, "Fruit", true);
+                if (IsFull("Fruit")) finishedDrink = true;
+            }
         }
         else {
-            Debug.Log("completed drink");
-            PrintActiveIngredients();
-
-            Debug.Log("Soda" + IsTypeActive(0));
-            Debug.Log("Syrup" + IsTypeActive("Syrup"));
+            if (otherDrink.Has("Fruit")) {
+                SetIngredient(otherDrink, "Fruit", true);
+                if (IsFull("Fruit")) finishedDrink = true;
+            }
         }
 
     }

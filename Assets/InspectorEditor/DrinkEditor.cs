@@ -90,7 +90,7 @@ public class DrinkEditor : Editor {
     }
 
 
-    [MenuItem("CONTEXT/Drink/Refresh Data #]")]
+    [MenuItem("CONTEXT/Drink/Refresh Data")]
     public static void RefreshSOS() {
         AssetDatabase.Refresh();
     }
