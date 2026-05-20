@@ -24,6 +24,7 @@ public class DrinkEditor : Editor {
         EditorGUILayout.PropertyField(serializedObject.FindProperty("ingredientData"));
         EditorGUILayout.Space();
 
+        ShowDictionaryButton(ref showDictionary);
         if (Application.isPlaying) showDictionary = true;
 
         if (drink.ingredientData == null) {
@@ -58,6 +59,15 @@ public class DrinkEditor : Editor {
         }
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+
+    void ShowDictionaryButton(ref bool value) {
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Show Dictionary/debugger");
+        GUILayout.Space(50);
+        value = EditorGUILayout.Toggle(value);
+        GUILayout.EndHorizontal();
     }
 
     void DrawInternalData(ref Drink drink) {
