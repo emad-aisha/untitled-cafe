@@ -1,17 +1,15 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using Ingredients = System.Collections.Generic.Dictionary<string, bool>;
+using Ingredient = System.Collections.Generic.Dictionary<string, bool>;
 
 public class Drink : MonoBehaviour {
     [SerializeReference] public IngredientsData ingredientData; // for initialization
     public List<ListWrapper> internalData; // for initialization
     public int type = -1; // for initialization (-1 = All)
 
-    public Dictionary<string, Ingredients> ingredients; // able to use numbers or name
-    // TODO: make anotheer dictionary, so i can use ints to loop thru things instead of, element at
-    // or a string/int struct and a .at to use either or
-    // TODO: make a bool for drinks where order matters
+    //public Dictionary<string, Ingredient> ingredients; // able to use numbers or name
+    public IngredientsManager ingredients;
 
     void Start() {
         InitializeDictionary();
@@ -26,7 +24,7 @@ public class Drink : MonoBehaviour {
         if (IsTypeActive(priority)) return false;
         // TODO: add another check here so I dont have to keep overriding
 
-        ingredients[priority.ToString()] = new(otherDrink.ingredients[priority.ToString()]);
+        ingredients[priority] = otherDrink.ingredients[priority];
         priority++;
         return true;
     }
@@ -37,11 +35,11 @@ public class Drink : MonoBehaviour {
         if (prefferedType != "null" && !otherDrink.IsTypeActive(prefferedType)) return false; // check if active ingredient is prefferedType
 
         if (allowMultipleIngredients) {
-            string key = GetActiveIngredient(otherDrink.ingredients[index.ToString()]);
-            ingredients[index.ToString()][key] = otherDrink.ingredients[index.ToString()][key];
+            string key = GetActiveIngredient(otherDrink.ingredients[index]);
+            ingredients[index][key] = otherDrink.ingredients[index][key];
         }
         else {
-            ingredients[index.ToString()] = new(otherDrink.ingredients[index.ToString()]);
+            ingredients[index] = otherDrink.ingredients[index];
         }
         return true;
     }
@@ -57,43 +55,45 @@ public class Drink : MonoBehaviour {
 
     // is active
     public bool IsActive() {
-        KeyValuePair<string, bool> entry = new();
+        bool value = false;
 
         for (int type = 0; type < internalData.Count; type++) {
-            for (int i = 0; i < ingredients[type.ToString()].Count; i++) {
-                entry = ingredients[type.ToString()].ElementAt(i);
-                if (entry.Value) return true;
+            for (int i = 0; i < ingredients[type].Count; i++) {
+                value = ingredients[type][i];
+                if (value) return true;
             }
         }
         return false;
     }
 
     public bool IsTypeActive(int ingredientType) {
-        KeyValuePair<string, bool> entry = new();
-        for (int i = 0; i < ingredients[ingredientType.ToString()].Count; i++) {
-            entry = ingredients[ingredientType.ToString()].ElementAt(i);
-            if (entry.Value) return true;
+        bool value = false;
+        for (int i = 0; i < ingredients[ingredientType].Count; i++) {
+            value = ingredients[ingredientType][i];
+            if (value) return true;
         }
+
         return false;
     }
     public bool IsTypeActive(string ingredientType) {
-        KeyValuePair<string, bool> entry = new();
+        bool value = false;
         for (int i = 0; i < ingredients[ingredientType].Count; i++) {
-            entry = ingredients[ingredientType].ElementAt(i);
-            if (entry.Value) return true;
+            value = ingredients[ingredientType][i];
+            if (value) return true;
         }
+
         return false;
     }
 
 
     // get active
     public int GetActiveType() {
-        KeyValuePair<string, bool> entry = new();
-
+        bool value = false;
         for (int type = 0; type < internalData.Count; type++) {
-            for (int i = 0; i < ingredients[type.ToString()].Count; i++) {
-                entry = ingredients[type.ToString()].ElementAt(i);
-                if (entry.Value) return type;
+            for (int i = 0; i < ingredients[type].Count; i++) {
+                value = ingredients[type][i];
+
+                if (value) return type;
             }
         }
 
@@ -102,10 +102,8 @@ public class Drink : MonoBehaviour {
 
     public string GetActiveIngredient(Ingredients ingredients) {
         for (int i = 0; i < ingredients.Count; i++) {
-            KeyValuePair<string, bool> entry = ingredients.ElementAt(i);
-            if (entry.Value) return entry.Key;
+            if (ingredients[i]) return ingredients.At(i);
         }
-
         return "null";
     }
 
@@ -129,31 +127,35 @@ public class Drink : MonoBehaviour {
         if (internalData == null) return;
         ingredients = new();
 
-        for (int typeIndex = 0; typeIndex < internalData.Count; typeIndex++) {
-            string typeName = ingredientData.Data[typeIndex].name;
-            string typePriority = typeIndex.ToString();
+        for (int typeId = 0; typeId < internalData.Count; typeId++) {
+            string name = ingredientData.Data[typeId].name;
 
-            Ingredients entries = new();
-            for (int index = 0; index < internalData[typeIndex].data.Count; index++) {
-                string name = ingredientData.Data[typeIndex].ingredients[index].name;
-                entries.Add(name, internalData[typeIndex].data[index]);
+            Ingredients ingredient = new();
+            for (int ingredientId = 0; ingredientId < internalData[typeId].data.Count; ingredientId++) {
+                string ingredientName = ingredientData.Data[typeId].ingredients[ingredientId].name;
+                bool value = internalData[typeId].data[ingredientId];
+
+                ingredient.Add(ingredientName, value);
+                ingredient.Add(ingredientId, ingredientName);
             }
 
-            ingredients.Add(typeName, entries);
-            ingredients.Add(typePriority, entries);
+            ingredients.Add(typeId, name);
+            ingredients.Add(name, ingredient);
         }
+
     }
 
     // misc
     protected void PrintActiveIngredients() {
-        KeyValuePair<string, bool> entry = new();
-
+        string name = "";
+        bool value = false;
         for (int type = 0; type < internalData.Count; type++) {
-            for (int i = 0; i < ingredients[type.ToString()].Count; i++) {
-                entry = ingredients[type.ToString()].ElementAt(i);
-                if (!entry.Value) continue;
+            for (int i = 0; i < ingredients[type].Count; i++) {
+                name = ingredients[type].At(i);
+                value = ingredients[type][i];
+                if (!value) continue;
 
-                Debug.Log(ingredientData.Type.ToString() + ": " + entry.Key + " is " + entry.Value);
+                Debug.Log(ingredientData.Type.ToString() + ": " + name + " is " + value);
             }
         }
     }

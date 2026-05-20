@@ -15,6 +15,7 @@ public class DrinkEditor : Editor {
     }
 
 
+
     public override void OnInspectorGUI() {
         serializedObject.Update();
         var drink = (Drink)target;
@@ -36,6 +37,7 @@ public class DrinkEditor : Editor {
             }
             return;
         }
+
 
         if (EditorGUI.EndChangeCheck()) {
             drink.InitializeInternalData();
@@ -85,6 +87,12 @@ public class DrinkEditor : Editor {
     void SetValue<NewIngredientType>(ref int value, IngredientType drinkType, IngredientType ingredientType)
     where NewIngredientType : System.Enum {
         if (drinkType == ingredientType) value = (int)(object)(NewIngredientType)EditorGUILayout.EnumPopup((NewIngredientType)(object)value);
+    }
+
+
+    [MenuItem("CONTEXT/Drink/Refresh Data #]")]
+    public static void RefreshSOS() {
+        AssetDatabase.Refresh();
     }
 
 }

@@ -16,7 +16,7 @@ public class Customer : MonoBehaviour {
         SetStates();
     }
 
-    void Update() { states.At(info.currentState).UpdateState(); }
+    void Update() { }
 
 
     // setters

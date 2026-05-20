@@ -1,58 +1,55 @@
 using UnityEngine;
 using UnityEditor;
-using System.Linq;
-using System.Collections.Generic;
+
 
 static class Show {
     public static void All(ref Drink drink, bool value) {
         if (value == false) return;
 
-        // for loop (use entry to get type name)
         for (int i = 0; i < drink.internalData.Count; i++) {
-            KeyValuePair<string, Dictionary<string, bool>> entry = drink.ingredients.ElementAt(i * 2);
-
-            EditorGUILayout.LabelField(entry.Key, EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(drink.ingredients.At(i), EditorStyles.boldLabel);
             ShowValues(ref drink, i);
         }
     }
 
     public static void ShowValues(ref Drink drink, int section) {
         for (int index = 0; index < drink.internalData[section].data.Count; index++) {
-            KeyValuePair<string, bool> entry = drink.ingredients[section.ToString()].ElementAt(index);
+            string name = drink.ingredients[section].At(index);
 
-            drink.internalData[section].data[index] = EditorGUILayout.Toggle("\t" + entry.Key, drink.internalData[section].data[index]);
+            drink.internalData[section].data[index] = EditorGUILayout.Toggle("\t" + name, drink.internalData[section].data[index]);
         }
     }
+
 
     public static void ShowDictionaryAll(Drink drink, bool value) {
         if (value == false) return;
 
-        // for loop (use entry to get type name)
-        for (int i = 0; i < drink.ingredients.Count / 2; i++) {
-            KeyValuePair<string, Dictionary<string, bool>> entry = drink.ingredients.ElementAt(i * 2);
-            EditorGUILayout.LabelField(entry.Key, EditorStyles.boldLabel);
-
+        for (int i = 0; i < drink.ingredients.Count; i++) {
+            string name = drink.ingredients.At(i);
+            EditorGUILayout.LabelField(name, EditorStyles.boldLabel);
             ShowDictionaryValues(drink, i);
         }
     }
 
     public static void ShowDictionaryValues(Drink drink, int section) {
-        for (int index = 0; index < drink.ingredients[section.ToString()].Count; index++) {
-            KeyValuePair<string, bool> entry = drink.ingredients[section.ToString()].ElementAt(index);
+        for (int index = 0; index < drink.ingredients[section].Count; index++) {
+            string name = drink.ingredients[section].At(index);
+            bool value = drink.ingredients[section][index];
 
-            EditorGUILayout.Toggle("\t" + entry.Key, entry.Value);
+            EditorGUILayout.Toggle("\t" + name, value);
         }
     }
 
     public static void ShowDictionary(Drink drink) {
-        for (int i = 0; i < drink.ingredients.Count / 2; i++) {
-            KeyValuePair<string, Dictionary<string, bool>> typeEntry = drink.ingredients.ElementAt(i * 2);
-            EditorGUILayout.LabelField(typeEntry.Key, EditorStyles.boldLabel);
+        for (int i = 0; i < drink.ingredients.Count; i++) {
+            string typeName = drink.ingredients.At(i);
+            EditorGUILayout.LabelField(typeName, EditorStyles.boldLabel);
 
-            for (int j = 0; j < drink.ingredients[i.ToString()].Count; j++) {
-                KeyValuePair<string, bool> entry = drink.ingredients[i.ToString()].ElementAt(j); // each ingredient
+            for (int j = 0; j < drink.ingredients[i].Count; j++) {
+                string name = drink.ingredients[i].At(j);
+                bool value = drink.ingredients[i][j];
 
-                EditorGUILayout.Toggle("\t" + entry.Key, entry.Value);
+                EditorGUILayout.Toggle("\t" + name, value); // each ingredient
             }
         }
     }

@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dd47aaf0846624890de0af6204250c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockMin: -60
-  lockMax: 60
-  sensitivity: 850
+  lockMax: 85
+  lockMin: -85
+  sensitivity: 800
   invertY: 0
   cameraPosition: {x: 0, y: 0, z: 0}
   cameraForward: {x: 0, y: 0, z: 0}
