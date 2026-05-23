@@ -13,26 +13,21 @@ public class FizzyDrink : Drink {
             return;
         }
 
-        if (!IsActive()) {
-            if (otherDrink.Has("Soda") || otherDrink.Has("Syrup")) SetIngredient(otherDrink); // set either
-        }
-        else if (Has("Soda") && HasNo("Syrup")) SetIngredient(otherDrink, "Syrup"); // set syrup
-        else if (Has("Syrup") && HasNo("Soda")) SetIngredient(otherDrink, "Soda"); // set soda
-        else if (Has("Syrup") && Has("Soda") && (HasNo("Fruit") || HasNo("Citrus"))) {
-            if (HasNo("Fruit") && HasNo("Citrus")) {
-                if (otherDrink.Has("Fruit") || otherDrink.Has("Citrus")) SetIngredient(otherDrink);
-            }
-            else if (Has("Fruit") && HasNo("Citrus")) SetIngredient(otherDrink, "Citrus");
-            else if (Has("Citrus") && HasNo("Fruit")) {
-                SetIngredient(otherDrink, "Fruit", true);
-                if (IsFull("Fruit")) finishedDrink = true;
-            }
+        if (Has("Soda", "Syrup")) {
+            if (HasNot("Fruit", "Citrus")) SetIngredient(otherDrink, false, "Fruit", "Citrus");
+            else if (Has("Fruit") && HasNot("Citrus")) SetIngredient(otherDrink, false, "Citrus");
+            else if (Has("Citrus") && HasNot("Fruit")) SetIngredient(otherDrink, true, "Fruit");
+            if (!IsAllActive("Fruit")) SetIngredient(otherDrink, true, "Fruit");
         }
         else {
-            if (otherDrink.Has("Fruit")) {
-                SetIngredient(otherDrink, "Fruit", true);
-                if (IsFull("Fruit")) finishedDrink = true;
-            }
+            if (HasNot("Soda", "Syrup")) SetIngredient(otherDrink, false, "Soda", "Syrup");
+            else if (Has("Soda") && HasNot("Syrup")) SetIngredient(otherDrink, false, "Syrup");
+            else if (Has("Syrup") && HasNot("Soda")) SetIngredient(otherDrink, false, "Soda");
+        }
+
+        if (Has("Soda", "Syrup", "Citrus") && IsAllActive("Fruit")) {
+            finishedDrink = true;
+            Debug.Log("completed drink");
         }
 
     }

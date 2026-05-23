@@ -13,16 +13,16 @@ public class IngredientsManager {
     // example["Soda"] -> soda type
     public Ingredients this[string key] {
         get {
-            if (ingredients.ContainsKey(key)) {
-                return ingredients[key];
+            if (ingredients.ContainsKey(key.ToLower())) {
+                return ingredients[key.ToLower()];
             }
             else {
                 throw new System.Exception("Inputted Key does not Exist");
             }
         }
         set {
-            if (ingredients.ContainsKey(key)) {
-                ingredients[key] = value;
+            if (ingredients.ContainsKey(key.ToLower())) {
+                ingredients[key.ToLower()] = value;
             }
         }
     }
@@ -48,6 +48,6 @@ public class IngredientsManager {
 
     public string At(int key) { return ingredient_type_ids[key]; }
 
-    public void Add(string key, Ingredients value) { ingredients.Add(key, value); }
-    public void Add(int key, string value) { ingredient_type_ids.Add(key, value); }
+    public void Add(string key, Ingredients value) { ingredients.Add(key.ToLower(), value); }
+    public void Add(int key, string value) { ingredient_type_ids.Add(key, value.ToLower()); }
 }

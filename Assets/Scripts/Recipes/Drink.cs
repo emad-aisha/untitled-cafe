@@ -19,45 +19,54 @@ public class Drink : MonoBehaviour {
     virtual public void Interact(Drink otherDrink, ref int priority) { }
 
     // set ingredients
-    virtual protected bool SetIngredientByPriority(Drink otherDrink, ref int priority) {
-        if (IsOutOfBounds(priority)) return false;
-        if (IsTypeActive(priority)) return false;
-        // TODO: add another check here so I dont have to keep overriding
+    //virtual protected bool SetIngredientByPriority(Drink otherDrink, ref int priority) {
+    //    if (IsOutOfBounds(priority)) return false;
+    //    if (IsTypeActive(priority)) return false;
+    //    // TODO: add another check here so I dont have to keep overriding
+    //
+    //    ingredients[priority] = otherDrink.ingredients[priority];
+    //    priority++;
+    //    return true;
+    //}
 
-        ingredients[priority] = otherDrink.ingredients[priority];
-        priority++;
-        return true;
-    }
-
-    virtual protected bool SetIngredient(Drink otherDrink, string prefferedType = "null", bool allowMultipleIngredients = false) {
+    // TODO: hard to read
+    virtual protected bool SetIngredient(Drink otherDrink, bool allowMultipleIngredients, params string[] prefferedType) {
         int index = otherDrink.GetActiveType();
         if (IsOutOfBounds(index)) return false;
-        if (prefferedType != "null" && !otherDrink.IsTypeActive(prefferedType)) return false; // check if active ingredient is prefferedType
+
+        if (prefferedType.Length <= 0) {
+            bool hasType = false;
+            for (int i = 0; i < prefferedType.Length; i++) {
+                if (otherDrink.IsTypeActive(prefferedType[i])) hasType = true;
+            }
+            if (!hasType) return false; // check if active ingredient is prefferedType
+        }
+
 
         if (allowMultipleIngredients) {
             string key = GetActiveIngredient(otherDrink.ingredients[index]);
             ingredients[index][key] = otherDrink.ingredients[index][key];
         }
         else {
+            if (IsTypeActive(index)) return false;
             ingredients[index] = otherDrink.ingredients[index];
         }
         return true;
     }
 
-    public bool IsFull(string key) {
-        bool result = true;
 
-        bool value = false;
-        for (int i = 0; i < ingredients[key].Count; i++) {
-            value = ingredients[key][i];
-            if (!value) result = false;
+    public bool Has(params string[] name) {
+        for (int i = 0; i < name.Length; i++) {
+            if (!IsTypeActive(name[i])) return false;
         }
-
-        return result;
+        return true;
     }
-
-    public bool Has(string name) { return IsTypeActive(name); }
-    public bool HasNo(string name) { return !IsTypeActive(name); }
+    public bool HasNot(params string[] name) {
+        for (int i = 0; i < name.Length; i++) {
+            if (IsTypeActive(name[i])) return false;
+        }
+        return true;
+    }
 
     // checks
     public bool IsOutOfBounds(int ingredientType) {
@@ -69,31 +78,39 @@ public class Drink : MonoBehaviour {
 
     // is active
     public bool IsActive() {
-        bool value = false;
-
         for (int type = 0; type < internalData.Count; type++) {
             for (int i = 0; i < ingredients[type].Count; i++) {
-                value = ingredients[type][i];
-                if (value) return true;
+                if (ingredients[type][i]) return true;
             }
         }
         return false;
     }
 
+    public bool IsAllActive(string key) {
+        for (int i = 0; i < ingredients[key].Count; i++) {
+            if (!ingredients[key][i]) return false;
+        }
+
+        return true;
+    }
+    public bool IsAllActive(int key) {
+        for (int i = 0; i < ingredients[key].Count; i++) {
+            if (!ingredients[key][i]) return false;
+        }
+
+        return true;
+    }
+
     public bool IsTypeActive(int ingredientType) {
-        bool value = false;
         for (int i = 0; i < ingredients[ingredientType].Count; i++) {
-            value = ingredients[ingredientType][i];
-            if (value) return true;
+            if (ingredients[ingredientType][i]) return true;
         }
 
         return false;
     }
     public bool IsTypeActive(string ingredientType) {
-        bool value = false;
         for (int i = 0; i < ingredients[ingredientType].Count; i++) {
-            value = ingredients[ingredientType][i];
-            if (value) return true;
+            if (ingredients[ingredientType][i]) return true;
         }
 
         return false;
@@ -102,12 +119,9 @@ public class Drink : MonoBehaviour {
 
     // get active
     public int GetActiveType() {
-        bool value = false;
         for (int type = 0; type < internalData.Count; type++) {
             for (int i = 0; i < ingredients[type].Count; i++) {
-                value = ingredients[type][i];
-
-                if (value) return type;
+                if (ingredients[type][i]) return type;
             }
         }
 

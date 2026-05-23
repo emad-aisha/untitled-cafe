@@ -11,15 +11,15 @@ public class Ingredients {
     // ingredients["Strawberry"] -> value
     public bool this[string key] {
         get {
-            if (ingredients.ContainsKey(key)) {
-                return ingredients[key];
+            if (ingredients.ContainsKey(key.ToLower())) {
+                return ingredients[key.ToLower()];
             }
             else {
                 throw new System.Exception("Inputted Key does not Exist");
             }
         }
         set {
-            ingredients[key] = value;
+            ingredients[key.ToLower()] = value;
         }
     }
 
@@ -41,7 +41,7 @@ public class Ingredients {
     // ingredients.At(1) -> key
     public string At(int key) { return ingredient_ids[key]; }
 
-    public void Add(string key, bool value) { ingredients.Add(key, value); }
-    public void Add(int key, string value) { ingredient_ids.Add(key, value); }
+    public void Add(string key, bool value) { ingredients.Add(key.ToLower(), value); }
+    public void Add(int key, string value) { ingredient_ids.Add(key, value.ToLower()); }
 
 }
