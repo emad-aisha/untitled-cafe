@@ -291,6 +291,8 @@ MonoBehaviour:
   - data: 0000
   type: 1
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &168975051
 GameObject:
@@ -421,6 +423,8 @@ MonoBehaviour:
   - data: 0100
   type: 3
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &280295977
 GameObject:
@@ -550,6 +554,8 @@ MonoBehaviour:
   - data: 0000
   type: 0
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &410087039
 GameObject:
@@ -795,11 +801,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
   internalData:
-  - data: 0100
+  - data: 0000
   - data: 0000
   - data: 0000
   type: 0
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &748150564
 GameObject:
@@ -930,6 +938,8 @@ MonoBehaviour:
   - data: 0000
   type: 1
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &805701374
 GameObject:
@@ -980,17 +990,6 @@ MonoBehaviour:
   playerMoney: 0
   mainCamera: {fileID: 0}
   mainCameraController: {fileID: 0}
---- !u!114 &816237742 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6539512105956390457, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
-  m_PrefabInstance: {fileID: 5295724979785034377}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1201,8 @@ MonoBehaviour:
   - data: 0001
   type: 2
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1073463144
 GameObject:
@@ -1441,6 +1442,8 @@ MonoBehaviour:
   - data: 0000
   type: 2
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1193853363
 GameObject:
@@ -1571,6 +1574,8 @@ MonoBehaviour:
   - data: 0000
   type: 1
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1303362940
 GameObject:
@@ -1700,6 +1705,8 @@ MonoBehaviour:
   - data: 0000
   type: 1
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1381044474
 GameObject:
@@ -1944,6 +1951,8 @@ MonoBehaviour:
   - data: 0000
   type: 2
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1660888197
 GameObject:
@@ -2153,18 +2162,9 @@ MonoBehaviour:
   - data: 0001
   type: 3
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
---- !u!114 &1707622372 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 94286841785338057, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
-  m_PrefabInstance: {fileID: 5295724979785034377}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1721152921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2326,8 @@ MonoBehaviour:
   - data: 0100
   type: 2
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1821211578
 GameObject:
@@ -2555,6 +2557,8 @@ MonoBehaviour:
   - data: 0000
   type: 0
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1932114761
 GameObject:
@@ -2751,6 +2755,8 @@ MonoBehaviour:
   - data: 0000
   type: 1
   hideInternalData: 0
+  name: 
+  price: 0
   interactData: []
 --- !u!1 &1991075893
 GameObject:
@@ -2961,26 +2967,6 @@ PrefabInstance:
     - target: {fileID: 4942408025032545263, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5991414285727310630, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
-      propertyPath: m_Name
-      value: Drink Name
-      objectReference: {fileID: 0}
-    - target: {fileID: 6539512105956390457, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
-      propertyPath: m_text
-      value: DRINK NAME
-      objectReference: {fileID: 0}
-    - target: {fileID: 7925758024449929955, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
-      propertyPath: subType
-      value: 
-      objectReference: {fileID: 1707622372}
-    - target: {fileID: 7925758024449929955, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
-      propertyPath: drinkName
-      value: 
-      objectReference: {fileID: 816237742}
-    - target: {fileID: 8568914155230337262, guid: de7083cbdfc559e4ba68edc989bd58d5, type: 3}
-      propertyPath: m_Name
-      value: Drink Name Variable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
