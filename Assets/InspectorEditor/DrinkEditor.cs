@@ -14,14 +14,15 @@ public class DrinkEditor : Editor {
         showDictionary = false;
     }
 
-
-
     public override void OnInspectorGUI() {
         serializedObject.Update();
         var drink = (Drink)target;
 
         EditorGUI.BeginChangeCheck();
         EditorGUILayout.PropertyField(serializedObject.FindProperty("ingredientData"));
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("interactData"));
         EditorGUILayout.Space();
 
         ShowDictionaryButton(ref showDictionary);
@@ -87,11 +88,6 @@ public class DrinkEditor : Editor {
             default: Show.ShowDictionaryValues(drink, drink.type); break;
         }
         Repaint();
-    }
-
-
-    void test(SerializedProperty proprty) {
-
     }
 
     void SetValue<NewIngredientType>(ref int value, IngredientType drinkType, IngredientType ingredientType)

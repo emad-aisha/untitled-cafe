@@ -21,15 +21,11 @@ public class Interaction : MonoBehaviour {
         Drink activeDrink;
 
         if (InteractionManager.instance.GetActiveDrinkIndex(drinks) == -1) {
-            if (otherDrink is Coffee) activeDrink = InteractionManager.instance.GetDrinkType(drinks, IngredientType.Coffee);
-            else if (otherDrink is FizzyDrink) activeDrink = InteractionManager.instance.GetDrinkType(drinks, IngredientType.FizzyDrink);
-            else throw new System.Exception("No Matching Drink Type");
+            activeDrink = InteractionManager.instance.GetDrinkType(drinks, otherDrink.ingredientData.Type);
         }
         else activeDrink = InteractionManager.instance.GetActiveDrink(drinks);
 
         activeDrink.Interact(otherDrink, ref currPriority);
-
-        Debug.Log("drink");
     }
 
 }

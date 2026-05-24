@@ -286,10 +286,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
   internalData:
-  - data: 0000
-  - data: 0100
-  - data: 0000
+  - data: 
+  - data: "\x01"
+  - data: 
   type: 1
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &168975051
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,11 +415,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 00
-  - data: 000000
-  - data: 0000
-  - data: 0100
+  - data: 
+  - data: 
+  - data: 
+  - data: "\x01"
   type: 3
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &280295977
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,10 +545,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
   internalData:
-  - data: 0001
-  - data: 0000
-  - data: 0000
+  - data: 
+  - data: 
+  - data: 
   type: 0
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,10 +795,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
   internalData:
-  - data: 0100
-  - data: 0000
-  - data: 0000
+  - data: "\x01"
+  - data: 
+  - data: 
   type: 0
+  finishedDrink: 0
+  interactData: []
+--- !u!1 &673037513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5072181126753763252, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+  m_PrefabInstance: {fileID: 4072490942070052080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &673037515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673037513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af3702998efde04caec829664924d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
+  internalData:
+  - data: 00
+  - data: 000000
+  - data: 0000
+  - data: 0000
+  type: -1
+  interactData:
+  - originalIngredient: Soda
+    neededIngredients: []
+    canHaveMultiple: 0
+  - originalIngredient: Syrup
+    neededIngredients: []
+    canHaveMultiple: 0
+  - originalIngredient: Fruit
+    neededIngredients:
+    - Soda
+    - Syrup
+    canHaveMultiple: 1
+  - originalIngredient: Citrus
+    neededIngredients:
+    - Soda
+    - Syrup
+    canHaveMultiple: 0
 --- !u!1 &748150564
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,11 +965,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 00
-  - data: 010000
-  - data: 0000
-  - data: 0000
+  - data: 
+  - data: "\x01"
+  - data: 
+  - data: 
   type: 1
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &805701374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,10 +1227,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
   internalData:
-  - data: 0000
-  - data: 0000
-  - data: 0001
+  - data: 
+  - data: 
+  - data: 
   type: 2
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1073463144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,11 +1465,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 00
-  - data: 000000
-  - data: 0001
-  - data: 0000
+  - data: 
+  - data: 
+  - data: 
+  - data: 
   type: 2
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1193853363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,10 +1595,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 00
-  - data: 000100
-  - data: 0000
+  - data: 
+  - data: 
+  - data: 
   type: 1
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1303362940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,10 +1724,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
   internalData:
-  - data: 0000
-  - data: 0001
-  - data: 0000
+  - data: 
+  - data: 
+  - data: 
   type: 1
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1381044474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,11 +1967,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 00
-  - data: 000000
-  - data: 0100
-  - data: 0000
+  - data: 
+  - data: 
+  - data: "\x01"
+  - data: 
   type: 2
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1660888197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,11 +2176,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 00
-  - data: 000000
-  - data: 0000
-  - data: 0001
+  - data: 
+  - data: 
+  - data: 
+  - data: 
   type: 3
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1721152921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,10 +2339,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
   internalData:
-  - data: 0000
-  - data: 0000
-  - data: 0100
+  - data: 
+  - data: 
+  - data: "\x01"
   type: 2
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1821211578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,10 +2567,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 01
-  - data: 000000
-  - data: 0000
+  - data: "\x01"
+  - data: 
+  - data: 
   type: 0
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1932114761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,10 +2762,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
   internalData:
-  - data: 00
-  - data: 000001
-  - data: 0000
+  - data: 
+  - data: 
+  - data: 
   type: 1
+  finishedDrink: 0
+  interactData: []
 --- !u!1 &1990626502
 GameObject:
   m_ObjectHideFlags: 0
@@ -3012,10 +3081,63 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.data[2].canHaveMultiple
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.data[0].originalIngredient
+      value: Soda
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.data[1].originalIngredient
+      value: Syrup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.data[2].originalIngredient
+      value: Fruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.data[3].originalIngredient
+      value: Citrus
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.data[2].neededIngredients.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: interactData.Array.data[3].neededIngredients.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: 'interactData.Array.data[2].neededIngredients.Array.data[0]'
+      value: Soda
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: 'interactData.Array.data[2].neededIngredients.Array.data[1]'
+      value: Syrup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: 'interactData.Array.data[3].neededIngredients.Array.data[0]'
+      value: Soda
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      propertyPath: 'interactData.Array.data[3].neededIngredients.Array.data[1]'
+      value: Syrup
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3891943853738363835, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+    - {fileID: 6869292294854614161, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5072181126753763252, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 673037515}
   m_SourcePrefab: {fileID: 100100000, guid: d5a6a16d3628d72429ac59086bafba71, type: 3}
 --- !u!1001 &4670802400898905560
 PrefabInstance:

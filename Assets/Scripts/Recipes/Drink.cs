@@ -1,7 +1,14 @@
 using UnityEngine;
-using System.Linq;
+using System;
 using System.Collections.Generic;
-using Ingredient = System.Collections.Generic.Dictionary<string, bool>;
+
+[Serializable]
+struct InteractData {
+    public string originalIngredient;
+    public string[] neededIngredients;
+
+    public bool canHaveMultiple;
+}
 
 public class Drink : MonoBehaviour {
     [SerializeReference] public IngredientsData ingredientData; // for initialization
@@ -10,46 +17,48 @@ public class Drink : MonoBehaviour {
 
     //public Dictionary<string, Ingredient> ingredients; // able to use numbers or name
     public IngredientsManager ingredients;
+    protected bool finishedDrink = false;
+
+    [SerializeField] InteractData[] interactData;
 
     void Start() {
         InitializeDictionary();
     }
 
     // TODO: cleanup?
-    virtual public void Interact(Drink otherDrink, ref int priority) { }
+    virtual public void Interact(Drink otherDrink, ref int priority) {
+        // TODO: see if I can clean up
+        if (otherDrink.GetActiveType() == -1) return;
+        InteractData data = interactData[otherDrink.GetActiveType()];
 
-    // set ingredients
-    //virtual protected bool SetIngredientByPriority(Drink otherDrink, ref int priority) {
-    //    if (IsOutOfBounds(priority)) return false;
-    //    if (IsTypeActive(priority)) return false;
-    //    // TODO: add another check here so I dont have to keep overriding
-    //
-    //    ingredients[priority] = otherDrink.ingredients[priority];
-    //    priority++;
-    //    return true;
-    //}
+        if (data.canHaveMultiple) {
+            if (Has(data.neededIngredients)) SetIngredient(otherDrink, data.originalIngredient, data.canHaveMultiple);
+        }
+        else {
+            if (Has(data.neededIngredients) && HasNot(data.originalIngredient)) SetIngredient(otherDrink, data.originalIngredient);
+        }
+
+
+    }
 
     // TODO: hard to read
-    virtual protected bool SetIngredient(Drink otherDrink, bool allowMultipleIngredients, params string[] prefferedType) {
+    virtual protected bool SetIngredient(Drink otherDrink, string prefferedType = "", bool allowMultipleIngredients = false) {
         int index = otherDrink.GetActiveType();
         if (IsOutOfBounds(index)) return false;
 
-        if (prefferedType.Length <= 0) {
-            bool hasType = false;
-            for (int i = 0; i < prefferedType.Length; i++) {
-                if (otherDrink.IsTypeActive(prefferedType[i])) hasType = true;
-            }
-            if (!hasType) return false; // check if active ingredient is prefferedType
-        }
+        // check if active ingredient is prefferedType
+        if (prefferedType != "" && !otherDrink.IsTypeActive(prefferedType)) return false;
 
 
         if (allowMultipleIngredients) {
             string key = GetActiveIngredient(otherDrink.ingredients[index]);
             ingredients[index][key] = otherDrink.ingredients[index][key];
+            Debug.Log(key);
         }
         else {
             if (IsTypeActive(index)) return false;
             ingredients[index] = otherDrink.ingredients[index];
+            Debug.Log(ingredients.At(index));
         }
         return true;
     }
@@ -126,6 +135,15 @@ public class Drink : MonoBehaviour {
         }
 
         return -1;
+    }
+    public string GetActiveTypeName() {
+        for (int type = 0; type < internalData.Count; type++) {
+            for (int i = 0; i < ingredients[type].Count; i++) {
+                if (ingredients[type][i]) return ingredients[type].At(i);
+            }
+        }
+
+        return "";
     }
 
     public string GetActiveIngredient(Ingredients ingredients) {
