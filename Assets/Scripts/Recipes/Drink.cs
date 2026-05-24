@@ -11,11 +11,12 @@ struct InteractData {
 }
 
 public class Drink : MonoBehaviour {
-    [SerializeReference] public IngredientsData ingredientData; // for initialization
-    public List<ListWrapper> internalData; // for initialization
-    public int type = -1; // for initialization (-1 = All)
+    // initialization
+    [SerializeReference] public IngredientsData ingredientData;
+    public List<ListWrapper> internalData;
+    public int type = -1;
+    public bool hideInternalData; // for inspector
 
-    //public Dictionary<string, Ingredient> ingredients; // able to use numbers or name
     public IngredientsManager ingredients;
     protected bool finishedDrink = false;
 

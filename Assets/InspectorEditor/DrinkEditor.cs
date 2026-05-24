@@ -15,45 +15,35 @@ public class DrinkEditor : Editor {
     }
 
     public override void OnInspectorGUI() {
+        EditorGUI.BeginChangeCheck();
         serializedObject.Update();
         var drink = (Drink)target;
 
-        EditorGUI.BeginChangeCheck();
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("ingredientData"));
-        EditorGUILayout.Space();
+        ShowIngredientData();
+        ShowButton("Hide Setters?", ref drink.hideInternalData);
 
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("interactData"));
-        EditorGUILayout.Space();
+        if (drink.hideInternalData) ShowInteractData();
 
-        ShowDictionaryButton(ref showDictionary);
+        ShowButton("Show Dictionary Data?", ref showDictionary);
         if (Application.isPlaying) showDictionary = true;
 
         if (drink.ingredientData == null) {
             serializedObject.ApplyModifiedProperties();
-
-            // if set to real object , init
-            if (drink.ingredientData != null) {
-                drink.InitializeInternalData();
-                drink.InitializeDictionary();
-                serializedObject.ApplyModifiedProperties();
-            }
+            if (drink.ingredientData != null) ResetData(ref drink);
             return;
         }
 
-
         if (EditorGUI.EndChangeCheck()) {
-            drink.InitializeInternalData();
-            drink.InitializeDictionary();
-            serializedObject.ApplyModifiedProperties();
+            ResetData(ref drink);
             Repaint();
         }
         Undo.RecordObject(drink, "internalData");
 
-        SetValue<FizzyDrink.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientType.FizzyDrink);
-        SetValue<Coffee.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientType.Coffee);
+        if (!drink.hideInternalData) SetValue<FizzyDrink.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientType.FizzyDrink);
+        if (!drink.hideInternalData) SetValue<Coffee.Ingredient>(ref drink.type, drink.ingredientData.Type, IngredientType.Coffee);
 
         if (!showDictionary) {
-            DrawInternalData(ref drink);
+            if (!drink.hideInternalData) DrawInternalData(ref drink);
         }
         else {
             DrawDictionary(ref drink);
@@ -63,9 +53,25 @@ public class DrinkEditor : Editor {
     }
 
 
-    void ShowDictionaryButton(ref bool value) {
+    void ShowIngredientData() {
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("ingredientData"));
+        EditorGUILayout.Space();
+    }
+
+    void ShowInteractData() {
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("interactData"));
+        EditorGUILayout.Space();
+    }
+
+    void ResetData(ref Drink drink) {
+        drink.InitializeInternalData();
+        drink.InitializeDictionary();
+        serializedObject.ApplyModifiedProperties();
+    }
+
+    void ShowButton(string label, ref bool value) {
         GUILayout.BeginHorizontal();
-        GUILayout.Label("Show Dictionary/debugger");
+        GUILayout.Label(label);
         GUILayout.Space(50);
         value = EditorGUILayout.Toggle(value);
         GUILayout.EndHorizontal();

@@ -278,6 +278,7 @@ MonoBehaviour:
   maxTime: 15
   waitTime: 0
   canOrder: 0
+  tip: 0
   stopWaiting: 0
   discountTime: 30
   leaveTime: 60
@@ -286,7 +287,6 @@ MonoBehaviour:
   customer: {fileID: 0}
   isDebugging: 1
   personalSeat: {fileID: 0}
-  drinks: []
   currentState: 0
 --- !u!1 &8528334959743055802
 GameObject:
@@ -330,21 +330,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528334959743055802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e4ad5949554a74b824ef036323024b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9af3702998efde04caec829664924d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkType: 0
-  drinkName: 
-  price: 0
-  soda:
-    hasSoda: 0
-  syrup:
-    hasStrawberry: 0
-    hasLemon: 0
-    hasOrange: 0
-  fruit:
-    hasLime: 0
-    hasLemon: 0
+  ingredientData: {fileID: 11400000, guid: 4fd0be14f067824419eaeb71242e7b4a, type: 2}
+  internalData:
+  - data: 0000
+  - data: 0000
+  - data: 0000
+  type: -1
+  hideInternalData: 0
+  interactData: []
 --- !u!114 &4068936235528440373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,18 +350,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528334959743055802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1166bc0b521b8d4a9b16270cb9d8075, type: 3}
+  m_Script: {fileID: 11500000, guid: 9af3702998efde04caec829664924d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkType: 1
-  drinkName: 
-  price: 0
-  espresso:
-    hasDecaf: 0
-    hasEspresso: 0
-  liquid:
-    hasWater: 0
-    hasMilk: 0
-  extras:
-    hasMilkFoam: 0
-    hasChocolate: 0
+  ingredientData: {fileID: 11400000, guid: 61452deb29e3bfa4d96be97d44084ff7, type: 2}
+  internalData:
+  - data: 00
+  - data: 000000
+  - data: 0000
+  - data: 0000
+  type: -1
+  hideInternalData: 0
+  interactData: []

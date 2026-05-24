@@ -51,6 +51,7 @@ MonoBehaviour:
   - data: 0000
   - data: 0000
   type: -1
+  hideInternalData: 1
   interactData:
   - originalIngredient: Soda
     neededIngredients: []
@@ -118,6 +119,7 @@ MonoBehaviour:
   - data: 0000
   - data: 0000
   type: -1
+  hideInternalData: 1
   interactData:
   - originalIngredient: Espresso
     neededIngredients: []
