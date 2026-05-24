@@ -21,11 +21,20 @@ public class DrinkEditor : Editor {
         var drink = (Drink)target;
 
         ShowIngredientData();
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("nameManager"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("name"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("price"));
+
         ShowButton("Hide Setters?", ref drink.hideInternalData);
+        Undo.RecordObject(drink, "hideInternalData");
+        EditorUtility.SetDirty(drink);
 
         if (drink.hideInternalData) ShowInteractData();
 
         ShowButton("Show Dictionary Data?", ref showDictionary);
+        Undo.RecordObject(drink, "showDictionary");
+        EditorUtility.SetDirty(drink);
         if (Application.isPlaying) showDictionary = true;
 
         if (drink.ingredientData == null) {

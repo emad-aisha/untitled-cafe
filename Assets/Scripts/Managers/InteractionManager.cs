@@ -28,12 +28,12 @@ public class InteractionManager : MonoBehaviour {
 
 
     public int GetActiveDrinkIndex(Drink[] drinks) {
-        for (int i = 0; i < drinks.Length; i++) { if (drinks[i].IsActive()) return i; }
+        for (int i = 0; i < drinks.Length; i++) { if (drinks[i].ingredients.IsActive()) return i; }
         return -1;
     }
 
     bool OtherDrinksActive(Drink[] drinks) {
-        foreach (Drink drink in drinks) { if (drink.IsActive()) return true; }
+        foreach (Drink drink in drinks) { if (drink.ingredients.IsActive()) return true; }
         return false;
     }
 

@@ -116,6 +116,16 @@ public class IngredientsWrapper {
         for (int i = 0; i < ingredients.Count; i++) {
             if (ingredients[i]) return ingredients.At(i);
         }
-        return "null";
+        return "";
+    }
+
+    public string[] GetActiveIngredients(Ingredients ingredients) {
+        string[] strings = new string[ingredients.Count];
+
+        for (int i = 0; i < ingredients.Count; i++) {
+            strings[i] = "";
+            if (ingredients[i]) strings[i] = ingredients.At(i);
+        }
+        return strings;
     }
 }

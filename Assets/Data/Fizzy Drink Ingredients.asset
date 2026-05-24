@@ -28,9 +28,9 @@ MonoBehaviour:
       value: 0
   - name: Fruit
     ingredients:
-    - name: Strawberry
+    - name: Strawberries
       value: 0
-    - name: Orange Slice
+    - name: Orange Slices
       value: 0
   - name: Citrus
     ingredients:

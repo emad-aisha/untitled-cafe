@@ -17,6 +17,7 @@ public class Drink : MonoBehaviour {
     public int type = -1;
     public bool hideInternalData; // for inspector
 
+    [SerializeField] NameManager nameManager;
     public IngredientsWrapper ingredients;
     protected bool finishedDrink = false;
 
@@ -42,6 +43,7 @@ public class Drink : MonoBehaviour {
             if (Has(data.neededIngredients) && HasNot(data.originalIngredient)) SetIngredient(otherDrink, data.originalIngredient);
         }
 
+        nameManager.SetName(ref name, ingredients);
     }
 
     // TODO: hard to read
