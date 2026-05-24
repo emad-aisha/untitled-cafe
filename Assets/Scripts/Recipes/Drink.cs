@@ -31,6 +31,7 @@ public class Drink : MonoBehaviour {
         // TODO: see if I can clean up
         if (otherDrink.GetActiveType() == -1) return;
         InteractData data = interactData[otherDrink.GetActiveType()];
+        MenuManager.instance.SetBaseType(ingredientData.Type.ToString());
 
         if (data.canHaveMultiple) {
             if (Has(data.neededIngredients)) SetIngredient(otherDrink, data.originalIngredient, data.canHaveMultiple);
@@ -38,7 +39,6 @@ public class Drink : MonoBehaviour {
         else {
             if (Has(data.neededIngredients) && HasNot(data.originalIngredient)) SetIngredient(otherDrink, data.originalIngredient);
         }
-
 
     }
 
@@ -54,12 +54,12 @@ public class Drink : MonoBehaviour {
         if (allowMultipleIngredients) {
             string key = GetActiveIngredient(otherDrink.ingredients[index]);
             ingredients[index][key] = otherDrink.ingredients[index][key];
-            Debug.Log(key);
+            MenuManager.instance.SetSubType(key);
         }
         else {
             if (IsTypeActive(index)) return false;
             ingredients[index] = otherDrink.ingredients[index];
-            Debug.Log(ingredients.At(index));
+            MenuManager.instance.SetSubType(GetActiveIngredient(ingredients[index]));
         }
         return true;
     }

@@ -6,32 +6,32 @@ public class MenuManager : MonoBehaviour {
 
     [Header("Basic Drink")]
     [SerializeField] TMP_Text baseType;
-    [SerializeField] TMP_Text lastInteracted;
+    [SerializeField] TMP_Text subType;
 
     [Header("Finals")]
-    [SerializeField] TMP_Text finalDrink;
+    [SerializeField] TMP_Text drinkName;
     [SerializeField] TMP_Text cost;
     [SerializeField] TMP_Text totalMoney;
 
     [Header("Customer")]
     [SerializeField] TMP_Text customerOrder;
     [SerializeField] TMP_Text customerPrice;
-
+    // TODO: make this easier to read + consistent
 
     void Start() { if (instance == null) instance = this; }
 
     public void SetInteractionTypes(string typeName, string _lastInteracted) {
         SetBaseType(typeName);
-        SetLastInteracted(_lastInteracted);
+        SetSubType(_lastInteracted);
     }
     public void SetBaseType(string typeName) { baseType.text = typeName; }
-    public void SetLastInteracted(string _lastInteracted) { lastInteracted.text = _lastInteracted; }
+    public void SetSubType(string _subType) { subType.text = _subType; }
 
     public void SetDrinkInfo(string finalDrinkName, string finalCost) {
-        SetFinalDrink(finalDrinkName);
+        SetDrinkName(finalDrinkName);
         SetCost(finalCost);
     }
-    public void SetFinalDrink(string finalDrinkName) { finalDrink.text = finalDrinkName; }
+    public void SetDrinkName(string finalDrinkName) { drinkName.text = finalDrinkName; }
     public void SetCost(string finalCost) { cost.text = finalCost; }
 
     public void SetPlayerMoney(string money) { totalMoney.text = money; }

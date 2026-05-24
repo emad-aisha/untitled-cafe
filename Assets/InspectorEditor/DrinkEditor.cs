@@ -7,7 +7,8 @@ public class DrinkEditor : Editor {
     bool showDictionary;
 
     void OnEnable() {
-        var drink = (Drink)target;
+        var drink = target as Drink;
+        if (drink == null) return;
 
         if (drink.internalData == null) drink.InitializeInternalData();
         if (drink.ingredients == null) drink.InitializeDictionary();

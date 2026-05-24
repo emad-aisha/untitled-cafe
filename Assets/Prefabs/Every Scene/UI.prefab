@@ -1506,8 +1506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseType: {fileID: 1818041744058612587}
-  lastInteracted: {fileID: 94286841785338057}
-  finalDrink: {fileID: 6539512105956390457}
+  subType: {fileID: 94286841785338057}
+  drinkName: {fileID: 6539512105956390457}
   cost: {fileID: 4274044451604833315}
   totalMoney: {fileID: 9140707974183327318}
   customerOrder: {fileID: 6042989224719204720}
@@ -1834,7 +1834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3653809654058600780}
   m_Layer: 0
-  m_Name: Final Drink
+  m_Name: Drink Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2222,7 +2222,7 @@ GameObject:
   - component: {fileID: 6967503600072882699}
   - component: {fileID: 6539512105956390457}
   m_Layer: 0
-  m_Name: Final Drink Variable
+  m_Name: Drink Name Variable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2275,7 +2275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DRINK TYPE
+  m_text: DRINK NAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
