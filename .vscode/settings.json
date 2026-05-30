@@ -60,25 +60,12 @@
         "*.asset": "yaml",
         "*.meta": "yaml",
         "*.prefab": "yaml",
-        "*.unity": "yaml"
+        "*.unity": "yaml",
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "untitled-cafe.slnx",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.autoIndentOnPaste": true,
-    "editor.defaultFormatter": "ms-dotnettools.csdevkit",
-    "editorconfig.generateAuto": false,
-    "editor.formatOnType": true,
-    "dotnet.autoInsert.enableAutoInsert": true,
-    "dotnet.codeLens.enableReferencesCodeLens": false,
-    "csharp.debug.expressionEvaluationOptions.showRawValues": true,
-    "vstuc.displayBackgroundProcesses": true,
-    "vstuc.refreshOnSave": false,
-    "omnisharp.enableEditorConfigSupport": true,
-    "chat.agent.maxRequests": 0
+    "dotnet.defaultSolution": "untitled-cafe.slnx"
 }
